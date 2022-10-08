@@ -1,12 +1,10 @@
-package BLL;
+package Teacher.BLL;
 
-import DAL.Teacher;
-import DAL.TeacherDAL;
+import Teacher.DAL.Teacher;
+import Teacher.DAL.TeacherDAL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TeacherBLL {
 
@@ -56,15 +54,5 @@ public class TeacherBLL {
     }
 
     public static void main(String[] args) {
-        try {
-            TeacherBLL tchBll = new TeacherBLL();
-            List data = tchBll.LoadTeachers(1);
-            Teacher t = (Teacher) data.get(0);
-            System.out.println(t.getFirstName());
-            System.out.println("Nothing");
-        } catch (SQLException e) {
-            Logger.getLogger(TeacherBLL.class.getName())
-                    .log(Level.SEVERE, null, e);
-        }
     }
 }

@@ -1,4 +1,4 @@
-package DAL;
+package Teacher.DAL;
 
 import java.util.Date;
 
