@@ -1,7 +1,6 @@
 package UI.UI_Item.combobox;
 
-import UI_Item.combobox.*;
-import UI_Item.scroll.ScrollBarCustom;
+import UI.UI_Item.scroll.ScrollBarCustom;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

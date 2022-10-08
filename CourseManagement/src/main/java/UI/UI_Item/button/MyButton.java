@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package UI_Item.button;
+package UI.UI_Item.button;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -73,6 +73,7 @@ public class MyButton extends JButton{
         colorClick = new Color(152, 184, 144);
         borderColor = Color.decode("#ffffff");
         setBackground(color);
+        setForeground(Color.WHITE);
         setContentAreaFilled(false);
         //  Add event mouse
         addMouseListener(new MouseAdapter() {

@@ -1,6 +1,5 @@
-package UI_Item.scroll;
+package UI.UI_Item.scroll;
 
-import UI_Item.combobox.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

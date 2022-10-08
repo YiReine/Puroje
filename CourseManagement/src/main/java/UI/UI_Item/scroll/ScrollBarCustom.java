@@ -1,6 +1,5 @@
-package UI_Item.scroll;
+package UI.UI_Item.scroll;
 
-import UI_Item.combobox.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JScrollBar;

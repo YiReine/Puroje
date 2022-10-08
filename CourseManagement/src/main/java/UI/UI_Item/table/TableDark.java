@@ -1,6 +1,6 @@
-package UI_Item.table;
+package UI.UI_Item.table;
 
-import UI_Item.scroll.ScrollBarCustom;
+import UI.UI_Item.scroll.ScrollBarCustom;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -51,7 +52,9 @@ public class TableDark extends JTable {
         panel.setBackground(Color.decode("#56b6ec"));
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, panel);
         scroll.getViewport().setBackground(Color.decode("#56B6EC"));
-        scroll.setBorder(BorderFactory.createLineBorder(new Color(60, 60, 60), 2));
+        scroll.setBorder(new EmptyBorder(0,0,0,0));
+        this.setShowHorizontalLines(true);
+        this.setGridColor(Color.decode("#56b6ec"));
     }
 
     private class TableDarkHeader extends DefaultTableCellRenderer {
@@ -104,6 +107,7 @@ public class TableDark extends JTable {
                 }
             }
             com.setForeground(new Color(200, 200, 200));
+            
             setBorder(new EmptyBorder(0, 5, 0, 5));
            
             if (alignment.containsKey(column)) {
