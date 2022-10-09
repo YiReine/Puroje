@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package UI.UI_Item.button;
 
 import java.awt.Color;
@@ -12,11 +8,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-/**
- *
- * @author HP
- */
-public class MyButton extends JButton{
+public class MyButton extends JButton {
+
     public boolean isOver() {
         return over;
     }
@@ -125,5 +118,5 @@ public class MyButton extends JButton{
         g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, radius, radius);
         super.paintComponent(grphcs);
     }
-    
+
 }
