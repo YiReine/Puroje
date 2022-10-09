@@ -15,7 +15,7 @@ public class TeacherBLL {
     }
 
     public List LoadTeachers(int page) throws SQLException {
-        int numofrecords = 30;
+        int numofrecords = 50;
         ArrayList list = tchDal.readTeacher();
         int size = list.size();
         int from, to;

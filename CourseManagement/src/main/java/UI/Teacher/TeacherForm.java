@@ -3,6 +3,7 @@ package UI.Teacher;
 import BLL.TeacherBLL;
 import DAL.Teacher.Teacher;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,6 +78,7 @@ public class TeacherForm extends javax.swing.JFrame {
         lbTeacher.setForeground(new java.awt.Color(40, 41, 54));
         lbTeacher.setText("TEACHER");
 
+        tbDS.setForeground(new java.awt.Color(255, 255, 255));
         tbDS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -92,6 +94,7 @@ public class TeacherForm extends javax.swing.JFrame {
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
         btnAdd.setText("Add");
+        btnAdd.setColor(new java.awt.Color(93, 212, 253));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -100,6 +103,7 @@ public class TeacherForm extends javax.swing.JFrame {
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
         btnEdit.setText("Edit");
+        btnEdit.setColor(new java.awt.Color(0, 161, 255));
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditMouseClicked(evt);
@@ -108,6 +112,7 @@ public class TeacherForm extends javax.swing.JFrame {
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
         btnDelete.setText("Delete");
+        btnDelete.setColor(new java.awt.Color(12, 105, 172));
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
@@ -115,7 +120,7 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setForeground(new java.awt.Color(40, 41, 54));
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
@@ -127,6 +132,7 @@ public class TeacherForm extends javax.swing.JFrame {
 
         btnReload.setBackground(new java.awt.Color(93, 212, 253));
         btnReload.setText("Reload");
+        btnReload.setColor(new java.awt.Color(93, 212, 253));
         btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnReloadMouseClicked(evt);
@@ -188,7 +194,6 @@ public class TeacherForm extends javax.swing.JFrame {
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         TeacherAddForm addform = new TeacherAddForm();
         addform.setVisible(true);
-
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
@@ -215,15 +220,18 @@ public class TeacherForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please choose one row in table!", "Message", JOptionPane.ERROR_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
+
                 int input = JOptionPane.showConfirmDialog(null,
                         "Do you want to delete this Teacher?", "Warning!", JOptionPane.YES_NO_OPTION);
-
-                if (input == 0) {
-                    if (tch.deleteTeacher(personID) > 0) {
+                if (input == JOptionPane.YES_OPTION) {
+                    
+                    if (tch.deleteTeacher(personID) == 1) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete teacher successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
                         List list = tch.LoadTeachers(1);
                         model = convertTeacher(list);
                         tbDS.setModel(model);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error causing Foreign key!!", "Message", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -240,7 +248,7 @@ public class TeacherForm extends javax.swing.JFrame {
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);
             } else {
-                //JOptionPane.showMessageDialog(this, "Fullname is empty", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter information!", "Message", JOptionPane.ERROR_MESSAGE);
                 List list = tch.LoadTeachers(1);
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);

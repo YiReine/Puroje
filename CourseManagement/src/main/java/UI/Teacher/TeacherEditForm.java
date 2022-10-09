@@ -30,7 +30,6 @@ public class TeacherEditForm extends javax.swing.JFrame {
         txtLastName.setText(t.getLastName());
         txtHireDate.setText(t.getHireDate().toString());
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -54,6 +53,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
 
         btnSave.setBackground(new java.awt.Color(93, 212, 253));
         btnSave.setText("Save");
+        btnSave.setColor(new java.awt.Color(93, 212, 253));
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
@@ -146,10 +146,15 @@ public class TeacherEditForm extends javax.swing.JFrame {
         t.setHireDate(date);
 
         try {
-            if (tch.editTeacher(t) > 0) {
-                JOptionPane.showMessageDialog(this, "You have completed to edit teacher successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
+            int choice = JOptionPane.showConfirmDialog(null, "Do you want to edit this Teacher?", "Warning!", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.NO_OPTION) {
+                return;
             } else {
-                JOptionPane.showMessageDialog(this, "You haven't completed to edit teacher!", "Message", JOptionPane.ERROR_MESSAGE);
+                if (tch.editTeacher(t) > 0) {
+                    JOptionPane.showMessageDialog(this, "You have completed to edit teacher successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You haven't completed to edit teacher!", "Message", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(TeacherEditForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,7 +162,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveMouseClicked
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
-        this.setVisible(false);
+            this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
 
     public static void main(String args[]) {
@@ -187,7 +192,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }

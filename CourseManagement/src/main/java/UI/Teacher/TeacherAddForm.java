@@ -51,6 +51,7 @@ public class TeacherAddForm extends javax.swing.JFrame {
 
         btnSave.setBackground(new java.awt.Color(93, 212, 253));
         btnSave.setText("Save");
+        btnSave.setColor(new java.awt.Color(93, 212, 253));
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
@@ -143,7 +144,7 @@ public class TeacherAddForm extends javax.swing.JFrame {
         t.setLastName(txtLastName.getText());
         Date date = Date.valueOf(txtHireDate.getText());
         t.setHireDate(date);
-
+ 
         try {
             if (tch.addTeacher(t) > 0) {
                 JOptionPane.showMessageDialog(this, "You have completed to add teacher successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);

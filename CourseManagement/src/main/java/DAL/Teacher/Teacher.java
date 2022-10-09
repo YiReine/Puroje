@@ -8,7 +8,7 @@ public class Teacher {
     Date hireDate;
     
     public Teacher(){
-        
+         
     }
     
     public Teacher(String firstName, String lastName, Date hireDate){

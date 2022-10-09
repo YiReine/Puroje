@@ -91,6 +91,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
         btnAdd.setText("Add");
+        btnAdd.setColor(new java.awt.Color(93, 212, 253));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -99,6 +100,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
         btnEdit.setText("Edit");
+        btnEdit.setColor(new java.awt.Color(0, 161, 255));
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditMouseClicked(evt);
@@ -107,6 +109,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
         btnDelete.setText("Delete");
+        btnDelete.setColor(new java.awt.Color(12, 105, 172));
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
@@ -114,7 +117,7 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setForeground(new java.awt.Color(40, 41, 54));
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
@@ -126,6 +129,12 @@ public class StudentForm extends javax.swing.JFrame {
 
         btnReload.setBackground(new java.awt.Color(93, 212, 253));
         btnReload.setText("Reload");
+        btnReload.setColor(new java.awt.Color(93, 212, 253));
+        btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReloadMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,20 +216,22 @@ public class StudentForm extends javax.swing.JFrame {
         try {
             int row = tbDS.getSelectedRow();
             TableModel model = tbDS.getModel();
-
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table !", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "Message", JOptionPane.ERROR_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
+
                 int input = JOptionPane.showConfirmDialog(null,
                         "Do you want to delete this Student?", "Warning!", JOptionPane.YES_NO_OPTION);
-
-                if (input == 0) {
-                    if (stb.deleteStudent(personID) > 0) {
+                if (input == JOptionPane.YES_OPTION) {
+                    
+                    if (stb.deleteStudent(personID) == 1) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete student successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
                         List list = stb.LoadStudents(1);
                         model = convertStudent(list);
                         tbDS.setModel(model);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error causing Foreign key!!", "Message", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -236,9 +247,8 @@ public class StudentForm extends javax.swing.JFrame {
                 List list = stb.findStudent(fullname);
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
-
             } else {
-                //JOptionPane.showMessageDialog(this, "fullname is empty", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter information!", "Message", JOptionPane.ERROR_MESSAGE);
                 List list = stb.LoadStudents(1);
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
@@ -251,6 +261,16 @@ public class StudentForm extends javax.swing.JFrame {
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
+
+    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
+        try {
+            List list = stb.LoadStudents(1);
+            DefaultTableModel model = convertStudent(list);
+            tbDS.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReloadMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
