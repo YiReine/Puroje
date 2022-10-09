@@ -1,5 +1,6 @@
-package Student.DAL;
+package DAL.Student;
 
+import DAL.MyDatabaseManager;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,5 +1,6 @@
-package Teacher.DAL;
+package DAL.Teacher;
 
+import DAL.MyDatabaseManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

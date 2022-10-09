@@ -1,7 +1,7 @@
-package Student.BLL;
+package BLL;
 
-import Student.DAL.Student;
-import Student.DAL.StudentDAL;
+import DAL.Student.Student;
+import DAL.Student.StudentDAL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

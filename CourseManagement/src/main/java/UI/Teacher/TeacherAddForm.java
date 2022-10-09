@@ -1,7 +1,7 @@
-package Teacher.UI;
+package UI.Teacher;
 
-import Teacher.BLL.TeacherBLL;
-import Teacher.DAL.Teacher;
+import BLL.TeacherBLL;
+import DAL.Teacher.Teacher;
 import java.awt.Color;
 import java.sql.Date;
 import java.sql.SQLException;

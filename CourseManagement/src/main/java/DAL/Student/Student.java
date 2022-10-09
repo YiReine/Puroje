@@ -1,4 +1,4 @@
-package Student.DAL;
+package DAL.Student;
 
 import java.sql.Date;
 

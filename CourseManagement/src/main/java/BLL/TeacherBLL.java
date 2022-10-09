@@ -1,7 +1,7 @@
-package Teacher.BLL;
+package BLL;
 
-import Teacher.DAL.Teacher;
-import Teacher.DAL.TeacherDAL;
+import DAL.Teacher.Teacher;
+import DAL.Teacher.TeacherDAL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
