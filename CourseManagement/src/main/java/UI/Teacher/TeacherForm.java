@@ -135,6 +135,7 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnReload.setBackground(new java.awt.Color(93, 212, 253));
+        btnReload.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\reload.png")); // NOI18N
         btnReload.setText("Reload");
         btnReload.setColor(new java.awt.Color(93, 212, 253));
         btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
