@@ -56,6 +56,7 @@ public class StudentEditForm extends javax.swing.JFrame {
 
         btnSave.setBackground(new java.awt.Color(93, 212, 253));
         btnSave.setText("Save");
+        btnSave.setColor(new java.awt.Color(93, 212, 253));
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
@@ -147,10 +148,15 @@ public class StudentEditForm extends javax.swing.JFrame {
         s.setEnrollmentDate(date);
 
         try {
-            if (std.updateStudent(s) > 0) {
-                JOptionPane.showMessageDialog(this, "You have completed to edit student successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
+            int choice = JOptionPane.showConfirmDialog(null, "Do you want to edit this Student?", "Warning!", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.NO_OPTION) {
+                return;
             } else {
-                JOptionPane.showMessageDialog(this, "You haven't completed to edit student!", "Message", JOptionPane.ERROR_MESSAGE);
+                if (std.updateStudent(s) > 0) {
+                    JOptionPane.showMessageDialog(this, "You have completed to edit student successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You haven't completed to edit student!", "Message", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentEditForm.class.getName()).log(Level.SEVERE, null, ex);
