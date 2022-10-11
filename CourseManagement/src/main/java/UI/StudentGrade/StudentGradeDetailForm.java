@@ -41,14 +41,22 @@ public class StudentGradeDetailForm extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(166, 40));
 
         btnstudentID.setBackground(new java.awt.Color(0, 161, 255));
-        btnstudentID.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\graduating-student.png")); // NOI18N
         btnstudentID.setText("Student ID");
+        btnstudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnstudentIDActionPerformed(evt);
+            }
+        });
 
         btncourseID.setBackground(new java.awt.Color(255, 255, 255));
         btncourseID.setForeground(new java.awt.Color(12, 105, 172));
-        btncourseID.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\homework.png")); // NOI18N
         btncourseID.setText("Course ID");
         btncourseID.setBorderColor(new java.awt.Color(12, 105, 172));
+        btncourseID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncourseIDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,6 +98,14 @@ public class StudentGradeDetailForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btncourseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncourseIDActionPerformed
+        new StudentGradeCourseIDForm().setVisible(true);
+    }//GEN-LAST:event_btncourseIDActionPerformed
+
+    private void btnstudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstudentIDActionPerformed
+        new StudentGradeStudentIDForm().setVisible(true);
+    }//GEN-LAST:event_btnstudentIDActionPerformed
 
     /**
      * @param args the command line arguments

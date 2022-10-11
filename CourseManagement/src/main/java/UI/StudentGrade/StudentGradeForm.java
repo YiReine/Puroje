@@ -4,19 +4,28 @@
  */
 package UI.StudentGrade;
 
+import BLL.StudentGradeBLL;
+import DAL.StudentGrade.StudentGrade;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Tran Ngan
  */
 public class StudentGradeForm extends javax.swing.JFrame {
-
+    
+    public DefaultTableModel model;
+    public Vector tblRow ;
     /**
      * Creates new form NewJFrame1
      */
     public StudentGradeForm() {
         initComponents();
+        btnDoc();
         tb1.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.WHITE);
     }
@@ -69,32 +78,56 @@ public class StudentGradeForm extends javax.swing.JFrame {
                 "#", "Enrollment ID", "Course ID", "Student ID", "Grade"
             }
         ));
+        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb1);
 
         btnadd.setBackground(new java.awt.Color(93, 212, 253));
-        btnadd.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\plus.png")); // NOI18N
         btnadd.setText("Add");
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
 
         btnedit.setBackground(new java.awt.Color(0, 161, 255));
-        btnedit.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\edit.png")); // NOI18N
         btnedit.setText("Edit");
+        btnedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditActionPerformed(evt);
+            }
+        });
 
         btndelete.setBackground(new java.awt.Color(12, 105, 172));
-        btndelete.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\delete.png")); // NOI18N
         btndelete.setText("Delete");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
 
-        btnfind.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search.png")); // NOI18N
         btnfind.setText("Find");
+        btnfind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfindActionPerformed(evt);
+            }
+        });
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(12, 105, 172));
-        btnback.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\back-button.png")); // NOI18N
         btnback.setText("Back");
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));
 
-        btndetail.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\file.png")); // NOI18N
         btndetail.setText("Detail");
+        btndetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndetailActionPerformed(evt);
+            }
+        });
 
         txtfind.setText("Search");
 
@@ -165,6 +198,123 @@ public class StudentGradeForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btndetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetailActionPerformed
+        new StudentGradeDetailForm().setVisible(true);
+    }//GEN-LAST:event_btndetailActionPerformed
+
+    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+        StudentGradeAddForm addform = new StudentGradeAddForm();
+        addform.pack();
+        addform.setVisible(true);
+    }//GEN-LAST:event_btnaddActionPerformed
+
+    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+        if(tblRow !=null)
+            new StudentGradeEditForm(tblRow).setVisible(true);
+        else{
+            JOptionPane.showMessageDialog(rootPane,"Choose Student to edit ");
+        }
+    }//GEN-LAST:event_btneditActionPerformed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+        int i = tb1.getSelectedRow();
+        tblRow = new Vector();
+        tblRow.add(tb1.getModel().getValueAt(i, 1));
+        tblRow.add(tb1.getModel().getValueAt(i, 2));
+        tblRow.add(tb1.getModel().getValueAt(i, 3));
+        tblRow.add(tb1.getModel().getValueAt(i, 4));
+    }//GEN-LAST:event_tb1MouseClicked
+
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
+        if(tblRow !=null){
+            int input=JOptionPane.showConfirmDialog(null, "Are you sure you want to delete", "Xóa dịch vụ", JOptionPane.YES_NO_OPTION);
+            if (input==0){
+                StudentGradeBLL bll = new StudentGradeBLL();
+                if(bll.deleteStudentGradeBLL((int)tblRow.get(0))){
+                    int i = tb1.getSelectedRow();
+                    model.removeRow(i);
+                    tb1.setModel(model);
+                   JOptionPane.showMessageDialog(rootPane,"Delete successfully ");
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane,"Delete failed ");
+                }
+            }
+           
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane,"Choose a student to delete ");
+        }
+    }//GEN-LAST:event_btndeleteActionPerformed
+
+    private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
+       if(txtfind.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane,"Please enter the grade to find ");
+        }
+        else{
+            StudentGradeBLL bll = new StudentGradeBLL();
+            ArrayList<StudentGrade> ds = bll.getStudentGrade(Float.parseFloat(txtfind.getText()));
+            if(ds != null){
+                model.setRowCount(0);
+                int count = 0 ;
+                for(StudentGrade s : ds){
+                    Vector row=new Vector();
+                    row.add(count);
+                    row.add(s.getEnrollmentID());
+                    row.add(s.getCourseID());
+                    row.add(s.getStudentID());
+                    row.add(s.getGrade());
+                    model.addRow(row);
+                    tb1.setModel(model);
+                    count++;
+                }
+            }
+            else{
+              JOptionPane.showMessageDialog(rootPane,"Not found ");
+            }
+        }
+    }//GEN-LAST:event_btnfindActionPerformed
+    
+    public void AddGradeForm(StudentGrade s){
+        Vector row=new Vector();
+        row.add(99);
+        System.out.println(s.getCourseID());
+        row.add(s.getEnrollmentID());
+        row.add(s.getCourseID());
+        row.add(s.getStudentID());
+        row.add(s.getGrade());
+        model.addRow(row);
+        tb1.setModel(model);
+    }
+    public Vector Table_search(){
+        Vector head=new Vector();
+        head.add("#");
+        head.add("EnrollID");
+        head.add("CourseID");
+        head.add("StudentID");
+        head.add("Grade");
+        return head;
+    }
+    public void btnDoc(){
+        StudentGradeBLL bus=new StudentGradeBLL();
+        if(StudentGradeBLL.DSSDG==null)
+            bus.docDSHD();
+        int count=1;
+        
+        model = new DefaultTableModel(Table_search(),0);
+        model.setRowCount(0);
+        for(StudentGrade s :StudentGradeBLL.DSSDG){
+                Vector row=new Vector();
+                row.add(count);
+                row.add(s.getEnrollmentID());
+                row.add(s.getCourseID());
+                row.add(s.getStudentID());
+                row.add(s.getGrade());
+                model.addRow(row);
+                tb1.setModel(model);
+                count++;
+        }
+    }
     /**
      * @param args the command line arguments
      */

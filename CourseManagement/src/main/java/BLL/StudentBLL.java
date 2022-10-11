@@ -52,7 +52,19 @@ public class StudentBLL {
         int result = stdDal.deleteStudent(personID);
         return result;
     }
-
+    
+    public ArrayList<String> readDSID(){
+        StudentDAL std = new StudentDAL();
+        ArrayList<String> list = std.readDSID();
+        return list;
+    }
+    
+    public ArrayList<String[]> readStudentByCourseIdBll(int courseID){
+        StudentDAL std = new StudentDAL();
+        ArrayList<String[]> list = std.readStudentByCourseID(courseID);
+        return list;
+    }
+    
     public static void main(String[] args) {
     }
 }

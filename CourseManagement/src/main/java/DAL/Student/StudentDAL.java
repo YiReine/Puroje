@@ -129,7 +129,44 @@ public class StudentDAL extends MyDatabaseManager {
 
         return result;
     }
-
+    public ArrayList<String> readDSID(){
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            String query = "SELECT PersonID FROM person WHERE EnrollmentDate>0";
+            ResultSet rs = this.doReadQuery(query);
+            if(rs !=null){
+                while(rs.next()){
+                    String data = rs.getString("PersonID");
+                    list.add(data);
+                }
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public ArrayList<String[]> readStudentByCourseID(int courseID){
+        ArrayList<String[]> list = new ArrayList<>();
+        try {
+            String query = "SELECT PersonID , LastName , Firstname , Grade FROM `person`, `studentgrade` "
+                    + "WHERE PersonID = StudentID and CourseID = '"+courseID+"'";
+            ResultSet rs = this.doReadQuery(query);
+            if(rs !=null){
+                while(rs.next()){
+                    String PersonID = rs.getString("PersonID");
+                    String FullName = rs.getString("Lastname")+" "+rs.getString("Firstname");
+                    String grade = rs.getString("Grade");
+                    System.out.println(FullName);
+                    String[] s = {PersonID,FullName,grade}; 
+                    list.add(s);
+                }
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
     public static void main(String[] args) {
     }
 }

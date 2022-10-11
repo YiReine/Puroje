@@ -158,9 +158,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ac" green="69" red="c" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Tran Ngan\Documents\GitHub\Puroje\CourseManagement\src\main\java\UI\icon\back-button.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Back"/>
             <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ac" green="69" red="c" type="rgb"/>
@@ -172,13 +169,16 @@
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btndetail2">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Tran Ngan\Documents\GitHub\Puroje\CourseManagement\src\main\java\UI\icon\file.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Detail"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndetail2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbdetail2">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="cbdetail2.setModel(new javax.swing.DefaultComboBoxModel(stlist));"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

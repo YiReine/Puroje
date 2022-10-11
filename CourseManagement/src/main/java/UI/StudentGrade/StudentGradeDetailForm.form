@@ -90,11 +90,11 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="a1" red="0" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Tran Ngan\Documents\GitHub\Puroje\CourseManagement\src\main\java\UI\icon\graduating-student.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Student ID"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnstudentIDActionPerformed"/>
+          </Events>
         </Component>
         <Component class="UI.UI_Item.button.MyButton" name="btncourseID">
           <Properties>
@@ -104,14 +104,14 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ac" green="69" red="c" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Tran Ngan\Documents\GitHub\Puroje\CourseManagement\src\main\java\UI\icon\homework.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Course ID"/>
             <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ac" green="69" red="c" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncourseIDActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
