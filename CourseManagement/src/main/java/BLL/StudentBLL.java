@@ -35,7 +35,7 @@ public class StudentBLL {
 
     public Student getStudent(int personID) throws SQLException {
         Student s = stdDal.getStudent(personID);
-        return s;
+        return s; 
     }
 
     public int addStudent(Student s) throws SQLException {
