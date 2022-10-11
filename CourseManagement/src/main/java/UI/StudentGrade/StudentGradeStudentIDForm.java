@@ -16,13 +16,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Tran Ngan
  */
 public class StudentGradeStudentIDForm extends javax.swing.JFrame {
-    private Object[] stlist;
+    private Object[] stlistID;
     public DefaultTableModel model;
     /**
      * Creates new form StudentID
      */
     public StudentGradeStudentIDForm() {
-        this.stlist = readStuID();
+        this.stlistID = readStuID();
         initComponents();
         model = new DefaultTableModel(Table_search(),0);
         tb2.setModel(model);
@@ -93,7 +93,7 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
             }
         });
 
-        cbdetail1.setModel(new javax.swing.DefaultComboBoxModel(stlist));
+        cbdetail1.setModel(new javax.swing.DefaultComboBoxModel(stlistID));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

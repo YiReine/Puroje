@@ -185,7 +185,7 @@
         </Component>
         <Component class="UI.UI_Item.combobox.ComboBoxSuggestion" name="cbdetail1">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="cbdetail1.setModel(new javax.swing.DefaultComboBoxModel(stlist));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="cbdetail1.setModel(new javax.swing.DefaultComboBoxModel(stlistID));"/>
           </AuxValues>
         </Component>
       </SubComponents>

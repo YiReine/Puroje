@@ -5,65 +5,162 @@
 package DAL.Course;
 
 import DAL.MyDatabaseManager;
-import static java.awt.Event.INSERT;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
 public class CourseDAL extends MyDatabaseManager{
-    public CourseDAL(){
-        CourseDAL.connectDB();
+    public CourseDAL() {
+
     }
-    public boolean addCourse(int CourseID, String Title, int Credits, int DepartmentID, String url ){
-        try {
-            String query = "INSERT INTO `course`(`CourseID`, `Title`, `Credits`, `DepartmentID`) VALUES (?,?,?,?)";
-            PreparedStatement pstmt =this.getConnection().prepareStatement(query);
-            pstmt.setInt(1, CourseID);
-            pstmt.setString(2, Title);
-            pstmt.setInt(3,Credits);
-            pstmt.setInt(4, DepartmentID);
-            
-            System.out.println();
-            if(pstmt.executeUpdate()==1){
-                query = "INSERT INTO `onlinecourse`(`CourseID`, `url`) VALUES (?,?)";
-                PreparedStatement pstmt2 =this.getConnection().prepareStatement(query);
-                pstmt2.setInt(1, CourseID);
-                pstmt2.setString(2, url);
-                pstmt2.executeUpdate();
-            }
-            return true;
-            
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
-        return false;
+    public int insertCourse(Course s) throws SQLException {
+        String query = "Insert course (Credits, DepartmentID, Title) VALUES (?, ?, ?)";
+        PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+        p.setInt(1, s.getCredits());
+        p.setInt(2, s.getDepartmentID());
+        p.setString(3, s.getTitle());
+        int result = p.executeUpdate();
+        return result;
     }
-    public boolean editCourse(int CourseID, String Title, int Credits, int DepartmentID, String url ){
+    public int NewCourseID() {
+        int id=0;
+        String query="SELECT CourseID FROM course  ORDER BY CourseID DESC  LIMIT 1;";
+        ResultSet rs = CourseDAL.doReadQuery(query);
         try {
-            String query = "UPDATE `course` SET `Title`=?,`Credits`=?,`DepartmentID`=? WHERE CourseID ='"+CourseID+"'";
-            PreparedStatement pstmt =this.getConnection().prepareStatement(query);
-            pstmt.setString(1, Title);
-            pstmt.setInt(2,Credits);
-            pstmt.setInt(3, DepartmentID);
-            
-            System.out.println();
-            if(pstmt.executeUpdate()==1){
-                query = "UPDATE `onlinecourse` SET `url`=? WHERE CourseID ='"+CourseID+"'";
-                PreparedStatement pstmt2 =this.getConnection().prepareStatement(query);
-                pstmt2.setString(1, url);
-                pstmt2.executeUpdate();
+            while(rs.next()){
+                id= rs.getInt("CourseID");
             }
-            return true;
-            
-        } catch (Exception e) {
-            System.out.println("Error");
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseDAL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return id;
+   }
+    public int updateCourse(Course s) throws SQLException {
+        String query = "Update course SET Credits = ? , DepartmentID = ? , Title = ? "
+                + " WHERE CourseID = ?";
+        PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+        p.setInt(1,s.getCredits());
+        p.setInt(2, s.getDepartmentID());
+        p.setString(3, s.getTitle());
+        p.setInt(4, s.getCourseID());
+        int result = p.executeUpdate();
+        return result;
+    }
+    public int deleteCourse(int CourseID) throws SQLException {
+        if (getCourseIDFromOnsiteCourse(CourseID) == 1 
+                || getCourseIDFromCourseInstructor(CourseID) == 1 
+                || getCourseIDFromOnlineCourse(CourseID) == 1 
+                || getCourseIDFromStudentGrade(CourseID) == 1) {
+            return 0;
+        } else {
+            String query = "DELETE FROM course WHERE CourseID = ?";
+            PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+            p.setInt(1, CourseID);
+            p.executeUpdate();
+            return 1;
+        }
+    }
+    public int getCourseIDFromOnsiteCourse(int courseID) throws SQLException {
+
+        String query = "SELECT CourseID FROM onsitecourse WHERE CourseID = ?";
+
+        PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+        p.setInt(1, courseID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+                Course s = new Course();
+                s.setCourseID(rs.getInt("CourseID"));
+                list.add(s);
+            }
+        }
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int getCourseIDFromCourseInstructor(int courseID) throws SQLException {
+
+        String query = "SELECT CourseID FROM courseinstructor WHERE CourseID = ?";
+
+        PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+        p.setInt(1, courseID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+                Course s = new Course();
+                s.setCourseID(rs.getInt("CourseID"));
+                list.add(s);
+            }
+        }
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int getCourseIDFromStudentGrade(int courseID) throws SQLException {
+
+        String query = "SELECT CourseID FROM studentgrade WHERE CourseID = ?";
+
+        PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+        p.setInt(1, courseID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+                Course s = new Course();
+                s.setCourseID(rs.getInt("CourseID"));
+                list.add(s);
+            }
+        }
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int getCourseIDFromOnlineCourse(int courseID) throws SQLException {
+
+        String query = "SELECT CourseID FROM onlinecourse WHERE CourseID = ?";
+
+        PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
+        p.setInt(1, courseID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+                Course s = new Course();
+                s.setCourseID(rs.getInt("CourseID"));
+                list.add(s);
+            }
+        }
+        if (list.isEmpty()) {
+            return 0;
+        }
+        return 1;
     }
     
-    public ArrayList<String> readDSID(){
+    //=============================================================================
+     public ArrayList<String> readDSID(){
         ArrayList<String> list = new ArrayList<>();
         try {
             String query = "SELECT CourseID FROM course";
@@ -79,7 +176,7 @@ public class CourseDAL extends MyDatabaseManager{
         }
         return list;
     }
-    
+     
     public ArrayList<String[]> readCourseByStudentId(int StudentID){
         ArrayList<String[]> list = new ArrayList<>();
         try {

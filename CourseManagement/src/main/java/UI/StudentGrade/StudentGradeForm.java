@@ -122,7 +122,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));
 
-        btndetail.setText("Detail");
+        btndetail.setText("Filter");
         btndetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndetailActionPerformed(evt);

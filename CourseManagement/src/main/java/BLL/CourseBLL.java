@@ -1,28 +1,36 @@
 package BLL;
 
+import DAL.Course.Course;
 import DAL.Course.CourseDAL;
-import DAL.Course.CourseDAL;
-import DAL.MyDatabaseManager;
-import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author chris
  */
 public class CourseBLL {
-    private CourseDAL get;
+    CourseDAL cdal;
     public CourseBLL(){
-       this.get = new CourseDAL();
+      cdal=new CourseDAL();  
     }
-    public boolean addCourse(int CourseID, String Title, int Credits, int DepartmentID, String url ){
-        boolean check = get.addCourse(CourseID, Title, Credits, DepartmentID, url);
-        return check;
-    }
-    public boolean editCourse(int CourseID, String Title, int Credits, int DepartmentID, String url){
-        boolean check = get.editCourse(CourseID, Title, Credits, DepartmentID, url);
-        return check;
-    }
+//     public int addCourse(Course s) throws SQLException {
+//       int result = cdal.insertCourse(s);
+//        return result;
+//    }
+//      public int editCourse(Course s) throws SQLException {
+//       int result = cdal.updateCourse(s);
+//        return result;
+//    }
+//     public int NewCourseBLL() throws SQLException {
+//       int id=cdal.NewCourseID();
+//       return id;
+//    }
+//    public int deleteCourse(int CourseID) throws SQLException {
+//        int result = cdal.deleteCourse(CourseID);
+//        return result;
+//    }
     
     //=============================================================================
     public ArrayList<String> readDSID(){
