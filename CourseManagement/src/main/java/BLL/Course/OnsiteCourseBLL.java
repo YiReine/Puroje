@@ -4,9 +4,6 @@
  */
 package BLL.Course;
 
-import DAL.Course.CourseDAL;
-import DAL.Course.Department;
-import DAL.Course.DepartmentDAL;
 import DAL.Course.OnsiteCourse;
 import DAL.Course.OnsiteCourseDAL;
 import java.sql.SQLException;
@@ -21,26 +18,17 @@ public class OnsiteCourseBLL extends CourseBLL {
 
     OnsiteCourseDAL osdal;
     CourseBLL cobll;
-    CourseDAL cdal;
-    DepartmentDAL dpmdal = new DepartmentDAL();
+    DepartmentBLL dbll = new DepartmentBLL();
 
     public OnsiteCourseBLL() {
         osdal = new OnsiteCourseDAL();
         cobll = new CourseBLL();
-        cdal = new CourseDAL();
-        //    OnsiteCourseDAL.closeConnect();
-
+        dbll = new DepartmentBLL();
     }
 
-    public List LoadOnsiteCourse(int page) throws SQLException {
-        int numofrecords = 30;
+    public List LoadOnsiteCourse() throws SQLException {
         ArrayList list = osdal.readOnsiteCourse();
-        int size = list.size();
-        int from, to;
-        from = (page - 1) * numofrecords;
-        to = page * numofrecords;
-
-        return list.subList(from, Math.min(to, size));
+        return list;
     }
 
     public int addOnsiteCourse(OnsiteCourse s) throws SQLException {
@@ -65,19 +53,17 @@ public class OnsiteCourseBLL extends CourseBLL {
     public List findOnsiteCourse(String condititon) throws SQLException {
 
         ArrayList<OnsiteCourse> onlclist = osdal.readOnsiteCourse();
-        ArrayList<Department> dpmlist = dpmdal.readDepartment();
         ArrayList<OnsiteCourse> onlcsearch = new ArrayList<OnsiteCourse>();
         condititon = condititon.trim().replaceAll("  +", " ").toLowerCase();
         String oldCondition = condititon;
         String[] conditions = condititon.split(" ");
 //
         for (int i = 0; i < onlclist.size(); i++) {
-            String regex = onlclist.get(i).getTitle() + " " + dpmdal.getDepartmentName(onlclist.get(i).getDepartmentID());
+            String regex = onlclist.get(i).getTitle() + " " + dbll.DepartmentName(onlclist.get(i).getDepartmentID());
             for (int j = 0; j < conditions.length; j++) {
                 String oldChirlCondition = conditions[j];
                 conditions[j] = "(.*)" + conditions[j] + "(.*)";
                 if (regex.toLowerCase().matches(conditions[j])) {
-//                    System.out.println(list.get(i).getPersonID()+" -> ID" + list.get(i).getCourseID());
                     onlcsearch.add(onlclist.get(i));
                     break;
                 }
@@ -88,20 +74,17 @@ public class OnsiteCourseBLL extends CourseBLL {
         if (onlcsearch.size() == 0) {
             return onlclist;
         }
-//        System.out.println(listSearchs.size());
         return onlcsearch;
 
     }
 
     public int deleteOnsiteCourse(int CourseID) throws SQLException {
-
         int result;
-
         if (cobll.testConditionError(CourseID) == 0) {
             result = 0;
         } else {
             osdal.deleteOnsiteCourse(CourseID);
-            cdal.deleteCourse(CourseID);
+            cobll.deleteCourse(CourseID);
             result = 1;
         }
         return result;

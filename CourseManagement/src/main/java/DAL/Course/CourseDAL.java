@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +21,25 @@ public class CourseDAL extends MyDatabaseManager {
 
     public CourseDAL() {
 
+    }
+
+    public ArrayList<Course> readCourse() throws SQLException {
+        String query = "SELECT * FROM course ";
+        ResultSet rs = CourseDAL.doReadQuery(query);
+        ArrayList list = new ArrayList();
+
+        if (rs != null) {
+            int i = 1;
+            while (rs.next()) {
+                Course c = new Course();
+                c.setCourseID(rs.getInt("CourseID"));
+                c.setCredits(rs.getInt("Credits"));
+                c.setDepartmentID(rs.getInt("DepartmentID"));
+                c.setTitle(rs.getString("Title"));
+                list.add(c);
+            }
+        }
+        return list;
     }
 
     public int insertCourse(Course s) throws SQLException {
@@ -58,14 +76,6 @@ public class CourseDAL extends MyDatabaseManager {
         p.setInt(4, s.getCourseID());
         int result = p.executeUpdate();
         return result;
-    }
-
-    public int testConditionError(int CourseID) throws SQLException {
-        if ((getCourseIDFromCourseInstructor(CourseID) == 1 && getCourseIDFromCourse(CourseID) == 1)
-                || (getCourseIDFromStudentGrade(CourseID) == 1 && getCourseIDFromCourse(CourseID) == 1)) {
-            return 0;
-        }
-        return 1;
     }
 
     public int deleteCourse(int CourseID) throws SQLException {

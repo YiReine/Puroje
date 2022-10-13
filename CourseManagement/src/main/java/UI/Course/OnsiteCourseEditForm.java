@@ -15,9 +15,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.Time;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,12 +36,24 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(Color.WHITE);
         osbll = new OnsiteCourseBLL();
+        currentCourse = osbll.getOs(CourseID);
         try {
             loadComboboxDepartment();
         } catch (SQLException ex) {
-            Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OnsiteCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.CourseID = CourseID;
+        updateCourseDisplay();
+    }
+
+    public void updateCourseDisplay() throws SQLException {
+        textField1.setText("" + currentCourse.getCredits());
+        textField2.setText(currentCourse.getTitle());
+        textField4.setText(currentCourse.getLocation());
+        textField5.setText(currentCourse.getDays());
+        String time = currentCourse.getTime().toString();
+        textField6.setText(time);
+        DpComboBox.getModel().setSelectedItem(dbll.getDepartmentName(currentCourse.getDepartmentID()));
     }
 
     private void loadComboboxDepartment() throws SQLException {
@@ -86,30 +95,24 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        textField1.setText("1");
         textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField1ActionPerformed(evt);
             }
         });
 
-        textField2.setText("Title");
         textField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField2ActionPerformed(evt);
             }
         });
 
-        textField4.setText("Location");
-
-        textField5.setText("Days");
         textField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField5ActionPerformed(evt);
             }
         });
 
-        textField6.setText("10:00:00");
         textField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField6ActionPerformed(evt);

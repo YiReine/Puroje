@@ -4,9 +4,6 @@
  */
 package BLL.Course;
 
-import DAL.Course.CourseDAL;
-import DAL.Course.Department;
-import DAL.Course.DepartmentDAL;
 import DAL.Course.OnlineCourse;
 import DAL.Course.OnlineCourseDAL;
 import java.sql.SQLException;
@@ -21,57 +18,17 @@ public class OnlineCourseBLL extends CourseBLL {
 
     OnlineCourseDAL oldal;
     CourseBLL cobll;
-    CourseDAL cdal;
-    DepartmentDAL dpmdal = new DepartmentDAL();
+    DepartmentBLL dpmbll;
 
     public OnlineCourseBLL() {
         oldal = new OnlineCourseDAL();
         cobll = new CourseBLL();
-        cdal = new CourseDAL();
-        //    OnsiteCourseDAL.closeConnect();
-
+        dpmbll = new DepartmentBLL();
     }
 
-    public List LoadOnlineCourse(int page) throws SQLException {
-        int numofrecords = 30;
+    public List LoadOnlineCourse() throws SQLException {
         ArrayList list = oldal.readOnlineCourse();
-        int size = list.size();
-        int from, to;
-        from = (page - 1) * numofrecords;
-        to = page * numofrecords;
-
-        return list.subList(from, Math.min(to, size));
-    }
-
-    public List findOnlineCourse(String condititon) throws SQLException {
-
-        ArrayList<OnlineCourse> onlclist = oldal.readOnlineCourse();
-        ArrayList<Department> dpmlist = dpmdal.readDepartment();
-        ArrayList<OnlineCourse> onlcsearch = new ArrayList<OnlineCourse>();
-        condititon = condititon.trim().replaceAll("  +", " ").toLowerCase();
-        String oldCondition = condititon;
-        String[] conditions = condititon.split(" ");
-//
-        for (int i = 0; i < onlclist.size(); i++) {
-            String regex = onlclist.get(i).getTitle() + " " + dpmdal.getDepartmentName(onlclist.get(i).getDepartmentID());
-            for (int j = 0; j < conditions.length; j++) {
-                String oldChirlCondition = conditions[j];
-                conditions[j] = "(.*)" + conditions[j] + "(.*)";
-                if (regex.toLowerCase().matches(conditions[j])) {
-//                    System.out.println(list.get(i).getPersonID()+" -> ID" + list.get(i).getCourseID());
-                    onlcsearch.add(onlclist.get(i));
-                    break;
-                }
-                conditions[j] = oldChirlCondition;
-            }
-
-        }
-        if (onlcsearch.size() == 0) {
-            return onlclist;
-        }
-//        System.out.println(listSearchs.size());
-        return onlcsearch;
-
+        return list;
     }
 
     public int addOnlineCourse(OnlineCourse s) throws SQLException {
@@ -105,5 +62,33 @@ public class OnlineCourseBLL extends CourseBLL {
             result = 1;
         }
         return result;
+    }
+
+    public List findOnlineCourse(String condititon) throws SQLException {
+
+        ArrayList<OnlineCourse> onlclist = oldal.readOnlineCourse();
+        ArrayList<OnlineCourse> onlcsearch = new ArrayList<OnlineCourse>();
+        condititon = condititon.trim().replaceAll("  +", " ").toLowerCase();
+        String oldCondition = condititon;
+        String[] conditions = condititon.split(" ");
+//
+        for (int i = 0; i < onlclist.size(); i++) {
+            String regex = onlclist.get(i).getTitle() + " " + dpmbll.DepartmentName(onlclist.get(i).getDepartmentID());
+            for (int j = 0; j < conditions.length; j++) {
+                String oldChirlCondition = conditions[j];
+                conditions[j] = "(.*)" + conditions[j] + "(.*)";
+                if (regex.toLowerCase().matches(conditions[j])) {
+                    onlcsearch.add(onlclist.get(i));
+                    break;
+                }
+                conditions[j] = oldChirlCondition;
+            }
+
+        }
+        if (onlcsearch.size() == 0) {
+            return onlclist;
+        }
+        return onlcsearch;
+
     }
 }

@@ -42,4 +42,8 @@ public class DepartmentBLL {
         return result;
     }
 
+    public String DepartmentName(int id) throws SQLException {
+        String name = dpdal.IDconvertName(id);
+        return name;
+    }
 }

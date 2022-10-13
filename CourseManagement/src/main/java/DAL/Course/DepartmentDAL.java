@@ -73,5 +73,21 @@ public class DepartmentDAL extends MyDatabaseManager {
         }
         return id;
     }
+    public String IDconvertName(int ID) throws SQLException{
+        String name="";
+        String query = "SELECT Name FROM department Where DepartmentID = ? ";
+        PreparedStatement p = DepartmentDAL.getConnection().prepareStatement(query);
+        p.setInt(1, ID);
+        ResultSet rs = p.executeQuery();
+
+           try {
+            while(rs.next()){
+                name=rs.getString("Name");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
 
 }

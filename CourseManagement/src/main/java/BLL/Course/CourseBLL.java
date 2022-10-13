@@ -7,7 +7,8 @@ package BLL.Course;
 import DAL.Course.Course;
 import DAL.Course.CourseDAL;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -42,7 +43,15 @@ public class CourseBLL {
     }
 
     public int testConditionError(int CourseID) throws SQLException {
-        int result = cdal.testConditionError(CourseID);
-        return result;
+        if ((cdal.getCourseIDFromCourseInstructor(CourseID) == 1 && cdal.getCourseIDFromCourse(CourseID) == 1)
+                || (cdal.getCourseIDFromStudentGrade(CourseID) == 1 && cdal.getCourseIDFromCourse(CourseID) == 1)) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public List LoadCourses(int page) throws SQLException {
+        ArrayList list = cdal.readCourse();
+        return list;
     }
 }

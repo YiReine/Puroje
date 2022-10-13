@@ -50,7 +50,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
     }
 
     private void listOs() throws SQLException {
-        List list = osbll.LoadOnsiteCourse(1);
+        List list = osbll.LoadOnsiteCourse();
 
         DefaultTableModel model = convertOs(list);
         tbDS.setModel(model);
@@ -249,7 +249,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
                 if (input == 0) {
                     if (osbll.deleteOnsiteCourse(CourseID) == 1) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete onsite course successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                        List list = osbll.LoadOnsiteCourse(1);
+                        List list = osbll.LoadOnsiteCourse();
                         model = convertOs(list);
                         tbDS.setModel(model);
                     } else {
@@ -273,7 +273,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
 
             } else {
                 //JOptionPane.showMessageDialog(this, "fullname is empty", "Message", JOptionPane.ERROR_MESSAGE);
-                List list = osbll.LoadOnsiteCourse(1);
+                List list = osbll.LoadOnsiteCourse();
                 DefaultTableModel model = convertOs(list);
                 tbDS.setModel(model);
             }

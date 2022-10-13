@@ -6,20 +6,14 @@ package UI.Course;
 
 import BLL.Course.DepartmentBLL;
 import BLL.Course.OnlineCourseBLL;
-import BLL.Course.OnsiteCourseBLL;
 import DAL.Course.Department;
 import DAL.Course.OnlineCourse;
-import DAL.Course.OnsiteCourse;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.sql.Time;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,11 +36,6 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         getContentPane().setBackground(Color.WHITE);
         osbll = new OnlineCourseBLL();
         currentCourse = osbll.getOs(CourseID); // lay du lieu khoa hoc theo id
-        try {
-            listOs();
-        } catch (SQLException ex) {
-            Logger.getLogger(OnlineCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.CourseID = CourseID;
 
         updateCourseDisplay();
@@ -58,11 +47,6 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         textField4.setText(currentCourse.getURL());
         DpComboBox.getModel().setSelectedItem(currentCourse.getDepartmentName());
     }
-
-    private void listOs() throws SQLException {
-        List list = osbll.LoadOnlineCourse(1);
-    }
-
     private int[] DepartmentIdArr;
 
     // Chua Id theo Thu tu combobox, vi combobox chi chua duoc 1 gia tri hien thi, 

@@ -118,38 +118,23 @@
   </Layout>
   <SubComponents>
     <Component class="UI.UI_Item.textfield.TextField" name="textField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField1ActionPerformed"/>
       </Events>
     </Component>
     <Component class="UI.UI_Item.textfield.TextField" name="textField2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Title"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField2ActionPerformed"/>
       </Events>
     </Component>
     <Component class="UI.UI_Item.textfield.TextField" name="textField4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Location"/>
-      </Properties>
     </Component>
     <Component class="UI.UI_Item.textfield.TextField" name="textField5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Days"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField5ActionPerformed"/>
       </Events>
     </Component>
     <Component class="UI.UI_Item.textfield.TextField" name="textField6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="10:00:00"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField6ActionPerformed"/>
       </Events>

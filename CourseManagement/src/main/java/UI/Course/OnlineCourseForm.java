@@ -48,7 +48,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
     }
 
     private void listOl() throws SQLException {
-        List list = osbll.LoadOnlineCourse(1);
+        List list = osbll.LoadOnlineCourse();
 
         DefaultTableModel model = convertOl(list);
         tbDS.setModel(model);
@@ -252,7 +252,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
                 if (input == 0) {
                     if (osbll.deleteOnlineCourse(CourseID) == 1) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete online course successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                        List list = osbll.LoadOnlineCourse(1);
+                        List list = osbll.LoadOnlineCourse();
                         model = convertOl(list);
                         tbDS.setModel(model);
                     } else {
@@ -277,7 +277,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
             } else {
                 //JOptionPane.showMessageDialog(this, "fullname is empty", "Message", JOptionPane.ERROR_MESSAGE);
 
-                List list = osbll.LoadOnlineCourse(1);
+                List list = osbll.LoadOnlineCourse();
                 DefaultTableModel model = convertOl(list);
                 tbDS.setModel(model);
             }

@@ -6,18 +6,13 @@ package UI.Course;
 
 import BLL.Course.DepartmentBLL;
 import BLL.Course.OnlineCourseBLL;
-import BLL.Course.OnsiteCourseBLL;
 import DAL.Course.Department;
 import DAL.Course.OnlineCourse;
-import DAL.Course.OnsiteCourse;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,17 +37,8 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
             Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            listOs();
-        } catch (SQLException ex) {
-            Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
-    private void listOs() throws SQLException {
-        List list = osbll.LoadOnlineCourse(1);
-    }
     private int[] DepartmentIdArr;
 
     private void loadComboboxDepartment() throws SQLException {
