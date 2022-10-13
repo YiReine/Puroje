@@ -9,7 +9,6 @@ import DAL.CourseInstructor.CourseInstructor;
 import java.util.ArrayList;
 import DAL.CourseInstructor.CourseInstructorDAL;
 import DAL.Teacher.Teacher;
-import DAL.Teacher.TeacherDAL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;

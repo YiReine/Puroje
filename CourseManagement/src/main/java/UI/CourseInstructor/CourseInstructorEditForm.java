@@ -287,8 +287,9 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
 
     private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
         this.dispose();
-        CourseInstructorForm c = new CourseInstructorForm();
-        c.setVisible(true);
+        home.initTable();
+//        CourseInstructorForm c = new CourseInstructorForm();
+//        c.setVisible(true);
     }//GEN-LAST:event_myButton2ActionPerformed
 
     private void comboBoxSuggestion3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxSuggestion3MouseReleased

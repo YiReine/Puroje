@@ -52,7 +52,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         init();
         this.setLocationRelativeTo(null);
         this.home = new MenuForm();
-
+        
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -67,12 +67,12 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         
     }
 
-    private void init() {
+    public void init() {
         tableDark1.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.white);
     }
 
-    private void initTable() {
+    public void initTable() {
         try {
             listCourseInstructorForm();
         } catch (SQLException ex) {
@@ -132,12 +132,17 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         myButton5 = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 204, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Course Instructor");
@@ -158,6 +163,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5);
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
         searchField1.setText("search Course Instructor");
@@ -200,6 +206,8 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         tableDark1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -213,6 +221,9 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableDark1);
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         myButton2.setBackground(new java.awt.Color(93, 212, 253));
@@ -369,7 +380,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         C_ADD_FORM.setVisible(true);
         C_ADD_FORM.setLocationRelativeTo(null);
 //        this.setVisible(false);
-        this.dispose();
+//        this.dispose();
     }//GEN-LAST:event_myButton2ActionPerformed
 
     private void myButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton3ActionPerformed
@@ -389,7 +400,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
             C_EDIT_FORM.setVisible(true);
             C_EDIT_FORM.setLocationRelativeTo(null);
 //      this.setVisible(false);
-            this.dispose();
+//            this.dispose();
         }
 
 

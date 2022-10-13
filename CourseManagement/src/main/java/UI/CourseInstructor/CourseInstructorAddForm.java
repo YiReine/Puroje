@@ -231,8 +231,8 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
 
     private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
         this.dispose();
-        CourseInstructorForm c = new CourseInstructorForm();
-        c.setVisible(true);
+//        CourseInstructorForm c = new CourseInstructorForm();
+//        c.setVisible(true);
     }//GEN-LAST:event_myButton2ActionPerformed
 
     private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
@@ -253,7 +253,7 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "You have completed to add Course Instruction successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
                 home.setVisible(true);
-                home.listCourseInstructorForm();
+                home.initTable();
                 this.dispose();
 
             } else if (result == -2) {
