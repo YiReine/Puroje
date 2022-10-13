@@ -233,6 +233,11 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         myButton5.setForeground(new java.awt.Color(12, 105, 172));
         myButton5.setText("BACK");
         myButton5.setBorderColor(new java.awt.Color(12, 105, 172));
+        myButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -335,7 +340,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
         if (tableDark1.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this,
-                    "Choose row!", "Message", JOptionPane.ERROR_MESSAGE);
+                    "Pleases choose row!", "Message", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 List<CourseInstructor> list = c.loadCourseInstructor();
@@ -390,6 +395,10 @@ public class CourseInstructorForm extends javax.swing.JFrame {
     private void searchField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchField1MouseClicked
         searchField1.setText("");
     }//GEN-LAST:event_searchField1MouseClicked
+
+    private void myButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_myButton5ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

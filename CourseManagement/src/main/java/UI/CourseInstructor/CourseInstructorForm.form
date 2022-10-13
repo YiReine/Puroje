@@ -285,6 +285,9 @@
                       <Color blue="ac" green="69" red="c" type="rgb"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myButton5ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

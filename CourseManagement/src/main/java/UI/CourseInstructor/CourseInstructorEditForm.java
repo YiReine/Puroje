@@ -142,7 +142,10 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 200);
         jPanel1.add(myButton1, gridBagConstraints);
 
+        myButton2.setBackground(new java.awt.Color(255, 255, 255));
+        myButton2.setForeground(new java.awt.Color(12, 105, 172));
         myButton2.setText("BACK");
+        myButton2.setBorderColor(new java.awt.Color(12, 105, 172));
         myButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 myButton2ActionPerformed(evt);
