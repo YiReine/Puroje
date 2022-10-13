@@ -8,6 +8,8 @@ import DAL.CourseInstructor.CourseInstructor;
 import BLL.CourseIntructorBLL;
 import UI.MenuForm;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,14 +32,39 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         initTable();
         init();
         this.setLocationRelativeTo(null);
-        home = parrent;
+        this.home = parrent;
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parrent.DISPOSE_ON_CLOSE);
+                parrent.setVisible(true);
+            }
+        });
     }
     public CourseInstructorForm() {
         initComponents();
         initTable();
         init();
-        home = new MenuForm();
         this.setLocationRelativeTo(null);
+        this.home = new MenuForm();
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(home.DISPOSE_ON_CLOSE);
+                home.setVisible(true);
+            }
+        });
+        
     }
 
     private void init() {
@@ -60,7 +87,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
     }
 
     private DefaultTableModel convertCourseInstructor(List list) throws SQLException {
-        String[] columnNames = {"TT", "PERSONID", "NAMETEACHER", "COURSEID", "TITLECOURSE"};
+        String[] columnNames = {"TT", "PERSONID", "NAME TEACHER", "COURSEID", "TITLE COURSE"};
         String[] teacherNames = c.loadTeacheName(list);
         String[] titles = c.loadTitle(list);
         Object[][] data;

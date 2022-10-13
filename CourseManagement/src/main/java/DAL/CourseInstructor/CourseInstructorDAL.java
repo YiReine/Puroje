@@ -74,7 +74,6 @@ public class CourseInstructorDAL extends MyDatabaseManager {
         p.setInt(2, c.getPersonID());
         p.setInt(3, old.getCourseID());
         p.setInt(4, old.getPersonID());
-        System.out.println(p+"|" + query);
         int result = p.executeUpdate();
         return result;
     }
