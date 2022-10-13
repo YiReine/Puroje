@@ -1,10 +1,8 @@
 package UI.Course;
 
+import BLL.Course.DepartmentBLL;
 import BLL.Course.OnlineCourseBLL;
-import BLL.Course.OnsiteCourseBLL;
-import DAL.Course.DepartmentDAL;
 import DAL.Course.OnlineCourse;
-import DAL.Course.OnsiteCourse;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +15,7 @@ import javax.swing.table.TableModel;
 public class OnlineCourseForm extends javax.swing.JFrame {
 
     OnlineCourseBLL osbll;
-    DepartmentDAL dpml = new DepartmentDAL();
+    DepartmentBLL dpbll = new DepartmentBLL();
 
     public OnlineCourseForm() {
         this.setTitle("OnlineCourse");
@@ -33,7 +31,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
     }
 
     //for 3layer`
-    private DefaultTableModel convertOl(List list) {
+    private DefaultTableModel convertOl(List list) throws SQLException {
         String[] columnNames = {"STT", "CourseID", "Title", "Credits", "DepartmentName", "url"};
         Object[][] data = new Object[list.size()][6];
         for (int i = 0; i < list.size(); i++) {
@@ -42,7 +40,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
             data[i][1] = os.getCourseID();
             data[i][2] = os.getTitle();
             data[i][3] = os.getCredits();
-            data[i][4] = dpml.getDepartmentName(os.getDepartmentID());
+            data[i][4] = dpbll.getDepartmentName(os.getDepartmentID());
             data[i][5] = os.getURL();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
@@ -252,13 +250,13 @@ public class OnlineCourseForm extends javax.swing.JFrame {
                         "Do you want to delete this OnlineCourse?", "Warning!", JOptionPane.YES_NO_OPTION);
 
                 if (input == 0) {
-                    if (osbll.deleteOnlineCourse(CourseID)== 1) {
+                    if (osbll.deleteOnlineCourse(CourseID) == 1) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete online course successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
                         List list = osbll.LoadOnlineCourse(1);
                         model = convertOl(list);
                         tbDS.setModel(model);
-                    }else{
-                        JOptionPane.showMessageDialog(this, "Error for Informating binding!. Deleted in Online Course.", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error for Informating binding!", "Message", JOptionPane.INFORMATION_MESSAGE);
 
                     }
                 }
@@ -278,7 +276,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
 
             } else {
                 //JOptionPane.showMessageDialog(this, "fullname is empty", "Message", JOptionPane.ERROR_MESSAGE);
-                
+
                 List list = osbll.LoadOnlineCourse(1);
                 DefaultTableModel model = convertOl(list);
                 tbDS.setModel(model);

@@ -8,13 +8,15 @@ package DAL.Course;
  *
  * @author chris
  */
-public class OnlineCourse extends Course{
+public class OnlineCourse extends Course {
+
     private String URL;
     private String DepartmentName;
+
     public OnlineCourse() {
-       super();
-       this.URL = null;
-       this.DepartmentName = null;
+        super();
+        this.URL = null;
+        this.DepartmentName = null;
     }
 
     public String getURL() {

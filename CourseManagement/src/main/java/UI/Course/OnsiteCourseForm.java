@@ -1,7 +1,7 @@
 package UI.Course;
 
+import BLL.Course.DepartmentBLL;
 import BLL.Course.OnsiteCourseBLL;
-import DAL.Course.DepartmentDAL;
 import DAL.Course.OnsiteCourse;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -15,7 +15,8 @@ import javax.swing.table.TableModel;
 public class OnsiteCourseForm extends javax.swing.JFrame {
 
     OnsiteCourseBLL osbll;
-    DepartmentDAL dpml = new DepartmentDAL();
+    DepartmentBLL dpbll = new DepartmentBLL();
+
     public OnsiteCourseForm() {
         this.setTitle("OnsiteCourse");
         osbll = new OnsiteCourseBLL();
@@ -30,7 +31,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
     }
 
     //for 3layer`
-    private DefaultTableModel convertOs(List list) {
+    private DefaultTableModel convertOs(List list) throws SQLException {
         String[] columnNames = {"STT", "CourseID", "Title", "Credits", "DepartmentID", "Location", "Days", "Time"};
         Object[][] data = new Object[list.size()][8];
         for (int i = 0; i < list.size(); i++) {
@@ -39,7 +40,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
             data[i][1] = os.getCourseID();
             data[i][2] = os.getTitle();
             data[i][3] = os.getCredits();
-            data[i][4] = dpml.getDepartmentName(os.getDepartmentID());
+            data[i][4] = dpbll.getDepartmentName(os.getDepartmentID());
             data[i][5] = os.getLocation();
             data[i][6] = os.getDays();
             data[i][7] = os.getTime();
@@ -246,13 +247,13 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
                         "Do you want to delete this OnsiteCourse?", "Warning!", JOptionPane.YES_NO_OPTION);
 
                 if (input == 0) {
-                    if (osbll.deleteOnsiteCourse(CourseID)== 1) {
+                    if (osbll.deleteOnsiteCourse(CourseID) == 1) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete onsite course successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
                         List list = osbll.LoadOnsiteCourse(1);
                         model = convertOs(list);
                         tbDS.setModel(model);
-                    }else{
-                        JOptionPane.showMessageDialog(this, "Error for Informating binding!. Deleted in Onsite Course.", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error for Informating binding!", "Message", JOptionPane.INFORMATION_MESSAGE);
 
                     }
                 }

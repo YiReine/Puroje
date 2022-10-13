@@ -14,24 +14,35 @@ import javax.swing.JOptionPane;
  * @author chris
  */
 public class CourseBLL {
+
     CourseDAL cdal;
-    public CourseBLL(){
-      cdal=new CourseDAL();  
+
+    public CourseBLL() {
+        cdal = new CourseDAL();
     }
-     public int addCourse(Course s) throws SQLException {
-       int result = cdal.insertCourse(s);
+
+    public int addCourse(Course s) throws SQLException {
+        int result = cdal.insertCourse(s);
         return result;
     }
-      public int editCourse(Course s) throws SQLException {
-       int result = cdal.updateCourse(s);
+
+    public int editCourse(Course s) throws SQLException {
+        int result = cdal.updateCourse(s);
         return result;
     }
-     public int NewCourseBLL() throws SQLException {
-       int id=cdal.NewCourseID();
-       return id;
+
+    public int NewCourseBLL() throws SQLException {
+        int id = cdal.NewCourseID();
+        return id;
     }
+
     public int deleteCourse(int CourseID) throws SQLException {
         int result = cdal.deleteCourse(CourseID);
+        return result;
+    }
+
+    public int testConditionError(int CourseID) throws SQLException {
+        int result = cdal.testConditionError(CourseID);
         return result;
     }
 }

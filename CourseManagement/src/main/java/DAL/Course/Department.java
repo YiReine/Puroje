@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author chris
  */
 public class Department {
+
     int DepartmentID, Adminstrator;
     double Budget;
     Date Startdate;

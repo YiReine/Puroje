@@ -14,11 +14,13 @@ import java.util.List;
  * @author chris
  */
 public class DepartmentBLL {
+
     DepartmentDAL dpdal;
 
     public DepartmentBLL() {
-        dpdal= new DepartmentDAL();
+        dpdal = new DepartmentDAL();
     }
+
     public List LoadDepartment(int page) throws SQLException {
         int numofrecords = 30;
         ArrayList list = dpdal.readDepartment();
@@ -30,10 +32,14 @@ public class DepartmentBLL {
         return list.subList(from, Math.min(to, size));
     }
 
-    public int DepartmentID(String name) throws SQLException{
-           int id=dpdal.NameconvertID(name);
-           return id;
+    public int DepartmentID(String name) throws SQLException {
+        int id = dpdal.NameconvertID(name);
+        return id;
     }
 
+    public String getDepartmentName(int DepartmentID) throws SQLException {
+        String result = dpdal.getDepartmentName(DepartmentID);
+        return result;
+    }
 
 }

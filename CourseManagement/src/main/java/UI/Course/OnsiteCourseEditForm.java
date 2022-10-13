@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author chris
  */
 public class OnsiteCourseEditForm extends javax.swing.JFrame {
+
     /**
      * Creates new form OnsiteCourseAddGUI
      */
@@ -32,26 +33,29 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
     OnsiteCourse currentCourse;
     DepartmentBLL dbll = new DepartmentBLL();
     int CourseID;
+
     public OnsiteCourseEditForm(int CourseID) throws SQLException {
         this.setTitle("Edit OnsiteCourse");
         initComponents();
         getContentPane().setBackground(Color.WHITE);
-        osbll =new OnsiteCourseBLL();
+        osbll = new OnsiteCourseBLL();
         try {
             loadComboboxDepartment();
         } catch (SQLException ex) {
             Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.CourseID=CourseID;
-    }   
+        this.CourseID = CourseID;
+    }
+
     private void loadComboboxDepartment() throws SQLException {
-       List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
+        List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
         System.out.println(listDP.size());
         for (int i = 0; i < listDP.size(); i++) {
             DpComboBox.addItem(listDP.get(i).getName());
         }
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,33 +264,33 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnEdit2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEdit2MouseClicked
-            OnsiteCourse os = new OnsiteCourse();
-            os.setCredits(Integer.parseInt(textField1.getText()));
-            String name= DpComboBox.getSelectedItem().toString();
-            int dpid = 0;
-            try {
-                dpid = dbll.DepartmentID(name);
-            } catch (SQLException ex) {
+        OnsiteCourse os = new OnsiteCourse();
+        os.setCredits(Integer.parseInt(textField1.getText()));
+        String name = DpComboBox.getSelectedItem().toString();
+        int dpid = 0;
+        try {
+            dpid = dbll.DepartmentID(name);
+        } catch (SQLException ex) {
             Logger.getLogger(OnsiteCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        os.setDepartmentID(dpid);
+        os.setTitle(textField2.getText());
+        os.setLocation(textField4.getText());
+        os.setDays(textField5.getText());
+        Time time = Time.valueOf(textField6.getText());
+        os.setTime(time);
+        os.setCourseID(this.CourseID);
+        try {
+            if (osbll.editOnsiteCourse(os) > 0) {
+                JOptionPane.showMessageDialog(this, "Complete edit OnsiteCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error edit OnsiteCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
-            os.setDepartmentID(dpid);
-            os.setTitle(textField2.getText());
-            os.setLocation(textField4.getText());
-            os.setDays(textField5.getText());
-            Time time =Time.valueOf(textField6.getText());
-            os.setTime(time);
-            os.setCourseID(this.CourseID);
-            try {
-                if (osbll.editOnsiteCourse(os) > 0) {
-                    JOptionPane.showMessageDialog(this, "Complete edit OnsiteCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error edit OnsiteCourse", "Message", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(OnsiteCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.setVisible(true);
-            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnsiteCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnEdit2MouseClicked
 
     /**
@@ -334,7 +338,7 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
             }
         });
     }

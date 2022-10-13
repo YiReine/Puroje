@@ -17,39 +17,42 @@ import java.util.List;
  *
  * @author chris
  */
-public class OnsiteCourseDAL extends MyDatabaseManager{
+public class OnsiteCourseDAL extends MyDatabaseManager {
+
     public OnsiteCourseDAL() {
 
         OnsiteCourseDAL.connectDB();
     }
+
     public ArrayList readOnsiteCourse() throws SQLException {
-         ArrayList list = new ArrayList();
+        ArrayList list = new ArrayList();
         try {
             String query = "SELECT c.CourseID, c.Title , c.Credits, c.DepartmentID, os.Location, os.Days, os.Time "
                     + "FROM `onsitecourse` os, `course` c WHERE c.CourseID=os.CourseID";
             ResultSet rs = OnsiteCourseDAL.doReadQuery(query);
-        if (rs != null) {
-            int i = 1;
-            while (rs.next()) {
-                OnsiteCourse s = new OnsiteCourse();
-                s.setCourseID(rs.getInt("c.CourseID"));
-                s.setTitle(rs.getString("c.Title"));
-                s.setCredits(rs.getInt("c.Credits"));
-                s.setDepartmentID(rs.getInt("c.DepartmentID"));
-                s.setLocation(rs.getString("os.Location"));
-                s.setDays(rs.getString("os.Days"));
-                s.setTime(rs.getTime("os.Time"));
-                list.add(s);
+            if (rs != null) {
+                int i = 1;
+                while (rs.next()) {
+                    OnsiteCourse s = new OnsiteCourse();
+                    s.setCourseID(rs.getInt("c.CourseID"));
+                    s.setTitle(rs.getString("c.Title"));
+                    s.setCredits(rs.getInt("c.Credits"));
+                    s.setDepartmentID(rs.getInt("c.DepartmentID"));
+                    s.setLocation(rs.getString("os.Location"));
+                    s.setDays(rs.getString("os.Days"));
+                    s.setTime(rs.getTime("os.Time"));
+                    list.add(s);
+                }
             }
-        }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "-- ERROR! Lỗi đọc dữ liệu bảng bàn");
         } finally {
         }
-        
+
         return list;
     }
+
     public OnsiteCourse getOs(int CourseID) throws SQLException {
 
         String query = "SELECT * FROM `onsitecourse` os,`course` c WHERE os.CourseID=c.CourseID "
@@ -71,41 +74,21 @@ public class OnsiteCourseDAL extends MyDatabaseManager{
                 os.setCredits(rs.getInt("c.Credits"));
                 os.setDepartmentID(rs.getInt("c.DepartmentID"));
                 os.setTitle(rs.getString("c.Title"));
-               
+
             }
         }
         return os;
     }
+
     public int deleteOnsiteCourse(int CourseID) throws SQLException {
         String query = "DELETE FROM onsitecourse WHERE CourseID = ?";
-            PreparedStatement p = OnsiteCourseDAL.getConnection().prepareStatement(query);
-            p.setInt(1, CourseID);
-            p.executeUpdate();
-            return 1;
-    }
-    public int getCourseIDFromCourse(int courseID) throws SQLException {
-
-        String query = "SELECT CourseID FROM course WHERE CourseID = ?";
-
         PreparedStatement p = OnsiteCourseDAL.getConnection().prepareStatement(query);
-        p.setInt(1, courseID);
-        ResultSet rs = p.executeQuery();
-        List list = new ArrayList();
-
-        if (rs != null) {
-
-            while (rs.next()) {
-                Course s = new Course();
-                s.setCourseID(rs.getInt("CourseID"));
-                list.add(s);
-            }
-        }
-        if(list.isEmpty()){
-            return 0;
-        }
+        p.setInt(1, CourseID);
+        p.executeUpdate();
         return 1;
     }
-     public int updateOnsiteCourse(OnsiteCourse s) throws SQLException {
+
+    public int updateOnsiteCourse(OnsiteCourse s) throws SQLException {
         String query = "Update onsitecourse SET Location = ? , Days = ? , Time = ? "
                 + " WHERE CourseID = ?";
         PreparedStatement p = OnsiteCourseDAL.getConnection().prepareStatement(query);
@@ -127,10 +110,11 @@ public class OnsiteCourseDAL extends MyDatabaseManager{
         int result = p.executeUpdate();
         return result;
     }
+
     public List findOnsiteCourse(String value) throws SQLException {
         String query = "SELECT * FROM `onsitecourse` os, `course` c, `department` dp "
-                    + "WHERE os.CourseID=c.CourseID AND c.DepartmentID=dp.DepartmentID "
-                    + "AND c.Title LIKE ?";
+                + "WHERE os.CourseID=c.CourseID AND c.DepartmentID=dp.DepartmentID "
+                + "AND c.Title LIKE ?";
         PreparedStatement p = OnsiteCourseDAL.getConnection().prepareStatement(query);
         p.setString(1, "%" + value + "%");
         ResultSet rs = p.executeQuery();
@@ -153,5 +137,5 @@ public class OnsiteCourseDAL extends MyDatabaseManager{
         }
         return list;
     }
-    
+
 }

@@ -53,9 +53,10 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
     private void listOs() throws SQLException {
         List list = osbll.LoadOnlineCourse(1);
     }
-    private int[] DepartmentIdArr; 
+    private int[] DepartmentIdArr;
+
     private void loadComboboxDepartment() throws SQLException {
-       List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
+        List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
         System.out.println(listDP.size());
         DepartmentIdArr = new int[listDP.size()];
         for (int i = 0; i < listDP.size(); i++) {
@@ -239,7 +240,7 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         OnlineCourse os = new OnlineCourse();
         os.setCredits(Integer.parseInt(textField1.getText()));
-        int dpid=DepartmentIdArr[DpComboBox.getSelectedIndex()];
+        int dpid = DepartmentIdArr[DpComboBox.getSelectedIndex()];
         os.setDepartmentID(dpid);
         os.setTitle(textField2.getText());
         os.setURL(textField4.getText());

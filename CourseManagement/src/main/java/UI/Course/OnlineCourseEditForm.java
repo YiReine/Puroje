@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
  * @author chris
  */
 public class OnlineCourseEditForm extends javax.swing.JFrame {
+
     /**
      * Creates new form OnsiteCourseAddGUI
      */
@@ -33,40 +34,42 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
     DepartmentBLL dbll = new DepartmentBLL();
     OnlineCourse currentCourse;
     int CourseID;
+
     public OnlineCourseEditForm(int CourseID) throws SQLException {
         this.setTitle("Edit OnlineCourse");
         initComponents();
         loadComboboxDepartment();
         getContentPane().setBackground(Color.WHITE);
-        osbll =new OnlineCourseBLL();
+        osbll = new OnlineCourseBLL();
         currentCourse = osbll.getOs(CourseID); // lay du lieu khoa hoc theo id
         try {
             listOs();
         } catch (SQLException ex) {
             Logger.getLogger(OnlineCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.CourseID=CourseID;
-        
+        this.CourseID = CourseID;
+
         updateCourseDisplay();
     }
-    
+
     public void updateCourseDisplay() {
         textField1.setText("" + currentCourse.getCredits());
         textField2.setText(currentCourse.getTitle());
         textField4.setText(currentCourse.getURL());
         DpComboBox.getModel().setSelectedItem(currentCourse.getDepartmentName());
     }
-    
+
     private void listOs() throws SQLException {
         List list = osbll.LoadOnlineCourse(1);
     }
-    
-    private int[] DepartmentIdArr; 
+
+    private int[] DepartmentIdArr;
+
     // Chua Id theo Thu tu combobox, vi combobox chi chua duoc 1 gia tri hien thi, 
     // nen can luu them ID rieng o bien DepartmentIdArr
-        private void loadComboboxDepartment() throws SQLException {
-       List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
-       DepartmentIdArr = new int[listDP.size()];
+    private void loadComboboxDepartment() throws SQLException {
+        List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
+        DepartmentIdArr = new int[listDP.size()];
         System.out.println(listDP.size());
         for (int i = 0; i < listDP.size(); i++) {
             DepartmentIdArr[i] = listDP.get(i).getDepartmentID();
@@ -74,7 +77,7 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         }
 
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,23 +256,23 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
     private void btnEdit2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEdit2MouseClicked
 
         OnlineCourse os = new OnlineCourse();
-            os.setCredits(Integer.parseInt(textField1.getText()));
-            int dpid = DepartmentIdArr[DpComboBox.getSelectedIndex()];
-            os.setDepartmentID(dpid);
-            os.setTitle(textField2.getText());
-            os.setURL(textField4.getText());
-            os.setCourseID(this.CourseID);
-            try {
-                if (osbll.editOnlineCourse(os) > 0) {
-                    JOptionPane.showMessageDialog(this, "Complete edit OnlineCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error edit OnlineCourse", "Message", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(OnlineCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
+        os.setCredits(Integer.parseInt(textField1.getText()));
+        int dpid = DepartmentIdArr[DpComboBox.getSelectedIndex()];
+        os.setDepartmentID(dpid);
+        os.setTitle(textField2.getText());
+        os.setURL(textField4.getText());
+        os.setCourseID(this.CourseID);
+        try {
+            if (osbll.editOnlineCourse(os) > 0) {
+                JOptionPane.showMessageDialog(this, "Complete edit OnlineCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error edit OnlineCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
-            this.setVisible(true);
-            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnlineCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnEdit2MouseClicked
 
     private void textField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField4ActionPerformed
@@ -341,7 +344,7 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
             }
         });
     }

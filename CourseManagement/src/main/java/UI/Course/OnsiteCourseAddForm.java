@@ -22,15 +22,17 @@ import javax.swing.table.DefaultTableModel;
  * @author chris
  */
 public class OnsiteCourseAddForm extends javax.swing.JFrame {
+
     /**
      * Creates new form OnsiteCourseAddForm
      */
 //    private DefaultTableModel tableModel;
     DepartmentBLL dbll = new DepartmentBLL();
     OnsiteCourseBLL osbll;
+
     public OnsiteCourseAddForm() {
         initComponents();
-        osbll =new OnsiteCourseBLL();
+        osbll = new OnsiteCourseBLL();
         try {
             loadComboboxDepartment();
         } catch (SQLException ex) {
@@ -39,12 +41,13 @@ public class OnsiteCourseAddForm extends javax.swing.JFrame {
     }
 
     private void loadComboboxDepartment() throws SQLException {
-       List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
+        List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
         System.out.println(listDP.size());
         for (int i = 0; i < listDP.size(); i++) {
             DpComboBox.addItem(listDP.get(i).getName());
         }
-    }   
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -248,33 +251,33 @@ public class OnsiteCourseAddForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-            OnsiteCourse os = new OnsiteCourse();
-            os.setCredits(Integer.parseInt(textField1.getText()));
-            String name= DpComboBox.getSelectedItem().toString();
-            int dpid = 0;
-            try {
-                dpid = dbll.DepartmentID(name);
-            } catch (SQLException ex) {
-                Logger.getLogger(OnsiteCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        OnsiteCourse os = new OnsiteCourse();
+        os.setCredits(Integer.parseInt(textField1.getText()));
+        String name = DpComboBox.getSelectedItem().toString();
+        int dpid = 0;
+        try {
+            dpid = dbll.DepartmentID(name);
+        } catch (SQLException ex) {
+            Logger.getLogger(OnsiteCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        os.setDepartmentID(dpid);
+        os.setTitle(textField2.getText());
+        os.setLocation(textField4.getText());
+        os.setDays(textField5.getText());
+        Time time = Time.valueOf(textField6.getText());
+        os.setTime(time);
+        try {
+            if (osbll.addOnsiteCourse(os) > 0) {
+                JOptionPane.showMessageDialog(this, "Complete add OnsiteCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error add OnsiteCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
-            os.setDepartmentID(dpid);
-            os.setTitle(textField2.getText());
-            os.setLocation(textField4.getText());
-            os.setDays(textField5.getText());
-            Time time =Time.valueOf(textField6.getText());
-            os.setTime(time);
-            try {
-                if (osbll.addOnsiteCourse(os) > 0) {
-                    JOptionPane.showMessageDialog(this, "Complete add OnsiteCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error add OnsiteCourse", "Message", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(OnsiteCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            OnsiteCourseAddForm main = new OnsiteCourseAddForm();
-            main.setVisible(true);
-            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnsiteCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        OnsiteCourseAddForm main = new OnsiteCourseAddForm();
+        main.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAddMouseClicked
 
     /**

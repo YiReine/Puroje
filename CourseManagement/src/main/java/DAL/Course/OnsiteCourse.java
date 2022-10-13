@@ -11,12 +11,15 @@ import java.sql.Time;
  *
  * @author chris
  */
-public class OnsiteCourse extends Course{
+public class OnsiteCourse extends Course {
+
     String Location, Days;
     Time Time;
-    public OnsiteCourse(){
-        
+
+    public OnsiteCourse() {
+
     }
+
     public String getLocation() {
         return Location;
     }
@@ -46,5 +49,5 @@ public class OnsiteCourse extends Course{
         this.Days = Days;
         this.Time = Time;
     }
-    
+
 }

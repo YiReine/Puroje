@@ -17,9 +17,11 @@ import java.util.logging.Logger;
  * @author chris
  */
 public class DepartmentDAL extends MyDatabaseManager {
-    public DepartmentDAL(){
+
+    public DepartmentDAL() {
         DepartmentDAL.connectDB();
     }
+
     public ArrayList readDepartment() throws SQLException {
         String query = "SELECT * FROM department ";
         ResultSet rs = DepartmentDAL.doReadQuery(query);
@@ -37,37 +39,39 @@ public class DepartmentDAL extends MyDatabaseManager {
 
         return list;
     }
-    public String getDepartmentName(int DepartmentID){
+
+    public String getDepartmentName(int DepartmentID) {
         ArrayList<String> dsdp = new ArrayList<>();
         try {
             String query = "SELECT `DepartmentID`, `Name`, `Budget`, `StartDate`, `Administrator` FROM `department` WHERE DepartmentID = " + DepartmentID;
-          
+
             PreparedStatement p = DepartmentDAL.getConnection().prepareStatement(query);
             ResultSet rs = this.doReadQuery(query);
-            if(rs !=null){
-                while(rs.next()){
-                  return rs.getString("Name");
+            if (rs != null) {
+                while (rs.next()) {
+                    return rs.getString("Name");
                 }
             }
         } catch (Exception e) {
         }
         return "";
     }
-    public int NameconvertID(String Name) throws SQLException{
-        int id=0;
+
+    public int NameconvertID(String Name) throws SQLException {
+        int id = 0;
         String query = "SELECT DepartmentID FROM department Where Name = ? ";
         PreparedStatement p = DepartmentDAL.getConnection().prepareStatement(query);
         p.setString(1, Name);
         ResultSet rs = p.executeQuery();
 
-           try {
-            while(rs.next()){
-                id=rs.getInt("DepartmentID");
+        try {
+            while (rs.next()) {
+                id = rs.getInt("DepartmentID");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DepartmentDAL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
-    
+
 }

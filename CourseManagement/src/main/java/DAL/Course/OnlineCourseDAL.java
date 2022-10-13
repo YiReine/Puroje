@@ -1,8 +1,9 @@
-        /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL.Course;
+
 import DAL.MyDatabaseManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,43 +11,47 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author chris
  */
-public class OnlineCourseDAL extends MyDatabaseManager{
+public class OnlineCourseDAL extends MyDatabaseManager {
+
     public OnlineCourseDAL() {
 
         OnlineCourseDAL.connectDB();
     }
+
     public ArrayList readOnlineCourse() throws SQLException {
-         ArrayList list = new ArrayList();
+        ArrayList list = new ArrayList();
         try {
             String query = "SELECT c.CourseID, c.Title , c.Credits, c.DepartmentID, ol.url "
                     + "FROM `onlinecourse` ol, `course` c WHERE c.CourseID=ol.CourseID";
             ResultSet rs = OnlineCourseDAL.doReadQuery(query);
-        if (rs != null) {
-            int i = 1;
-            while (rs.next()) {
-                OnlineCourse s = new OnlineCourse();
-                s.setCourseID(rs.getInt("CourseID"));
-                s.setTitle(rs.getString("Title"));
-                s.setCredits(rs.getInt("Credits"));
-                s.setDepartmentID(rs.getInt("DepartmentID"));
-                s.setURL(rs.getString("url"));
-                list.add(s);
+            if (rs != null) {
+                int i = 1;
+                while (rs.next()) {
+                    OnlineCourse s = new OnlineCourse();
+                    s.setCourseID(rs.getInt("CourseID"));
+                    s.setTitle(rs.getString("Title"));
+                    s.setCredits(rs.getInt("Credits"));
+                    s.setDepartmentID(rs.getInt("DepartmentID"));
+                    s.setURL(rs.getString("url"));
+                    list.add(s);
+                }
+
             }
-            
-        }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "-- ERROR! Lỗi đọc dữ liệu bảng bàn");
             ex.printStackTrace();
         } finally {
         }
-        
+
         return list;
     }
+
     public OnlineCourse getOs(int CourseID) throws SQLException {
 
         String query = "SELECT * FROM `onlinecourse` ol,`course` c,`department` d WHERE ol.CourseID=c.CourseID  AND d.DepartmentID = c.DepartmentID "
@@ -67,41 +72,21 @@ public class OnlineCourseDAL extends MyDatabaseManager{
                 ol.setDepartmentID(rs.getInt("DepartmentID"));
                 ol.setDepartmentName(rs.getString("Name"));
                 ol.setTitle(rs.getString("Title"));
-               
+
             }
         }
         return ol;
     }
+
     public int deleteOnlineCourse(int CourseID) throws SQLException {
         String query = "DELETE FROM onlinecourse WHERE CourseID = ?";
-            PreparedStatement p = OnlineCourseDAL.getConnection().prepareStatement(query);
-            p.setInt(1, CourseID);
-            p.executeUpdate();
-            return 1;
-    }
-    public int getCourseIDFromCourse(int courseID) throws SQLException {
-
-        String query = "SELECT CourseID FROM course WHERE CourseID = ?";
-
         PreparedStatement p = OnlineCourseDAL.getConnection().prepareStatement(query);
-        p.setInt(1, courseID);
-        ResultSet rs = p.executeQuery();
-        List list = new ArrayList();
-
-        if (rs != null) {
-
-            while (rs.next()) {
-                Course s = new Course();
-                s.setCourseID(rs.getInt("CourseID"));
-                list.add(s);
-            }
-        }
-        if(list.isEmpty()){
-            return 0;
-        }
+        p.setInt(1, CourseID);
+        p.executeUpdate();
         return 1;
     }
-     public int updateOnlineCourse(OnlineCourse s) throws SQLException {
+
+    public int updateOnlineCourse(OnlineCourse s) throws SQLException {
         String query = "Update onlinecourse SET url = ? "
                 + " WHERE CourseID = ?";
         PreparedStatement p = OnlineCourseDAL.getConnection().prepareStatement(query);
@@ -119,10 +104,11 @@ public class OnlineCourseDAL extends MyDatabaseManager{
         int result = p.executeUpdate();
         return result;
     }
+
     public List findOnlineCourse(String value) throws SQLException {
         String query = "SELECT * FROM `onlinecourse` os, `course` c, `department` dp "
-                    + "WHERE os.CourseID=c.CourseID AND c.DepartmentID=dp.DepartmentID "
-                    + "AND c.Title LIKE ?";
+                + "WHERE os.CourseID=c.CourseID AND c.DepartmentID=dp.DepartmentID "
+                + "AND c.Title LIKE ?";
         PreparedStatement p = OnlineCourseDAL.getConnection().prepareStatement(query);
         p.setString(1, "%" + value + "%");
         ResultSet rs = p.executeQuery();
@@ -143,6 +129,5 @@ public class OnlineCourseDAL extends MyDatabaseManager{
         }
         return list;
     }
-  
-    
+
 }
