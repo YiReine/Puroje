@@ -197,8 +197,9 @@ public class StudentDAL extends MyDatabaseManager {
     public ArrayList<String[]> readStudentByCourseTitle(String courseTitle){
          ArrayList<String[]> list = new ArrayList<>();
         try {
+            //fix
             String query = "SELECT PersonID , LastName , Firstname , Grade FROM `person`, `studentgrade` "
-                    + "WHERE PersonID = StudentID and CourseID = '"+courseID+"'";
+                    + "WHERE PersonID = StudentID and CourseID = '"+courseTitle+"'";
             ResultSet rs = this.doReadQuery(query);
             if(rs !=null){
                 while(rs.next()){

@@ -106,7 +106,7 @@ public class TableDark extends JTable {
                     com.setBackground(Color.WHITE);
                 }
             }
-            com.setForeground(new Color(200, 200, 200));
+            com.setForeground(Color.black);
             
             setBorder(new EmptyBorder(0, 5, 0, 5));
            

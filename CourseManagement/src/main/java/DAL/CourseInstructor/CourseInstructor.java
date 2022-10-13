@@ -28,4 +28,8 @@ public class CourseInstructor {
         this.PersonID = PersonID;
     }
     
+    public String getALL() {
+        return (PersonID+" "+ CourseID+" ");
+    }
+    
 }

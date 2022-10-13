@@ -17,9 +17,30 @@ import javax.swing.JOptionPane;
 
 
 public class CourseDAL extends MyDatabaseManager{
+    
     public CourseDAL() {
-
+        CourseDAL.connectDB();
     }
+    public ArrayList<Course>  readCourse() throws SQLException {
+        String query = "SELECT * FROM course ";
+        ResultSet rs = CourseDAL.doReadQuery(query);
+        ArrayList list = new ArrayList();
+
+        if (rs != null) {
+            int i = 1;
+            while (rs.next()) {
+                Course c = new Course();
+                c.setCourseID(rs.getInt("CourseID"));
+                c.setCredits(rs.getInt("Credits"));
+                c.setDepartmentID(rs.getInt("DepartmentID"));
+                c.setTitle(rs.getString("Title"));
+                list.add(c);
+            }
+        }
+        return list;
+    }
+    ///
+
     public int insertCourse(Course s) throws SQLException {
         String query = "Insert course (Credits, DepartmentID, Title) VALUES (?, ?, ?)";
         PreparedStatement p = CourseDAL.getConnection().prepareStatement(query);
