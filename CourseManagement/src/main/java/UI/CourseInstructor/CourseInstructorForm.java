@@ -6,6 +6,7 @@ package UI.CourseInstructor;
 
 import DAL.CourseInstructor.CourseInstructor;
 import BLL.CourseIntructorBLL;
+import UI.MenuForm;
 import java.awt.Color;
 import java.util.List;
 import java.sql.SQLException;
@@ -23,11 +24,19 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
     CourseIntructorBLL c = new CourseIntructorBLL();
     static String IDS = "";
-
+    MenuForm home ;
+    public CourseInstructorForm(MenuForm parrent, boolean modal) {
+        initComponents();
+        initTable();
+        init();
+        this.setLocationRelativeTo(null);
+        home = parrent;
+    }
     public CourseInstructorForm() {
         initComponents();
         initTable();
         init();
+        home = new MenuForm();
         this.setLocationRelativeTo(null);
     }
 
@@ -397,40 +406,19 @@ public class CourseInstructorForm extends javax.swing.JFrame {
     }//GEN-LAST:event_searchField1MouseClicked
 
     private void myButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton5ActionPerformed
+         home.setVisible(true);
+         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_myButton5ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CourseInstructorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CourseInstructorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CourseInstructorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CourseInstructorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+//    public static void main(String args[]) {
+//       
+//        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CourseInstructorForm().setVisible(true);
             }
-        });
-    }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
