@@ -14,15 +14,9 @@ public class StudentBLL {
         stdDal = new StudentDAL();
     }
 
-    public List LoadStudents(int page) throws SQLException {
-        int numofrecords = 30;
+    public List LoadStudents() throws SQLException {
         ArrayList list = stdDal.readStudent();
-        int size = list.size();
-        int from, to;
-        from = (page - 1) * numofrecords;
-        to = page * numofrecords;
-
-        return list.subList(from, Math.min(to, size));
+        return list;
     }
 
     public List findStudent(String fullname) throws SQLException {

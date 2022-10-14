@@ -29,13 +29,13 @@ public class StudentForm extends javax.swing.JFrame {
 
     //for 3layer`
     private void listStudent() throws SQLException {
-        List list = stb.LoadStudents(1);
+        List list = stb.LoadStudents();
         DefaultTableModel model = convertStudent(list);
         tbDS.setModel(model);
     }
 
     private DefaultTableModel convertStudent(List list) {
-        String[] columnNames = {"PersonID", "FirstName", "LastName", "EnrollmentDate"};
+        String[] columnNames = {"Person ID", "First Name", "Last Name", "Enrollment Date"};
         Object[][] data = new Object[list.size()][4];
         for (int i = 0; i < list.size(); i++) {
             Student s = (Student) list.get(i);
@@ -54,7 +54,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtSearch = new UI.UI_Item.textfield.SearchField();
-        btnSaerch = new UI.UI_Item.button.MyButton();
+        btnSearch = new UI.UI_Item.button.MyButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDS = new UI.UI_Item.table.TableDark();
         btnAdd = new UI.UI_Item.button.MyButton();
@@ -69,11 +69,13 @@ public class StudentForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(40, 41, 54));
         jLabel1.setText("STUDENT");
 
-        btnSaerch.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search.png")); // NOI18N
-        btnSaerch.setText("Search");
-        btnSaerch.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSearch.setText("Enter Name");
+
+        btnSearch.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search.png")); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSaerchMouseClicked(evt);
+                btnSearchMouseClicked(evt);
             }
         });
 
@@ -166,7 +168,7 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -180,7 +182,7 @@ public class StudentForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +209,7 @@ public class StudentForm extends javax.swing.JFrame {
             TableModel model = tbDS.getModel();
 
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table !", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table !", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
                 StudentEditForm f = new StudentEditForm(personID);
@@ -223,21 +225,21 @@ public class StudentForm extends javax.swing.JFrame {
             int row = tbDS.getSelectedRow();
             TableModel model = tbDS.getModel();
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
 
                 int input = JOptionPane.showConfirmDialog(null,
-                        "Do you want to delete this Student?", "Warning!", JOptionPane.YES_NO_OPTION);
+                        "Do you want to delete this Student?", "WARNING!", JOptionPane.YES_NO_OPTION);
                 if (input == JOptionPane.YES_OPTION) {
                     
-                    if (stb.deleteStudent(personID) == 1) {
-                        JOptionPane.showMessageDialog(this, "You have completed to delete student successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                        List list = stb.LoadStudents(1);
+                    if (stb.deleteStudent(personID) > 0) {
+                        JOptionPane.showMessageDialog(this, "You have completed to delete student successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                        List list = stb.LoadStudents();
                         model = convertStudent(list);
                         tbDS.setModel(model);
                     }else{
-                        JOptionPane.showMessageDialog(this, "Error because the information is binding !", "Message", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Error because the information is binding!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -246,7 +248,7 @@ public class StudentForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
-    private void btnSaerchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaerchMouseClicked
+    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
         try {
             String fullname = txtSearch.getText();
             if (fullname.isBlank() == false) {
@@ -254,15 +256,15 @@ public class StudentForm extends javax.swing.JFrame {
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
             } else {
-                JOptionPane.showMessageDialog(this, "Please enter information!", "Message", JOptionPane.ERROR_MESSAGE);
-                List list = stb.LoadStudents(1);
+                JOptionPane.showMessageDialog(this, "Please enter information!", "WARNING!", JOptionPane.WARNING_MESSAGE);
+                List list = stb.LoadStudents();
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnSaerchMouseClicked
+    }//GEN-LAST:event_btnSearchMouseClicked
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         this.setVisible(false);
@@ -270,7 +272,7 @@ public class StudentForm extends javax.swing.JFrame {
 
     private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
         try {
-            List list = stb.LoadStudents(1);
+            List list = stb.LoadStudents();
             DefaultTableModel model = convertStudent(list);
             tbDS.setModel(model);
         } catch (SQLException ex) {
@@ -316,7 +318,7 @@ public class StudentForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
     private UI.UI_Item.button.MyButton btnReload;
-    private UI.UI_Item.button.MyButton btnSaerch;
+    private UI.UI_Item.button.MyButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private UI.UI_Item.table.TableDark tbDS;

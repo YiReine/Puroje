@@ -45,7 +45,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="txtSearch" min="-2" pref="305" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnSaerch" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="btnSearch" min="-2" pref="85" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnReload" min="-2" pref="85" max="-2" attributes="0"/>
                               </Group>
@@ -66,7 +66,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSaerch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnReload" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -96,8 +96,11 @@
       </Properties>
     </Component>
     <Component class="UI.UI_Item.textfield.SearchField" name="txtSearch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter Name"/>
+      </Properties>
     </Component>
-    <Component class="UI.UI_Item.button.MyButton" name="btnSaerch">
+    <Component class="UI.UI_Item.button.MyButton" name="btnSearch">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\search.png"/>
@@ -105,7 +108,7 @@
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaerchMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSearchMouseClicked"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

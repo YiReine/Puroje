@@ -13,18 +13,12 @@ public class TeacherBLL {
     public TeacherBLL() {
         tchDal = new TeacherDAL();
     }
-
-    public List LoadTeachers(int page) throws SQLException {
-        int numofrecords = 50;
+    
+    public List LoadTeachers() throws SQLException {
         ArrayList list = tchDal.readTeacher();
-        int size = list.size();
-        int from, to;
-        from = (page - 1) * numofrecords;
-        to = page * numofrecords;
-
-        return list.subList(from, Math.min(to, size));
+        return list;
     }
-
+    
     public List findTeacher(String fullname) throws SQLException {
         List list = new ArrayList();
 

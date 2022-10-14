@@ -81,6 +81,9 @@
   </Layout>
   <SubComponents>
     <Component class="UI.UI_Item.textfield.SearchField" name="txtSearch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter Name"/>
+      </Properties>
     </Component>
     <Component class="UI.UI_Item.button.MyButton" name="btnSearch">
       <Properties>
