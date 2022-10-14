@@ -4,19 +4,38 @@
  */
 package UI.StudentGrade;
 
+import BLL.CourseBLL;
+import BLL.StudentBLL;
+import BLL.StudentGradeBLL;
+import DAL.StudentGrade.StudentGrade;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tran Ngan
  */
 public class StudentGradeAddForm extends javax.swing.JFrame {
-
+    private Object[] stlistStu,stlistCour;
     /**
      * Creates new form AddForm
      */
     public StudentGradeAddForm() {
+        this.stlistStu = readStu();
+        this.stlistCour= readCou();
         initComponents();
     }
-
+     public Object[] readStu(){
+        StudentBLL stbll = new StudentBLL();
+        ArrayList<String> list = stbll.readDSID();
+        return list.toArray();
+    }
+    
+    public Object[] readCou(){
+        CourseBLL stbll = new CourseBLL();
+        ArrayList<String> list = stbll.readDSID();
+        return list.toArray();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,15 +74,22 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
         jLabel9.setText("Course ID");
 
         btnadd1.setBackground(new java.awt.Color(93, 212, 253));
-        btnadd1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\plus.png")); // NOI18N
         btnadd1.setText("Add");
+        btnadd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadd1ActionPerformed(evt);
+            }
+        });
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(12, 105, 172));
-        btnback.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\back-button.png")); // NOI18N
         btnback.setText("Back");
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));
+
+        cbcourse.setModel(new javax.swing.DefaultComboBoxModel(stlistCour));
+
+        cbstudent.setModel(new javax.swing.DefaultComboBoxModel(stlistStu));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,6 +171,28 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnadd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd1ActionPerformed
+        String courseid = cbcourse.getSelectedItem().toString();
+        String stdentid = cbstudent.getSelectedItem().toString();
+        String grade = txtgrade.getText();
+        StudentGradeBLL bll = new StudentGradeBLL();
+        int check = bll.insertStudentGradeBLL(courseid, stdentid, grade);
+        if(check > 0){
+            JOptionPane.showMessageDialog(rootPane, "Add successfully");
+            StudentGrade s = StudentGradeBLL.DSSDG.get(StudentGradeBLL.DSSDG.size()-1);
+            
+            new StudentGradeForm().AddGradeForm(s);
+//            DefaultTableModel model = (DefaultTableModel)gradeform.tb1.getModel();
+//            gradeform.tb1.setModel(model);
+        }
+        else if(check == -1){
+            JOptionPane.showMessageDialog(rootPane, "The data must be filled in completely");
+        }
+        else if(check == -2){
+            JOptionPane.showMessageDialog(rootPane, "Data already exist");
+        }
+    }//GEN-LAST:event_btnadd1ActionPerformed
 
     /**
      * @param args the command line arguments

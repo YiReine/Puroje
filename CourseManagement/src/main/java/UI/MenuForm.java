@@ -5,6 +5,7 @@
  */
 package UI;
 
+import UI.CourseInstructor.CourseInstructorForm;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ public class MenuForm extends javax.swing.JFrame {
      */
     public MenuForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -341,6 +343,11 @@ public class MenuForm extends javax.swing.JFrame {
         panel9.setRoundBottomRight(30);
         panel9.setRoundTopLeft(30);
         panel9.setRoundTopRight(30);
+        panel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel9MouseClicked(evt);
+            }
+        });
 
         panel_CourseIns.setBackground(new java.awt.Color(255, 255, 255));
         panel_CourseIns.setRoundBottomLeft(25);
@@ -507,6 +514,12 @@ public class MenuForm extends javax.swing.JFrame {
         reSetColor(panel_Course);
         reSetColorText(label_Course);
     }//GEN-LAST:event_label_CourseMouseExited
+
+    private void panel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel9MouseClicked
+        CourseInstructorForm CIUI = new CourseInstructorForm(this, rootPaneCheckingEnabled);
+        CIUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_panel9MouseClicked
     public void SetColor(JPanel p1) {
         p1.setBackground(new Color(179, 250, 160));
     }

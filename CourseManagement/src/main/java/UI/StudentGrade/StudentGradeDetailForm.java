@@ -36,34 +36,42 @@ public class StudentGradeDetailForm extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 2, 36)); // NOI18N
-        jLabel1.setText("  Detail ");
+        jLabel1.setText("Filter");
         jLabel1.setAlignmentX(0.5F);
         jLabel1.setPreferredSize(new java.awt.Dimension(166, 40));
 
         btnstudentID.setBackground(new java.awt.Color(0, 161, 255));
-        btnstudentID.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\graduating-student.png")); // NOI18N
         btnstudentID.setText("Student ID");
+        btnstudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnstudentIDActionPerformed(evt);
+            }
+        });
 
         btncourseID.setBackground(new java.awt.Color(255, 255, 255));
         btncourseID.setForeground(new java.awt.Color(12, 105, 172));
-        btncourseID.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\homework.png")); // NOI18N
         btncourseID.setText("Course ID");
         btncourseID.setBorderColor(new java.awt.Color(12, 105, 172));
+        btncourseID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncourseIDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(btnstudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btncourseID, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,6 +98,14 @@ public class StudentGradeDetailForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btncourseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncourseIDActionPerformed
+        new StudentGradeCourseIDForm().setVisible(true);
+    }//GEN-LAST:event_btncourseIDActionPerformed
+
+    private void btnstudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstudentIDActionPerformed
+        new StudentGradeStudentIDForm().setVisible(true);
+    }//GEN-LAST:event_btnstudentIDActionPerformed
 
     /**
      * @param args the command line arguments

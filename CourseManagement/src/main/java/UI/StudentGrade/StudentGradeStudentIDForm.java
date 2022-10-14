@@ -4,23 +4,36 @@
  */
 package UI.StudentGrade;
 
+import BLL.CourseBLL;
+import BLL.StudentBLL;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Tran Ngan
  */
 public class StudentGradeStudentIDForm extends javax.swing.JFrame {
-
+    private Object[] stlistID;
+    public DefaultTableModel model;
     /**
      * Creates new form StudentID
      */
     public StudentGradeStudentIDForm() {
+        this.stlistID = readStuID();
         initComponents();
+        model = new DefaultTableModel(Table_search(),0);
+        tb2.setModel(model);
         tb2.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.WHITE);
     }
-
+    public Object[] readStuID(){
+        StudentBLL stbll = new StudentBLL();
+        ArrayList<String> list = stbll.readDSID();
+        return list.toArray();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,13 +82,18 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(12, 105, 172));
-        btnback.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\back-button.png")); // NOI18N
         btnback.setText("Back");
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));
 
-        btndetail1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\file.png")); // NOI18N
         btndetail1.setText("Detail");
+        btndetail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndetail1ActionPerformed(evt);
+            }
+        });
+
+        cbdetail1.setModel(new javax.swing.DefaultComboBoxModel(stlistID));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,6 +147,34 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btndetail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetail1ActionPerformed
+        CourseBLL bll = new CourseBLL();
+        int stdentid = Integer.parseInt(cbdetail1.getSelectedItem().toString());
+        ArrayList<String[]> ds = bll.readCourseByStudentIdBLL(stdentid);
+        model.setRowCount(0);
+        int count = 0 ;
+        for(String[] s : ds){
+            Vector row=new Vector();
+            row.add(count);
+            row.add(s[0]);
+            row.add(s[1]);
+            row.add(s[2]);
+            row.add(s[3]);
+            model.addRow(row);
+            count++;
+        }
+        tb2.setModel(model);
+    }//GEN-LAST:event_btndetail1ActionPerformed
+    
+     public Vector Table_search(){
+        Vector head=new Vector();
+        head.add("STT");
+        head.add("CourseID");
+        head.add("Title");
+        head.add("Type");
+        head.add("Grade");
+        return head;
+    }
     /**
      * @param args the command line arguments
      */

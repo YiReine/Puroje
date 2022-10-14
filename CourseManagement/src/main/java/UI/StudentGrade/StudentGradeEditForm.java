@@ -4,17 +4,43 @@
  */
 package UI.StudentGrade;
 
+import BLL.CourseBLL;
+import BLL.StudentBLL;
+import BLL.StudentGradeBLL;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tran Ngan
  */
 public class StudentGradeEditForm extends javax.swing.JFrame {
-
+    private Object[] stlistStu,stlistCour;
+    private int EnrollmentID;
     /**
      * Creates new form EditForm
      */
-    public StudentGradeEditForm() {
+    public StudentGradeEditForm(Vector data) {
+        this.stlistStu = readStu();
+        this.stlistCour= readCou();
         initComponents();
+        this.EnrollmentID = (int)data.get(0);
+        cbstudent.getModel().setSelectedItem((int)data.get(2));
+        cbcourse.getModel().setSelectedItem((int) data.get(1));
+        txtgrade.setText(data.get(3).toString());
+    }
+    
+     public Object[] readStu(){
+        StudentBLL stbll = new StudentBLL();
+        ArrayList<String> list = stbll.readDSID();
+        return list.toArray();
+    }
+    
+    public Object[] readCou(){
+        CourseBLL stbll = new CourseBLL();
+        ArrayList<String> list = stbll.readDSID();
+        return list.toArray();
     }
 
     /**
@@ -55,14 +81,21 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(12, 105, 172));
-        btnback.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\back-button.png")); // NOI18N
         btnback.setText("Back");
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));
 
+        cbcourse.setModel(new javax.swing.DefaultComboBoxModel(stlistCour));
+
+        cbstudent.setModel(new javax.swing.DefaultComboBoxModel(stlistStu));
+
         btnedit1.setBackground(new java.awt.Color(0, 161, 255));
-        btnedit1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tran Ngan\\Documents\\GitHub\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\edit.png")); // NOI18N
         btnedit1.setText("Edit");
+        btnedit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnedit1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,6 +166,28 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnedit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnedit1ActionPerformed
+        String courseid = cbcourse.getSelectedItem().toString();
+       String studentid = cbstudent.getSelectedItem().toString();
+       String grade = txtgrade.getText();
+       if(grade.equals("")){
+          JOptionPane.showMessageDialog(rootPane, "The data must be filled in completely");
+       }
+       else{
+            StudentGradeBLL bll = new StudentGradeBLL();
+            int check = bll.EditStudentGrade(EnrollmentID, courseid, studentid, grade);
+            if(check > 0){
+                JOptionPane.showMessageDialog(rootPane, "Edit success");
+            }
+            else if (check == -2){
+                 JOptionPane.showMessageDialog(rootPane, "Data already exist");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Edit fail");
+            }
+       }    
+    }//GEN-LAST:event_btnedit1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -164,7 +219,6 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentGradeEditForm().setVisible(true);
             }
         });
     }
