@@ -84,8 +84,8 @@ public class OnsiteCourseDAL extends MyDatabaseManager {
         String query = "DELETE FROM onsitecourse WHERE CourseID = ?";
         PreparedStatement p = OnsiteCourseDAL.getConnection().prepareStatement(query);
         p.setInt(1, CourseID);
-        p.executeUpdate();
-        return 1;
+        int result=p.executeUpdate();
+        return result;
     }
 
     public int updateOnsiteCourse(OnsiteCourse s) throws SQLException {

@@ -42,12 +42,10 @@ public class CourseBLL {
         return result;
     }
 
-    public int testConditionError(int CourseID) throws SQLException {
-        if ((cdal.getCourseIDFromCourseInstructor(CourseID) == 1 && cdal.getCourseIDFromCourse(CourseID) == 1)
-                || (cdal.getCourseIDFromStudentGrade(CourseID) == 1 && cdal.getCourseIDFromCourse(CourseID) == 1)) {
-            return 0;
-        }
-        return 1;
+    public List getCourseIDFromCourse(int courseID) throws SQLException {
+        List<Course> listTemp;
+        listTemp = cdal.getCourseIDFromCourse(courseID);
+        return listTemp;
     }
 
     public List LoadCourses(int page) throws SQLException {

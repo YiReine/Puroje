@@ -4,6 +4,8 @@
  */
 package BLL.Course;
 
+import BLL.CourseIntructorBLL;
+import BLL.StudentGradeBLL;
 import DAL.Course.OnlineCourse;
 import DAL.Course.OnlineCourseDAL;
 import java.sql.SQLException;
@@ -19,6 +21,8 @@ public class OnlineCourseBLL extends CourseBLL {
     OnlineCourseDAL oldal;
     CourseBLL cobll;
     DepartmentBLL dpmbll;
+    CourseIntructorBLL cib;
+    StudentGradeBLL sgb;
 
     public OnlineCourseBLL() {
         oldal = new OnlineCourseDAL();
@@ -51,14 +55,16 @@ public class OnlineCourseBLL extends CourseBLL {
     }
 
     public int deleteOnlineCourse(int CourseID) throws SQLException {
-
         int result;
-
-        if (cobll.testConditionError(CourseID) == 0) {
+        cib = new CourseIntructorBLL();
+        sgb = new StudentGradeBLL();
+        cobll = new CourseBLL();
+        if ((cib.getCourseIDFromCourseInstructor(CourseID).isEmpty() == false && cobll.getCourseIDFromCourse(CourseID).isEmpty() == false)
+                || (sgb.getCourseIDFromStudentGrade(CourseID).isEmpty() == false && cobll.getCourseIDFromCourse(CourseID).isEmpty() == false)) {
             result = 0;
         } else {
             oldal.deleteOnlineCourse(CourseID);
-            cdal.deleteCourse(CourseID);
+            cobll.deleteCourse(CourseID);
             result = 1;
         }
         return result;

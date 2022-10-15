@@ -63,7 +63,9 @@ public class CourseIntructorBLL {
             }
 
         }
-        if(listSearchs.size() == 0) return listSearchs;
+        if (listSearchs.size() == 0) {
+            return listSearchs;
+        }
 //        System.out.println(listSearchs.size());
         return listSearchs;
     }
@@ -88,9 +90,9 @@ public class CourseIntructorBLL {
         List<Course> list = cbll.LoadCourses(1);
         for (int i = 0; i < listCourseInstructor.size(); i++) {
             for (int j = 0; j < list.size(); j++) {
-                if (list.get(j).getCourseID()== listCourseInstructor.get(i).getCourseID()) {
+                if (list.get(j).getCourseID() == listCourseInstructor.get(i).getCourseID()) {
                     Titles[i] = list.get(j).getTitle();
-            }
+                }
             }
         }
         return Titles;
@@ -120,6 +122,12 @@ public class CourseIntructorBLL {
     public int deleteCourseInstructor(CourseInstructor c) throws SQLException {
         int result = cid.deleteCourseInstructor(c);
         return result;
+    }
+
+    public List getCourseIDFromCourseInstructor(int courseID) throws SQLException {
+        List<CourseInstructor> listTemp;
+        listTemp = cid.getCourseIDFromCourseInstructor(courseID);
+        return listTemp;
     }
 
 }

@@ -82,8 +82,8 @@ public class OnlineCourseDAL extends MyDatabaseManager {
         String query = "DELETE FROM onlinecourse WHERE CourseID = ?";
         PreparedStatement p = OnlineCourseDAL.getConnection().prepareStatement(query);
         p.setInt(1, CourseID);
-        p.executeUpdate();
-        return 1;
+        int result = p.executeUpdate();
+        return result;
     }
 
     public int updateOnlineCourse(OnlineCourse s) throws SQLException {

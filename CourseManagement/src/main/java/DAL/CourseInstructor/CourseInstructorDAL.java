@@ -67,7 +67,7 @@ public class CourseInstructorDAL extends MyDatabaseManager {
         return result;
     }
 
-    public int updateCourseInstructor(CourseInstructor c, CourseInstructor old ) throws SQLException {
+    public int updateCourseInstructor(CourseInstructor c, CourseInstructor old) throws SQLException {
         String query = "Update  CourseInstructor SET CourseID = ? , PersonID = ? where CourseID = ? and PersonID = ? ";
         PreparedStatement p = CourseInstructorDAL.getConnection().prepareStatement(query);
         p.setInt(1, c.getCourseID());
@@ -87,5 +87,26 @@ public class CourseInstructorDAL extends MyDatabaseManager {
         result = p.executeUpdate();
 
         return result;
+    }
+
+    public List getCourseIDFromCourseInstructor(int courseID) throws SQLException {
+
+        String query = "SELECT CourseID FROM courseinstructor WHERE CourseID = ?";
+
+        PreparedStatement p = CourseInstructorDAL.getConnection().prepareStatement(query);
+        p.setInt(1, courseID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+
+                CourseInstructor s = new CourseInstructor();
+                s.setCourseID(rs.getInt("CourseID"));
+                list.add(s);
+            }
+        }
+        return list;
     }
 }

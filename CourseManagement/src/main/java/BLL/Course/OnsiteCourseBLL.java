@@ -4,6 +4,8 @@
  */
 package BLL.Course;
 
+import BLL.CourseIntructorBLL;
+import BLL.StudentGradeBLL;
 import DAL.Course.OnsiteCourse;
 import DAL.Course.OnsiteCourseDAL;
 import java.sql.SQLException;
@@ -19,6 +21,8 @@ public class OnsiteCourseBLL extends CourseBLL {
     OnsiteCourseDAL osdal;
     CourseBLL cobll;
     DepartmentBLL dbll = new DepartmentBLL();
+    CourseIntructorBLL cib;
+    StudentGradeBLL sgb;
 
     public OnsiteCourseBLL() {
         osdal = new OnsiteCourseDAL();
@@ -80,7 +84,11 @@ public class OnsiteCourseBLL extends CourseBLL {
 
     public int deleteOnsiteCourse(int CourseID) throws SQLException {
         int result;
-        if (cobll.testConditionError(CourseID) == 0) {
+        cib = new CourseIntructorBLL();
+        sgb = new StudentGradeBLL();
+        cobll = new CourseBLL();
+        if ((cib.getCourseIDFromCourseInstructor(CourseID).isEmpty() == false && cobll.getCourseIDFromCourse(CourseID).isEmpty() == false)
+                || (sgb.getCourseIDFromStudentGrade(CourseID).isEmpty() == false && cobll.getCourseIDFromCourse(CourseID).isEmpty() == false)) {
             result = 0;
         } else {
             osdal.deleteOnsiteCourse(CourseID);
