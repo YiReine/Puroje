@@ -52,18 +52,26 @@ public class StudentBLL {
         return result;
     }
 
-    public ArrayList<String> readDSID() {
+    public ArrayList<String> readDSID(){
         StudentDAL std = new StudentDAL();
         ArrayList<String> list = std.readDSID();
         return list;
     }
-
-    public ArrayList<String[]> readStudentByCourseIdBll(int courseID) {
+    public ArrayList<String> readStudentsName(){
         StudentDAL std = new StudentDAL();
-        ArrayList<String[]> list = std.readStudentByCourseID(courseID);
+        ArrayList<String> list = std.readStudentsName();
         return list;
     }
-
-    public static void main(String[] args) {
+    public ArrayList<String[]> readStudentByCourseIdBll(String courseID){
+        int courseid = Integer.parseInt(courseID);
+        StudentDAL std = new StudentDAL();
+        ArrayList<String[]> list = std.readStudentByCourseID(courseid);
+        return list;
+    }
+    
+     public ArrayList<String[]> readStudentByCourseTitleBll(String courseTitle){
+        StudentDAL std = new StudentDAL();
+        ArrayList<String[]> list = std.readStudentByCourseTitle(courseTitle);
+        return list;
     }
 }
