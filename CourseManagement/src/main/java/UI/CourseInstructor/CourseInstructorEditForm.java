@@ -91,8 +91,8 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        myButton1 = new UI.UI_Item.button.MyButton();
-        myButton2 = new UI.UI_Item.button.MyButton();
+        btnEdit = new UI.UI_Item.button.MyButton();
+        btnBack = new UI.UI_Item.button.MyButton();
         jPanel12 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         comboBoxSuggestion4 = new UI.UI_Item.combobox.ComboBoxSuggestion();
@@ -131,29 +131,29 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        myButton1.setText("EDIT");
-        myButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton1ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 200);
-        jPanel1.add(myButton1, gridBagConstraints);
+        jPanel1.add(btnEdit, gridBagConstraints);
 
-        myButton2.setBackground(new java.awt.Color(255, 255, 255));
-        myButton2.setForeground(new java.awt.Color(12, 105, 172));
-        myButton2.setText("BACK");
-        myButton2.setBorderColor(new java.awt.Color(12, 105, 172));
-        myButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setText("BACK");
+        btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton2ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipady = 10;
-        jPanel1.add(myButton2, gridBagConstraints);
+        jPanel1.add(btnBack, gridBagConstraints);
 
         jPanel12.setLayout(new java.awt.GridLayout(2, 0));
 
@@ -243,7 +243,7 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
 
         int result = -1;
         int CourseID = Integer.parseInt(IDS.split("\\|")[0]);
@@ -283,14 +283,14 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_myButton1ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
-    private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
         home.initTable();
 //        CourseInstructorForm c = new CourseInstructorForm();
 //        c.setVisible(true);
-    }//GEN-LAST:event_myButton2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void comboBoxSuggestion3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxSuggestion3MouseReleased
     }//GEN-LAST:event_comboBoxSuggestion3MouseReleased
@@ -386,6 +386,8 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private UI.UI_Item.button.MyButton btnBack;
+    private UI.UI_Item.button.MyButton btnEdit;
     private UI.UI_Item.combobox.ComboBoxSuggestion comboBoxSuggestion1;
     private UI.UI_Item.combobox.ComboBoxSuggestion comboBoxSuggestion2;
     private UI.UI_Item.combobox.ComboBoxSuggestion comboBoxSuggestion3;
@@ -401,7 +403,5 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private UI.UI_Item.button.MyButton myButton1;
-    private UI.UI_Item.button.MyButton myButton2;
     // End of variables declaration//GEN-END:variables
 }

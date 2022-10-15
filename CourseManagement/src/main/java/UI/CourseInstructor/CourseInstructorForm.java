@@ -84,6 +84,9 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         List list = c.loadCourseInstructor();
         DefaultTableModel model = convertCourseInstructor(list);
         tableDark1.setModel(model);
+     
+        
+        
     }
 
     private DefaultTableModel convertCourseInstructor(List list) throws SQLException {
@@ -119,17 +122,17 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         searchField1 = new UI.UI_Item.textfield.SearchField();
-        myButton1 = new UI.UI_Item.button.MyButton();
+        btnSearch = new UI.UI_Item.button.MyButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableDark1 = new UI.UI_Item.table.TableDark();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        myButton2 = new UI.UI_Item.button.MyButton();
-        myButton3 = new UI.UI_Item.button.MyButton();
-        myButton4 = new UI.UI_Item.button.MyButton();
+        btnAdd = new UI.UI_Item.button.MyButton();
+        btnEdit = new UI.UI_Item.button.MyButton();
+        btnDelete = new UI.UI_Item.button.MyButton();
         jPanel9 = new javax.swing.JPanel();
-        myButton5 = new UI.UI_Item.button.MyButton();
+        btnBack = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -186,10 +189,10 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 141, 0, 0);
         jPanel6.add(searchField1, gridBagConstraints);
 
-        myButton1.setText("SEARCH");
-        myButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setText("SEARCH");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton1ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -200,7 +203,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(7, 152, 7, 53);
-        jPanel6.add(myButton1, gridBagConstraints);
+        jPanel6.add(btnSearch, gridBagConstraints);
 
         jPanel2.add(jPanel6);
 
@@ -226,44 +229,44 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        myButton2.setBackground(new java.awt.Color(93, 212, 253));
-        myButton2.setText("ADD");
-        myButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setBackground(new java.awt.Color(93, 212, 253));
+        btnAdd.setText("ADD");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton2ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel8.add(myButton2, gridBagConstraints);
+        jPanel8.add(btnAdd, gridBagConstraints);
 
-        myButton3.setBackground(new java.awt.Color(0, 161, 255));
-        myButton3.setText("EDIT");
-        myButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setBackground(new java.awt.Color(0, 161, 255));
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton3ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel8.add(myButton3, gridBagConstraints);
+        jPanel8.add(btnEdit, gridBagConstraints);
 
-        myButton4.setBackground(new java.awt.Color(12, 105, 172));
-        myButton4.setText("DELETE");
-        myButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setBackground(new java.awt.Color(12, 105, 172));
+        btnDelete.setText("DELETE");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton4ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        jPanel8.add(myButton4, gridBagConstraints);
+        jPanel8.add(btnDelete, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -276,13 +279,13 @@ public class CourseInstructorForm extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        myButton5.setBackground(new java.awt.Color(255, 255, 255));
-        myButton5.setForeground(new java.awt.Color(12, 105, 172));
-        myButton5.setText("BACK");
-        myButton5.setBorderColor(new java.awt.Color(12, 105, 172));
-        myButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setText("BACK");
+        btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton5ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -294,7 +297,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(myButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -309,7 +312,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(myButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -357,7 +360,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchField1ActionPerformed
 
-    private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
        // load laji truoc khi search
        try {
            listCourseInstructorForm();
@@ -373,17 +376,17 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CourseInstructorForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_myButton1ActionPerformed
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         CourseInstructorAddForm C_ADD_FORM = new CourseInstructorAddForm(this, false);
         C_ADD_FORM.setVisible(true);
         C_ADD_FORM.setLocationRelativeTo(null);
 //        this.setVisible(false);
 //        this.dispose();
-    }//GEN-LAST:event_myButton2ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void myButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton3ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
 
         if (tableDark1.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this,
@@ -404,9 +407,9 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_myButton3ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
-    private void myButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton4ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (tableDark1.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this,
                     "chose row!", "Message", JOptionPane.ERROR_MESSAGE);
@@ -437,17 +440,17 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_myButton4ActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void searchField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchField1MouseClicked
         searchField1.setText("");
     }//GEN-LAST:event_searchField1MouseClicked
 
-    private void myButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton5ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
          home.setVisible(true);
          this.dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_myButton5ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
 //    public static void main(String args[]) {
 //       
@@ -459,6 +462,11 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private UI.UI_Item.button.MyButton btnAdd;
+    private UI.UI_Item.button.MyButton btnBack;
+    private UI.UI_Item.button.MyButton btnDelete;
+    private UI.UI_Item.button.MyButton btnEdit;
+    private UI.UI_Item.button.MyButton btnSearch;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -469,11 +477,6 @@ public class CourseInstructorForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private UI.UI_Item.button.MyButton myButton1;
-    private UI.UI_Item.button.MyButton myButton2;
-    private UI.UI_Item.button.MyButton myButton3;
-    private UI.UI_Item.button.MyButton myButton4;
-    private UI.UI_Item.button.MyButton myButton5;
     private UI.UI_Item.textfield.SearchField searchField1;
     private UI.UI_Item.table.TableDark tableDark1;
     // End of variables declaration//GEN-END:variables

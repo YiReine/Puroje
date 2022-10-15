@@ -87,8 +87,8 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         teacherNameCBB = new UI.UI_Item.combobox.ComboBoxSuggestion();
         jPanel1 = new javax.swing.JPanel();
-        myButton1 = new UI.UI_Item.button.MyButton();
-        myButton2 = new UI.UI_Item.button.MyButton();
+        btnAdd = new UI.UI_Item.button.MyButton();
+        btnBack = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,29 +170,29 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        myButton1.setText("ADD");
-        myButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("ADD");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton1ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 200);
-        jPanel1.add(myButton1, gridBagConstraints);
+        jPanel1.add(btnAdd, gridBagConstraints);
 
-        myButton2.setBackground(new java.awt.Color(255, 255, 255));
-        myButton2.setForeground(new java.awt.Color(12, 105, 172));
-        myButton2.setText("BACK");
-        myButton2.setBorderColor(new java.awt.Color(12, 105, 172));
-        myButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setText("BACK");
+        btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton2ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipady = 10;
-        jPanel1.add(myButton2, gridBagConstraints);
+        jPanel1.add(btnBack, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,13 +229,13 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
 //        CourseInstructorForm c = new CourseInstructorForm();
 //        c.setVisible(true);
-    }//GEN-LAST:event_myButton2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         int result = -1;
         try {
 
@@ -266,7 +266,7 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_myButton1ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void personIDCBBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_personIDCBBItemStateChanged
 //        List<Teacher> listT = null;
@@ -395,6 +395,8 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
     //close
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private UI.UI_Item.button.MyButton btnAdd;
+    private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.combobox.ComboBoxSuggestion comboBoxSuggestion1;
     private UI.UI_Item.combobox.ComboBoxSuggestion comboBoxSuggestion2;
     private javax.swing.JLabel jLabel1;
@@ -408,8 +410,6 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private UI.UI_Item.button.MyButton myButton1;
-    private UI.UI_Item.button.MyButton myButton2;
     private UI.UI_Item.combobox.ComboBoxSuggestion personIDCBB;
     private UI.UI_Item.combobox.ComboBoxSuggestion teacherNameCBB;
     // End of variables declaration//GEN-END:variables
