@@ -87,9 +87,16 @@ public class StudentGradeBLL {
         return 1;
     }
 
+
     public List getCourseIDFromStudentGrade(int courseID) throws SQLException {
         List<StudentGrade> listTemp;
         listTemp = get.getCourseIDFromStudentGrade(courseID);
         return listTemp;
+    }
+    public List getStudentIDFromStudentGrade(int studentID) throws SQLException {
+        List<StudentGrade> tempt;
+        tempt = get.getStudentIDFromStudentGrade(studentID);
+        return tempt;
+
     }
 }

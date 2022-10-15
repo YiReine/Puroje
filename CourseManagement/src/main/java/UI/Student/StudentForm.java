@@ -29,13 +29,13 @@ public class StudentForm extends javax.swing.JFrame {
 
     //for 3layer`
     private void listStudent() throws SQLException {
-        List list = stb.LoadStudents(1);
+        List list = stb.LoadStudents();
         DefaultTableModel model = convertStudent(list);
         tbDS.setModel(model);
     }
 
     private DefaultTableModel convertStudent(List list) {
-        String[] columnNames = {"PersonID", "FirstName", "LastName", "EnrollmentDate"};
+        String[] columnNames = {"Person ID", "First Name", "Last Name", "Enrollment Date"};
         Object[][] data = new Object[list.size()][4];
         for (int i = 0; i < list.size(); i++) {
             Student s = (Student) list.get(i);
@@ -54,7 +54,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtSearch = new UI.UI_Item.textfield.SearchField();
-        btnSaerch = new UI.UI_Item.button.MyButton();
+        btnSearch = new UI.UI_Item.button.MyButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDS = new UI.UI_Item.table.TableDark();
         btnAdd = new UI.UI_Item.button.MyButton();
@@ -65,18 +65,25 @@ public class StudentForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(40, 41, 54));
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 161, 255));
         jLabel1.setText("STUDENT");
 
-        btnSaerch.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search.png")); // NOI18N
-        btnSaerch.setText("Search");
-        btnSaerch.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSearch.setText("Enter Name");
+        txtSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        btnSearch.setText("SEARCH");
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSearch.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnSearch.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnSearch.setPreferredSize(new java.awt.Dimension(91, 32));
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSaerchMouseClicked(evt);
+                btnSearchMouseClicked(evt);
             }
         });
 
+        tbDS.setForeground(new java.awt.Color(102, 102, 102));
         tbDS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -88,12 +95,16 @@ public class StudentForm extends javax.swing.JFrame {
                 "PersonID", "FirstName", "LastName", "EnrollmentDate"
             }
         ));
+        tbDS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jScrollPane1.setViewportView(tbDS);
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
-        btnAdd.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\plus.png")); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setColor(new java.awt.Color(93, 212, 253));
+        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnAdd.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnAdd.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnAdd.setPreferredSize(new java.awt.Dimension(91, 32));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -101,9 +112,12 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\edit.png")); // NOI18N
         btnEdit.setText("Edit");
         btnEdit.setColor(new java.awt.Color(0, 161, 255));
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEdit.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnEdit.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnEdit.setPreferredSize(new java.awt.Dimension(91, 32));
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditMouseClicked(evt);
@@ -111,9 +125,12 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
-        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\delete.png")); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setColor(new java.awt.Color(12, 105, 172));
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDelete.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnDelete.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnDelete.setPreferredSize(new java.awt.Dimension(91, 32));
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
@@ -121,11 +138,14 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setForeground(new java.awt.Color(40, 41, 54));
-        btnBack.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\back-button.png")); // NOI18N
+        btnBack.setForeground(new java.awt.Color(12, 105, 172));
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBack.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnBack.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnBack.setPreferredSize(new java.awt.Dimension(91, 32));
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBackMouseClicked(evt);
@@ -133,9 +153,12 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnReload.setBackground(new java.awt.Color(93, 212, 253));
-        btnReload.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\reload.png")); // NOI18N
-        btnReload.setText("Reload");
+        btnReload.setText("RELOAD");
         btnReload.setColor(new java.awt.Color(93, 212, 253));
+        btnReload.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnReload.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnReload.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnReload.setPreferredSize(new java.awt.Dimension(91, 32));
         btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnReloadMouseClicked(evt);
@@ -148,9 +171,6 @@ public class StudentForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -166,10 +186,13 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(jLabel1)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -180,7 +203,7 @@ public class StudentForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +230,7 @@ public class StudentForm extends javax.swing.JFrame {
             TableModel model = tbDS.getModel();
 
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table !", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table !", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
                 StudentEditForm f = new StudentEditForm(personID);
@@ -223,21 +246,21 @@ public class StudentForm extends javax.swing.JFrame {
             int row = tbDS.getSelectedRow();
             TableModel model = tbDS.getModel();
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
 
                 int input = JOptionPane.showConfirmDialog(null,
-                        "Do you want to delete this Student?", "Warning!", JOptionPane.YES_NO_OPTION);
+                        "Do you want to delete this Student?", "WARNING!", JOptionPane.YES_NO_OPTION);
                 if (input == JOptionPane.YES_OPTION) {
                     
-                    if (stb.deleteStudent(personID) == 1) {
-                        JOptionPane.showMessageDialog(this, "You have completed to delete student successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                        List list = stb.LoadStudents(1);
+                    if (stb.deleteStudent(personID) > 0) {
+                        JOptionPane.showMessageDialog(this, "You have completed to delete student successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                        List list = stb.LoadStudents();
                         model = convertStudent(list);
                         tbDS.setModel(model);
                     }else{
-                        JOptionPane.showMessageDialog(this, "Error because the information is binding !", "Message", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Error because the information is binding!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -246,7 +269,7 @@ public class StudentForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
-    private void btnSaerchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaerchMouseClicked
+    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
         try {
             String fullname = txtSearch.getText();
             if (fullname.isBlank() == false) {
@@ -254,15 +277,14 @@ public class StudentForm extends javax.swing.JFrame {
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
             } else {
-                JOptionPane.showMessageDialog(this, "Please enter information!", "Message", JOptionPane.ERROR_MESSAGE);
-                List list = stb.LoadStudents(1);
+                List list = stb.LoadStudents();
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnSaerchMouseClicked
+    }//GEN-LAST:event_btnSearchMouseClicked
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         this.setVisible(false);
@@ -270,7 +292,7 @@ public class StudentForm extends javax.swing.JFrame {
 
     private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
         try {
-            List list = stb.LoadStudents(1);
+            List list = stb.LoadStudents();
             DefaultTableModel model = convertStudent(list);
             tbDS.setModel(model);
         } catch (SQLException ex) {
@@ -316,7 +338,7 @@ public class StudentForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
     private UI.UI_Item.button.MyButton btnReload;
-    private UI.UI_Item.button.MyButton btnSaerch;
+    private UI.UI_Item.button.MyButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private UI.UI_Item.table.TableDark tbDS;
