@@ -103,14 +103,13 @@ public class CourseDAL extends MyDatabaseManager {
         }
         return list;
     }
-
-    public ArrayList<String> readDSID() {
+    public ArrayList<String> readDSID(){
         ArrayList<String> list = new ArrayList<>();
         try {
             String query = "SELECT CourseID FROM course";
             ResultSet rs = this.doReadQuery(query);
-            if (rs != null) {
-                while (rs.next()) {
+            if(rs !=null){
+                while(rs.next()){
                     String data = rs.getString("CourseID");
                     list.add(data);
                 }
@@ -120,41 +119,112 @@ public class CourseDAL extends MyDatabaseManager {
         }
         return list;
     }
-
-    public ArrayList<String[]> readCourseByStudentId(int StudentID) {
+     
+    public ArrayList<String[]> readCourseByStudentId(int StudentID){
         ArrayList<String[]> list = new ArrayList<>();
         try {
-            String queryOnline = "SELECT onlinecourse.CourseID , Title , Grade FROM `course`,`studentgrade`,`onlinecourse` "
-                    + "WHERE course.CourseID = onlinecourse.CourseID and studentgrade.CourseID = onlinecourse.CourseID and StudentID = '" + StudentID + "'";
+           String queryOnline = "SELECT onlinecourse.CourseID , Title , Grade FROM `course`,`studentgrade`,`onlinecourse` "
+                    + "WHERE course.CourseID = onlinecourse.CourseID and studentgrade.CourseID = onlinecourse.CourseID and StudentID = '"+StudentID+"'";
             String queryOnsite = "SELECT onsitecourse.CourseID , Title , Grade FROM `course`,`studentgrade`,`onsitecourse` "
-                    + "WHERE course.CourseID = onsitecourse.CourseID and studentgrade.CourseID = onsitecourse.CourseID and StudentID = '" + StudentID + "'";
-            ResultSet rs = this.doReadQuery(queryOnline);
-
-            if (rs != null) {
-                while (rs.next()) {
+                    + "WHERE course.CourseID = onsitecourse.CourseID and studentgrade.CourseID = onsitecourse.CourseID and StudentID = '"+StudentID+"'"; 
+           ResultSet rs = this.doReadQuery(queryOnline);
+           
+           if(rs !=null){
+                while(rs.next()){
                     String CourseID = rs.getString("CourseID");
                     String Title = rs.getString("Title");
                     String Type = "On";
                     String Grade = rs.getString("Grade");
-                    String[] s = {CourseID, Title, Type, Grade};
+                    String[] s = {CourseID,Title,Type,Grade};
                     list.add(s);
                 }
             }
-            ResultSet rs2 = this.doReadQuery(queryOnsite);
-            if (rs2 != null) {
-                while (rs2.next()) {
+           ResultSet rs2 = this.doReadQuery(queryOnsite);
+           if(rs2 !=null){
+                while(rs2.next()){
                     String CourseID = rs2.getString("CourseID");
                     String Title = rs2.getString("Title");
                     String Type = "Off";
                     String Grade = rs2.getString("Grade");
-                    String[] s = {CourseID, Title, Type, Grade};
+                    String[] s = {CourseID,Title,Type,Grade};
                     list.add(s);
                 }
             }
-
+        
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    public ArrayList<String> readCourseTitle(){
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            String query = "SELECT Title FROM course";
+            ResultSet rs = this.doReadQuery(query);
+            if(rs !=null){
+                while(rs.next()){
+                    String data = rs.getString("Title");
+                    list.add(data);
+                }
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public ArrayList<String[]> readCourseByStudentName(String Lastname , String Firstname){
+        ArrayList<String[]> list = new ArrayList<>();
+        try {
+           String queryOnline = "SELECT onlinecourse.CourseID , Title , Grade FROM `course`,`studentgrade`,`onlinecourse` ,`person`"
+                    + "WHERE PersonID = studentgrade.StudentID and course.CourseID = onlinecourse.CourseID and studentgrade.CourseID = onlinecourse.CourseID "
+                   + "and Lastname = '"+Lastname+"' and Firstname = '"+ Firstname + "'";
+           
+            String queryOnsite = "SELECT onsitecourse.CourseID , Title , Grade FROM `course`,`studentgrade`,`onsitecourse` , `person` "
+                    + "WHERE PersonID = studentgrade.StudentID and course.CourseID = onsitecourse.CourseID and studentgrade.CourseID = onsitecourse.CourseID "
+                    + "and Lastname = '"+Lastname+"' and Firstname = '"+ Firstname + "'";
+           ResultSet rs = this.doReadQuery(queryOnline);
+           
+           if(rs !=null){
+                while(rs.next()){
+                    String CourseID = rs.getString("CourseID");
+                    String Title = rs.getString("Title");
+                    String Type = "On";
+                    String Grade = rs.getString("Grade");
+                    String[] s = {CourseID,Title,Type,Grade};
+                    list.add(s);
+                }
+            }
+           ResultSet rs2 = this.doReadQuery(queryOnsite);
+           if(rs2 !=null){
+                while(rs2.next()){
+                    String CourseID = rs2.getString("CourseID");
+                    String Title = rs2.getString("Title");
+                    String Type = "Off";
+                    String Grade = rs2.getString("Grade");
+                    String[] s = {CourseID,Title,Type,Grade};
+                    list.add(s);
+                }
+            }
+        
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    public String readCourseTitleByID(int courseID){
+        String name = "";
+        try {
+            String query = "SELECT Title FROM course WHERE CourseID ='"+courseID+"'";
+            ResultSet rs = CourseDAL.doReadQuery(query);
+            if(rs !=null){
+                while(rs.next()){
+                   name = rs.getString("Title");
+                }
+            }
+        } catch (Exception e) {
+        }
+        return name;
     }
 
 }
