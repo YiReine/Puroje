@@ -256,7 +256,6 @@ public class StudentForm extends javax.swing.JFrame {
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);
             } else {
-                JOptionPane.showMessageDialog(this, "Please enter information!", "WARNING!", JOptionPane.WARNING_MESSAGE);
                 List list = stb.LoadStudents();
                 DefaultTableModel model = convertStudent(list);
                 tbDS.setModel(model);

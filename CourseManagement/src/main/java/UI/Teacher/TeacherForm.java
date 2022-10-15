@@ -256,8 +256,7 @@ public class TeacherForm extends javax.swing.JFrame {
                 List list = tch.findTeacher(fullname);
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);
-            } else {
-                JOptionPane.showMessageDialog(this, "Please enter information!", "WARNING!", JOptionPane.WARNING_MESSAGE);
+            } else {                
                 List list = tch.LoadTeachers();
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);

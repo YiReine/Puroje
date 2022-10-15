@@ -9,6 +9,7 @@ import java.util.List;
 public class StudentBLL {
 
     StudentDAL stdDal;
+    StudentGradeBLL sgb;
 
     public StudentBLL() {
         stdDal = new StudentDAL();
@@ -29,7 +30,7 @@ public class StudentBLL {
 
     public Student getStudent(int personID) throws SQLException {
         Student s = stdDal.getStudent(personID);
-        return s; 
+        return s;
     }
 
     public int addStudent(Student s) throws SQLException {
@@ -42,23 +43,27 @@ public class StudentBLL {
         return result;
     }
 
-    public int deleteStudent(int personID) throws SQLException {
-        int result = stdDal.deleteStudent(personID);
+    public int deleteStudent(int studentID) throws SQLException {
+        sgb = new StudentGradeBLL();
+        if (sgb.getStudentIDFromStudentGrade(studentID).isEmpty() == false) {
+            return 0;
+        }
+        int result = stdDal.deleteStudent(studentID);
         return result;
     }
-    
-    public ArrayList<String> readDSID(){
+
+    public ArrayList<String> readDSID() {
         StudentDAL std = new StudentDAL();
         ArrayList<String> list = std.readDSID();
         return list;
     }
-    
-    public ArrayList<String[]> readStudentByCourseIdBll(int courseID){
+
+    public ArrayList<String[]> readStudentByCourseIdBll(int courseID) {
         StudentDAL std = new StudentDAL();
         ArrayList<String[]> list = std.readStudentByCourseID(courseID);
         return list;
     }
-    
+
     public static void main(String[] args) {
     }
 }

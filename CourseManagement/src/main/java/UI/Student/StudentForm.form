@@ -102,9 +102,6 @@
     </Component>
     <Component class="UI.UI_Item.button.MyButton" name="btnSearch">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\search.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
       <Events>
@@ -164,9 +161,6 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fd" green="d4" red="5d" type="rgb"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\plus.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Add"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fd" green="d4" red="5d" type="rgb"/>
@@ -181,9 +175,6 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a1" red="0" type="rgb"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\edit.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Edit"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a1" red="0" type="rgb"/>
@@ -197,9 +188,6 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ac" green="69" red="c" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\delete.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -218,9 +206,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="29" red="28" type="rgb"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\back-button.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ac" green="69" red="c" type="rgb"/>
@@ -237,9 +222,6 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fd" green="d4" red="5d" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\QLyPerson\Puroje\CourseManagement\src\main\java\UI\icon\reload.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Reload"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

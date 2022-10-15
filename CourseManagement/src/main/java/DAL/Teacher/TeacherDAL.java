@@ -93,63 +93,13 @@ public class TeacherDAL extends MyDatabaseManager {
         }
         return list;
     }
-    
-    public int getPersonFromCourseInstructor(int personID) throws SQLException {
 
-        String query = "SELECT PersonID FROM courseinstructor WHERE PersonID = ?";
-
-        PreparedStatement p = TeacherDAL.getConnection().prepareStatement(query);
-        p.setInt(1, personID);
-        ResultSet rs = p.executeQuery();
-        List list = new ArrayList();
-
-        if (rs != null) {
-
-            while (rs.next()) {
-                Teacher s = new Teacher(); //CourseInstructor s = new CourseInstructor(); mới đúng
-                s.setPersonID(rs.getInt("PersonID"));
-                list.add(s);
-            }
-        }
-        if(list.isEmpty()){
-            return 0;
-        }
-        return 1;
-    }
-
-    public int getPersonFromStudentGrade(int personID) throws SQLException {
-
-        String query = "SELECT StudentID FROM studentgrade WHERE StudentID = ?";
-
-        PreparedStatement p = TeacherDAL.getConnection().prepareStatement(query);
-        p.setInt(1, personID);
-        ResultSet rs = p.executeQuery();
-        List list = new ArrayList();
-
-        if (rs != null) {
-
-            while (rs.next()) {
-                Teacher s = new Teacher(); //StudentGrade s = new StudentGrade(); mới đúng
-                s.setPersonID(rs.getInt("StudentID"));
-                list.add(s);
-            }
-        }
-        if(list.isEmpty()){
-            return 0;
-        }
-        return 1;
-    }
-    
     public int deleteTeacher(int personID) throws SQLException {
-        if (getPersonFromCourseInstructor(personID) == 1 || getPersonFromStudentGrade(personID) == 1) {
-            return 0;
-        } else {
-            String query = "DELETE FROM Person WHERE PersonID = ?";
-            PreparedStatement p = TeacherDAL.getConnection().prepareStatement(query);
-            p.setInt(1, personID);
-            p.executeUpdate();
-            return 1;
-        }
+        String query = "DELETE FROM Person WHERE PersonID = ?";
+        PreparedStatement p = TeacherDAL.getConnection().prepareStatement(query);
+        p.setInt(1, personID);
+        int result = p.executeUpdate();
+        return result;
     }
 
     public static void main(String[] args) {

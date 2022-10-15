@@ -8,8 +8,10 @@ import DAL.MyDatabaseManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -86,6 +88,23 @@ public class StudentGradeDAL extends MyDatabaseManager{
         return false;
     }
     
-    public static void main(String[] args) {
-    }
+   public List getStudentIDFromStudentGrade(int studentID) throws SQLException {
+
+        String query = "SELECT StudentID FROM studentgrade WHERE StudentID = ? ";
+
+        PreparedStatement p = this.getConnection().prepareStatement(query);
+        p.setInt(1, studentID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+                StudentGrade s = new StudentGrade(); 
+                s.setStudentID(rs.getInt("StudentID"));
+                list.add(s);
+            }
+        }
+        return list;
+     }
 }

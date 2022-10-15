@@ -22,11 +22,10 @@ public class CourseIntructorBLL {
     private String[] teacherNames;
 
     public CourseIntructorBLL() {
-        try {
-            this.list = cid.readCourseInstructor();
-        } catch (SQLException ex) {
-            Logger.getLogger(CourseIntructorBLL.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            this.list = cid.readCourseInstructor();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CourseIntructorBLL.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     public List loadCourseInstructor() throws SQLException {
@@ -113,5 +112,10 @@ public class CourseIntructorBLL {
         int result = cid.deleteCourseInstructor(c);
         return result;
     }
-
+    
+     public List getPersonIDFromCourseInstructor(int personID) throws SQLException {
+         List<CourseInstructor> tempt;
+         tempt = cid.getPersonIDFromCourseInstructor(personID);
+         return tempt;
+     }
 }

@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -88,4 +90,24 @@ public class CourseInstructorDAL extends MyDatabaseManager {
 
         return result;
     }
+    
+     public List getPersonIDFromCourseInstructor(int personID) throws SQLException {
+
+        String query = "SELECT PersonID FROM courseinstructor WHERE PersonID = ? ";
+
+        PreparedStatement p = CourseInstructorDAL.getConnection().prepareStatement(query);
+        p.setInt(1, personID);
+        ResultSet rs = p.executeQuery();
+        List list = new ArrayList();
+
+        if (rs != null) {
+
+            while (rs.next()) {
+                CourseInstructor s = new CourseInstructor(); 
+                s.setPersonID(rs.getInt("PersonID"));
+                list.add(s);
+            }
+        }
+        return list;
+     }
 }
