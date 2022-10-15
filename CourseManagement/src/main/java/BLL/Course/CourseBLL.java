@@ -62,4 +62,15 @@ public class CourseBLL {
         ArrayList<String[]> list = std.readCourseByStudentId(StudentID);
         return list;
     }
+        public ArrayList<String[]> readCourseByStudentIdBLL(String StudentID){
+        int studentID = Integer.parseInt(StudentID);
+        CourseDAL std = new CourseDAL();
+        ArrayList<String[]> list = std.readCourseByStudentId(studentID);
+        return list;
+    }
+     public ArrayList<String> readCourseTitleBLL(){
+        CourseDAL std = new CourseDAL();
+        ArrayList<String> list = std.readCourseTitle();
+        return list;
+    }
 }
