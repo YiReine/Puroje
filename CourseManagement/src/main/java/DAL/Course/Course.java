@@ -9,14 +9,19 @@ package DAL.Course;
  * @author chris
  */
 public class Course {
+
     private int CourseID, Credits, DepartmentID;
     private String Title;
 
+    public Course(int CourseID, int Credits, int DepartmentID, String Title) {
+        this.CourseID = CourseID;
+        this.Credits = Credits;
+        this.DepartmentID = DepartmentID;
+        this.Title = Title;
+    }
+
     public Course() {
-        this.CourseID = 0;
-        this.Credits = 0;
-        this.DepartmentID = 0;
-        this.Title = null;
+
     }
 
     public int getCourseID() {
@@ -50,4 +55,5 @@ public class Course {
     public void setDepartmentID(int DepartmentID) {
         this.DepartmentID = DepartmentID;
     }
+
 }
