@@ -30,13 +30,14 @@ public class TeacherForm extends javax.swing.JFrame {
 
     //for 3 layer
     private void listTeacher3() throws SQLException {
-        List list = tch.LoadTeachers(1);
+        //List list = tch.LoadTeachers(1);
+        List list = tch.LoadTeachers();
         DefaultTableModel model = convertTeacher(list);
         tbDS.setModel(model);
     }
 
     private DefaultTableModel convertTeacher(List list) {
-        String[] columnNames = {"PersonID", "FirstName", "LastName", "HireDate"};
+        String[] columnNames = {"Person ID", "First Name", "Last Name", "Hire Date"};
         Object[][] data = new Object[list.size()][5];
         for (int i = 0; i < list.size(); i++) {
             Teacher t = (Teacher) list.get(i);
@@ -65,6 +66,8 @@ public class TeacherForm extends javax.swing.JFrame {
         btnReload = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtSearch.setText("Enter Name");
 
         btnSearch.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search.png")); // NOI18N
         btnSearch.setText("Search");
@@ -206,7 +209,7 @@ public class TeacherForm extends javax.swing.JFrame {
             int row = tbDS.getSelectedRow();
             TableModel model = tbDS.getModel();
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
                 TeacherEditForm editform = new TeacherEditForm(personID);
@@ -222,22 +225,23 @@ public class TeacherForm extends javax.swing.JFrame {
             int row = tbDS.getSelectedRow();
             TableModel model = tbDS.getModel();
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
 
                 int input = JOptionPane.showConfirmDialog(null,
-                        "Do you want to delete this Teacher?", "Warning!", JOptionPane.YES_NO_OPTION);
+                        "Do you want to delete this Teacher?", "MESSAGE!", JOptionPane.YES_NO_OPTION);
                 if (input == JOptionPane.YES_OPTION) {
-                    
-                    if (tch.deleteTeacher(personID) == 1) {
-                        JOptionPane.showMessageDialog(this, "You have completed to delete teacher successfully!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                        List list = tch.LoadTeachers(1);
+                    if (tch.deleteTeacher(personID) > 0) {
+                        JOptionPane.showMessageDialog(this, "You have completed to delete teacher successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                        List list = tch.LoadTeachers();
                         model = convertTeacher(list);
                         tbDS.setModel(model);
                     }else{
-                        JOptionPane.showMessageDialog(this, "Error because the information is binding!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Error because the information is binding!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                     }
+                }else{
+                    return;
                 }
             }
         } catch (SQLException ex) {
@@ -252,9 +256,8 @@ public class TeacherForm extends javax.swing.JFrame {
                 List list = tch.findTeacher(fullname);
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);
-            } else {
-                JOptionPane.showMessageDialog(this, "Please enter information!", "Message", JOptionPane.ERROR_MESSAGE);
-                List list = tch.LoadTeachers(1);
+            } else {                
+                List list = tch.LoadTeachers();
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);
             }
@@ -269,7 +272,7 @@ public class TeacherForm extends javax.swing.JFrame {
 
     private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
         try {
-            List list = tch.LoadTeachers(1);
+            List list = tch.LoadTeachers();
             DefaultTableModel model = convertTeacher(list);
             tbDS.setModel(model);
         } catch (SQLException ex) {

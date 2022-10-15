@@ -50,7 +50,7 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
         List<Course> listC;
 
         try {
-            listT = t.LoadTeachers(1);
+            listT = t.LoadTeachers();
             listC = cbll.LoadCourses(1); 
 
             int CourseID = Integer.parseInt(IDS.split("\\|")[0]);
@@ -319,7 +319,7 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
     private void comboBoxSuggestion4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxSuggestion4ItemStateChanged
           List<Teacher> listT = null;
         try {
-            listT = t.LoadTeachers(1);
+            listT = t.LoadTeachers();
         } catch (SQLException ex) {
             Logger.getLogger(CourseInstructorEditForm.class.getName()).log(Level.SEVERE, null, ex);
         }

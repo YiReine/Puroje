@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package UI.UI_Item.textfield;
 
 import java.awt.Color;
@@ -16,10 +12,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-/**
- *
- * @author ASUS
- */
+
 public class SearchField extends JTextField {
     public SearchField() {
         //System.out.println("ádfadsf"+ClassLoader.getSystemResource("search").getPath());

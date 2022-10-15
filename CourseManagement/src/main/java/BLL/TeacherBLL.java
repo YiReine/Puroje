@@ -9,20 +9,15 @@ import java.util.List;
 public class TeacherBLL {
 
     TeacherDAL tchDal;
+    CourseIntructorBLL cib;
 
     public TeacherBLL() {
         tchDal = new TeacherDAL();
     }
 
-    public List LoadTeachers(int page) throws SQLException {
-        int numofrecords = 50;
+    public List LoadTeachers() throws SQLException {
         ArrayList list = tchDal.readTeacher();
-        int size = list.size();
-        int from, to;
-        from = (page - 1) * numofrecords;
-        to = page * numofrecords;
-
-        return list.subList(from, Math.min(to, size));
+        return list;
     }
 
     public List findTeacher(String fullname) throws SQLException {
@@ -42,13 +37,18 @@ public class TeacherBLL {
         int result = tchDal.insertTeacher(t);
         return result;
     }
-    
+
     public int editTeacher(Teacher t) throws SQLException {
         int edit = tchDal.updateTeacher(t);
         return edit;
     }
-    
+
     public int deleteTeacher(int personID) throws SQLException {
+                cib = new CourseIntructorBLL();
+        if (cib.getPersonIDFromCourseInstructor(personID).isEmpty() == false) {
+            return 0;
+        }
+
         int del = tchDal.deleteTeacher(personID);
         return del;
     }

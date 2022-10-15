@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package BLL;
 
 import DAL.Course.Course;
@@ -15,10 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static java.util.regex.Pattern.matches;
 
-/**
- *
- * @author HP
- */
 public class CourseIntructorBLL {
 
     private CourseInstructorDAL cid = new CourseInstructorDAL();
@@ -30,11 +22,10 @@ public class CourseIntructorBLL {
     private String[] teacherNames;
 
     public CourseIntructorBLL() {
-        try {
-            this.list = cid.readCourseInstructor();
-        } catch (SQLException ex) {
-            Logger.getLogger(CourseIntructorBLL.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            this.list = cid.readCourseInstructor();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CourseIntructorBLL.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     public List loadCourseInstructor() throws SQLException {
@@ -71,7 +62,7 @@ public class CourseIntructorBLL {
     public String[] loadTeacheName(List<CourseInstructor> listCourseInstructor) throws SQLException {
         teacherNames = new String[listCourseInstructor.size()];
 
-        List<Teacher> list = tbll.LoadTeachers(1);
+        List<Teacher> list = tbll.LoadTeachers();
         for (int i = 0; i < listCourseInstructor.size(); i++) {
             for (int j = 0; j < list.size(); j++) {
                 if (list.get(j).getPersonID() == listCourseInstructor.get(i).getPersonID()) {
@@ -121,5 +112,10 @@ public class CourseIntructorBLL {
         int result = cid.deleteCourseInstructor(c);
         return result;
     }
-
+    
+     public List getPersonIDFromCourseInstructor(int personID) throws SQLException {
+         List<CourseInstructor> tempt;
+         tempt = cid.getPersonIDFromCourseInstructor(personID);
+         return tempt;
+     }
 }
