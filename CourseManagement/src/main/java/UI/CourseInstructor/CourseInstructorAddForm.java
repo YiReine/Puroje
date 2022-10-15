@@ -51,7 +51,7 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
         List<Course> listC;
 
         try {
-            listT = t.LoadTeachers(1);
+            listT = t.LoadTeachers();
             listC = cbll.LoadCourses(1);
             for (int i = 0; i < listT.size(); i++) {
                 personIDCBB.addItem(listT.get(i).getPersonID());
@@ -291,7 +291,7 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
     private void teacherNameCBBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_teacherNameCBBItemStateChanged
         List<Teacher> listT = null;
         try {
-            listT = t.LoadTeachers(1);
+            listT = t.LoadTeachers();
         } catch (SQLException ex) {
             Logger.getLogger(CourseInstructorEditForm.class.getName()).log(Level.SEVERE, null, ex);
         }
