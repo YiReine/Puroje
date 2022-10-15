@@ -68,20 +68,24 @@ public class TeacherForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txtSearch.setText("Enter Name");
+        txtSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        btnSearch.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search.png")); // NOI18N
-        btnSearch.setText("Search");
+        btnSearch.setText("SEARCH");
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSearch.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnSearch.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnSearch.setPreferredSize(new java.awt.Dimension(91, 32));
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
             }
         });
 
-        lbTeacher.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lbTeacher.setForeground(new java.awt.Color(40, 41, 54));
+        lbTeacher.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        lbTeacher.setForeground(new java.awt.Color(0, 161, 255));
         lbTeacher.setText("TEACHER");
 
-        tbDS.setForeground(new java.awt.Color(255, 255, 255));
+        tbDS.setForeground(new java.awt.Color(102, 102, 102));
         tbDS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -93,12 +97,16 @@ public class TeacherForm extends javax.swing.JFrame {
                 "PersonID", "FirstName", "LastName", "HireDate"
             }
         ));
+        tbDS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jScrollPane1.setViewportView(tbDS);
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
-        btnAdd.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\plus.png")); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setColor(new java.awt.Color(93, 212, 253));
+        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnAdd.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnAdd.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnAdd.setPreferredSize(new java.awt.Dimension(91, 32));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -106,9 +114,12 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\edit.png")); // NOI18N
         btnEdit.setText("Edit");
         btnEdit.setColor(new java.awt.Color(0, 161, 255));
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEdit.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnEdit.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnEdit.setPreferredSize(new java.awt.Dimension(91, 32));
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditMouseClicked(evt);
@@ -116,9 +127,12 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
-        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\delete.png")); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setColor(new java.awt.Color(12, 105, 172));
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDelete.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnDelete.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnDelete.setPreferredSize(new java.awt.Dimension(91, 32));
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
@@ -126,11 +140,14 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setForeground(new java.awt.Color(40, 41, 54));
-        btnBack.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\back-button.png")); // NOI18N
+        btnBack.setForeground(new java.awt.Color(12, 105, 172));
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBack.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnBack.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnBack.setPreferredSize(new java.awt.Dimension(91, 32));
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBackMouseClicked(evt);
@@ -138,9 +155,12 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnReload.setBackground(new java.awt.Color(93, 212, 253));
-        btnReload.setIcon(new javax.swing.ImageIcon("D:\\QLyPerson\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\reload.png")); // NOI18N
-        btnReload.setText("Reload");
+        btnReload.setText("RELOAD");
         btnReload.setColor(new java.awt.Color(93, 212, 253));
+        btnReload.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnReload.setMaximumSize(new java.awt.Dimension(91, 32));
+        btnReload.setMinimumSize(new java.awt.Dimension(91, 32));
+        btnReload.setPreferredSize(new java.awt.Dimension(91, 32));
         btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnReloadMouseClicked(evt);
@@ -152,27 +172,29 @@ public class TeacherForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(51, 51, 51)
+                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(48, 48, 48)
+                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(lbTeacher))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(51, 51, 51)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(48, 48, 48)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(232, 232, 232)
+                        .addComponent(lbTeacher)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
