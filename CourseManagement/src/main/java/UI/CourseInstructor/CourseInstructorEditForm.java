@@ -1,6 +1,6 @@
 package UI.CourseInstructor;
 
-import BLL.CourseBLL;
+import BLL.Course.CourseBLL;
 import BLL.CourseIntructorBLL;
 import BLL.TeacherBLL;
 import DAL.Course.Course;
