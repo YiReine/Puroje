@@ -161,6 +161,21 @@ public class StudentDAL extends MyDatabaseManager {
         }
         return list;
     }
-    public static void main(String[] args) {
+    public String readStudentNameByID(int stuid){
+        System.out.println(stuid);
+        String name = "";
+        try {
+            String query = "SELECT Lastname , FirstName FROM Person WHERE EnrollmentDate > 0 AND PersonID ='"+stuid+"'";
+            ResultSet rs = StudentDAL.doReadQuery(query);
+            if(rs !=null){
+                while(rs.next()){
+                   name = rs.getString("Lastname") + " " + rs.getString("Firstname");
+                }
+
+                System.out.println("Name : "+name);
+            }
+        } catch (Exception e) {
+        }
+        return name;
     }
 }
