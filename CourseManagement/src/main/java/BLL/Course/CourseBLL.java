@@ -52,4 +52,14 @@ public class CourseBLL {
         ArrayList list = cdal.readCourse();
         return list;
     }
+    public ArrayList<String> readDSID(){
+        CourseDAL std = new CourseDAL();
+        ArrayList<String> list = std.readDSID();
+        return list;
+    }
+    public ArrayList<String[]> readCourseByStudentIdBLL(int StudentID){
+        CourseDAL std = new CourseDAL();
+        ArrayList<String[]> list = std.readCourseByStudentId(StudentID);
+        return list;
+    }
 }
