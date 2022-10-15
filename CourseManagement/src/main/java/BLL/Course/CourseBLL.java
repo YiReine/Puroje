@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package BLL.Course;
 
 import DAL.Course.Course;
@@ -10,10 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author chris
- */
+
 public class CourseBLL {
 
     CourseDAL cdal;
@@ -62,10 +55,13 @@ public class CourseBLL {
         ArrayList<String[]> list = std.readCourseByStudentId(StudentID);
         return list;
     }
-        public ArrayList<String[]> readCourseByStudentIdBLL(String StudentID){
-        int studentID = Integer.parseInt(StudentID);
+    public ArrayList<String[]> readCourseByStudentNameBLL(String StudentName){
+        String[] words = StudentName.split("\\s");
+        String LastName = words[0];
+        String FirstName = words[1];
+        System.out.println(LastName + " " + FirstName);
         CourseDAL std = new CourseDAL();
-        ArrayList<String[]> list = std.readCourseByStudentId(studentID);
+        ArrayList<String[]> list = std.readCourseByStudentName(LastName , FirstName);
         return list;
     }
      public ArrayList<String> readCourseTitleBLL(){
