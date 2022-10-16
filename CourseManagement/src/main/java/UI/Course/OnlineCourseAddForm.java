@@ -8,6 +8,9 @@ import BLL.Course.DepartmentBLL;
 import BLL.Course.OnlineCourseBLL;
 import DAL.Course.Department;
 import DAL.Course.OnlineCourse;
+import UI.Course.CourseForm;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +30,7 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
     private DefaultTableModel tableModel;
     OnlineCourseBLL osbll;
     DepartmentBLL dbll = new DepartmentBLL();
-
+    OnlineCourseForm home;
     public OnlineCourseAddForm() {
         initComponents();
         osbll = new OnlineCourseBLL();
@@ -37,6 +40,35 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
             Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    public OnlineCourseAddForm(OnlineCourseForm parent, boolean modal) {
+        initComponents();
+        closeChidrentForm(parent, modal);
+        home = parent;
+        osbll = new OnlineCourseBLL();
+        try {
+            loadComboboxDepartment();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void closeChidrentForm(OnlineCourseForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
     }
 
     private int[] DepartmentIdArr;
@@ -233,14 +265,14 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
         try {
             if (osbll.addOnlineCourse(os) > 0) {
                 JOptionPane.showMessageDialog(this, "Complete add OnlineCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+                home.initTable();
             } else {
                 JOptionPane.showMessageDialog(this, "Error add OnlineCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        OnlineCourseAddForm main = new OnlineCourseAddForm();
-        main.setVisible(true);
+        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAddMouseClicked
 

@@ -6,7 +6,10 @@ package UI.StudentGrade;
 
 import BLL.StudentGradeBLL;
 import DAL.StudentGrade.StudentGrade;
+import UI.MenuForm;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -19,7 +22,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Tran Ngan
  */
 public class StudentGradeForm extends javax.swing.JFrame {
-    public Vector tblRow ;
+
+    public Vector tblRow;
+    MenuForm home;
+
     /**
      * Creates new form NewJFrame1
      */
@@ -28,6 +34,31 @@ public class StudentGradeForm extends javax.swing.JFrame {
         btnDoc();
         tb1.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.WHITE);
+    }
+   
+    public StudentGradeForm(MenuForm parent, boolean modal) {
+        initComponents();
+        btnDoc();
+        tb1.fixTable(jScrollPane1);
+        getContentPane().setBackground(Color.WHITE);
+        closeChidrentForm(parent, modal);
+    }
+
+    public void closeChidrentForm(MenuForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -78,7 +109,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "#", "Enrollment ID", "Course ID", "Student ID", "Grade", "StudentName", "CourseName"
+                "#", "Enrollment ID", "Course ID", "Student ID", "Grade", "Student Name", "Course Name"
             }
         ));
         tb1.setToolTipText("");
@@ -134,6 +165,11 @@ public class StudentGradeForm extends javax.swing.JFrame {
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));
         btnback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btndetail.setText("ADVENTURE");
         btndetail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -221,11 +257,11 @@ public class StudentGradeForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btndetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetailActionPerformed
-        new StudentGradeDetailForm().setVisible(true);
+        new StudentGradeDetailForm(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_btndetailActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
-        StudentGradeAddForm addform = new StudentGradeAddForm();
+        StudentGradeAddForm addform = new StudentGradeAddForm(this, rootPaneCheckingEnabled);
         addform.pack();
         addform.setVisible(true);
         addform.setLocationRelativeTo(null);
@@ -233,10 +269,10 @@ public class StudentGradeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-        if(tblRow !=null)
+        if (tblRow != null)
             new StudentGradeEditForm(tblRow).setVisible(true);
-        else{
-            JOptionPane.showMessageDialog(rootPane,"Choose Student to edit ");
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Choose Student to edit ");
         }
     }//GEN-LAST:event_btneditActionPerformed
 
@@ -250,45 +286,42 @@ public class StudentGradeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tb1MouseClicked
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
-        if(tblRow !=null){
-            int input=JOptionPane.showConfirmDialog(null, "Are you sure you want to delete", "Xóa dịch vụ", JOptionPane.YES_NO_OPTION);
-            if (input==0){
+        if (tblRow != null) {
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete", "Xóa dịch vụ", JOptionPane.YES_NO_OPTION);
+            if (input == 0) {
                 StudentGradeBLL bll = new StudentGradeBLL();
-                if(bll.deleteStudentGradeBLL((int)tblRow.get(0))){
+                if (bll.deleteStudentGradeBLL((int) tblRow.get(0))) {
                     int i = tb1.getSelectedRow();
                     DefaultTableModel model = (DefaultTableModel) tb1.getModel();
                     model.removeRow(i);
                     tb1.setModel(model);
-                   JOptionPane.showMessageDialog(rootPane,"Delete successfully ");
-                }
-                else{
-                    JOptionPane.showMessageDialog(rootPane,"Delete failed ");
+                    JOptionPane.showMessageDialog(rootPane, "Delete successfully ");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Delete failed ");
                 }
             }
-           
-        }
-        else{
-            JOptionPane.showMessageDialog(rootPane,"Choose a student to delete ");
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Choose a student to delete ");
         }
     }//GEN-LAST:event_btndeleteActionPerformed
 
     private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
-       if(txtfind.getText().equals("")){
-            JOptionPane.showMessageDialog(rootPane,"Please enter the grade to find ");
-        }
-        else{
+        if (txtfind.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Please enter the grade to find ");
+        } else {
             StudentGradeBLL bll = new StudentGradeBLL();
             List list = bll.getStudentGrade(txtfind.getText());
-            if(list.size() > 0){
+            if (list.size() > 0) {
                 DefaultTableModel model = (DefaultTableModel) tb1.getModel();
                 model.setRowCount(0);
-                int count = 0 ;
-                for(int i=0 ;i<list.size() ;i++){
-                    List tamp = (List)list.get(count);
+                int count = 0;
+                for (int i = 0; i < list.size(); i++) {
+                    List tamp = (List) list.get(count);
                     StudentGrade s = (StudentGrade) tamp.get(0);
-                    String name =(String) tamp.get(1);
-                    String title =  (String) tamp.get(2);
-                    Vector row=new Vector();
+                    String name = (String) tamp.get(1);
+                    String title = (String) tamp.get(2);
+                    Vector row = new Vector();
                     row.add(count);
                     row.add(s.getEnrollmentID());
                     row.add(s.getCourseID());
@@ -299,18 +332,22 @@ public class StudentGradeForm extends javax.swing.JFrame {
                     model.addRow(row);
                     count++;
                 }
-            }
-            else{
-              JOptionPane.showMessageDialog(rootPane,"Not found ");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Not found ");
             }
         }
     }//GEN-LAST:event_btnfindActionPerformed
-    
-    public static void AddGradeForm(StudentGrade s , String name , String title)
-    {
-        DefaultTableModel model = (DefaultTableModel)tb1.getModel();
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        home.setVisible(true);
+        this.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    public static void AddGradeForm(StudentGrade s, String name, String title) {
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         int Rowcount = tb1.getRowCount() + 1;
-        Vector row=new Vector();     
+        Vector row = new Vector();
         row.add(Rowcount);
         row.add(s.getEnrollmentID());
         row.add(s.getCourseID());
@@ -320,8 +357,9 @@ public class StudentGradeForm extends javax.swing.JFrame {
         row.add(title);
         model.addRow(row);
     }
-    public static void EditGradeForm(StudentGrade s,String name, String title){
-        DefaultTableModel model = (DefaultTableModel)tb1.getModel();
+
+    public static void EditGradeForm(StudentGrade s, String name, String title) {
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         int i = tb1.getSelectedRow();
         model.setValueAt(s.getEnrollmentID(), i, 1);
         model.setValueAt(s.getCourseID(), i, 2);
@@ -330,31 +368,33 @@ public class StudentGradeForm extends javax.swing.JFrame {
         model.setValueAt(name, i, 5);
         model.setValueAt(title, i, 6);
     }
-    
-    public void btnDoc(){
+
+    public void btnDoc() {
         List list = new ArrayList();
-        StudentGradeBLL bus=new StudentGradeBLL();
-        if(StudentGradeBLL.DSSDG==null)
+        StudentGradeBLL bus = new StudentGradeBLL();
+//        if (StudentGradeBLL.DSSDG == null) {
             list = bus.docDSHD();
-        int count=1;
-        DefaultTableModel model =(DefaultTableModel)tb1.getModel();
+//        }
+        int count = 1;
+        DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         model.setRowCount(0);
-        for(StudentGrade s :StudentGradeBLL.DSSDG){
-                Vector row=new Vector();
-                List tamp = (List)list.get(count -1);
-                String name =(String) tamp.get(1);
-                String title =  (String) tamp.get(2);
-                row.add(count);
-                row.add(s.getEnrollmentID());
-                row.add(s.getCourseID());
-                row.add(s.getStudentID());
-                row.add(s.getGrade());
-                row.add(name);
-                row.add(title);
-                model.addRow(row);
-                count++;
+        for (StudentGrade s : StudentGradeBLL.DSSDG) {
+            Vector row = new Vector();
+            List tamp = (List) list.get(count - 1);
+            String name = (String) tamp.get(1);
+            String title = (String) tamp.get(2);
+            row.add(count);
+            row.add(s.getEnrollmentID());
+            row.add(s.getCourseID());
+            row.add(s.getStudentID());
+            row.add(s.getGrade());
+            row.add(name);
+            row.add(title);
+            model.addRow(row);
+            count++;
         }
     }
+
     /**
      * @param args the command line arguments
      */

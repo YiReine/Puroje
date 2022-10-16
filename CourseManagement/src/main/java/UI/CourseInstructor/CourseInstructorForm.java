@@ -27,12 +27,15 @@ public class CourseInstructorForm extends javax.swing.JFrame {
     CourseIntructorBLL c = new CourseIntructorBLL();
     static String IDS = "";
     MenuForm home ;
-    public CourseInstructorForm(MenuForm parrent, boolean modal) {
+    public CourseInstructorForm(MenuForm parent, boolean modal) {
         initComponents();
         initTable();
         init();
+        closeChidrentForm(parent, modal);
+    }
+    public void closeChidrentForm(MenuForm parent, boolean  modal) {
         this.setLocationRelativeTo(null);
-        this.home = parrent;
+        this.home = parent;
         
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -41,8 +44,8 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                setDefaultCloseOperation(parrent.DISPOSE_ON_CLOSE);
-                parrent.setVisible(true);
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
             }
         });
     }
@@ -71,7 +74,6 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         tableDark1.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.white);
     }
-
     public void initTable() {
         try {
             listCourseInstructorForm();
@@ -83,12 +85,9 @@ public class CourseInstructorForm extends javax.swing.JFrame {
     protected void listCourseInstructorForm() throws SQLException {
         List list = c.loadCourseInstructor();
         DefaultTableModel model = convertCourseInstructor(list);
-        tableDark1.setModel(model);
-     
-        
-        
+        tableDark1.setModel(model); 
     }
-
+    
     private DefaultTableModel convertCourseInstructor(List list) throws SQLException {
         String[] columnNames = {"TT", "PERSONID", "NAME TEACHER", "COURSEID", "TITLE COURSE"};
         String[] teacherNames = c.loadTeacheName(list);
@@ -393,8 +392,9 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         }
         String stringToSearchs = searchField1.getText();
         try {
-           
+            
             List list = c.findCourseInstructor(stringToSearchs);
+//            tableDark1.setBackGroundIsEmty(list.size());
             DefaultTableModel model = convertCourseInstructor(list);
             tableDark1.setModel(model);
         } catch (SQLException ex) {

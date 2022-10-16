@@ -2,7 +2,10 @@ package UI.Teacher;
 
 import BLL.TeacherBLL;
 import DAL.Teacher.Teacher;
+import UI.MenuForm;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,6 +17,7 @@ import javax.swing.table.TableModel;
 public class TeacherForm extends javax.swing.JFrame {
 
     TeacherBLL tch = new TeacherBLL();
+    MenuForm home;
 
     public TeacherForm() {
         this.setTitle("Teacher");
@@ -21,6 +25,45 @@ public class TeacherForm extends javax.swing.JFrame {
         tbDS.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.WHITE);
 
+        try {
+            listTeacher3();
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public TeacherForm(MenuForm parent, boolean modal) {
+        this.setTitle("Teacher");
+        initComponents();
+        tbDS.fixTable(jScrollPane1);
+        closeChidrentForm(parent, modal);
+        getContentPane().setBackground(Color.WHITE);
+
+        try {
+            listTeacher3();
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void closeChidrentForm(MenuForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
+
+    public void initTable() {
         try {
             listTeacher3();
         } catch (SQLException ex) {
@@ -63,7 +106,6 @@ public class TeacherForm extends javax.swing.JFrame {
         btnEdit = new UI.UI_Item.button.MyButton();
         btnDelete = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
-        btnReload = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +154,11 @@ public class TeacherForm extends javax.swing.JFrame {
                 btnAddMouseClicked(evt);
             }
         });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
         btnEdit.setText("Edit");
@@ -153,17 +200,9 @@ public class TeacherForm extends javax.swing.JFrame {
                 btnBackMouseClicked(evt);
             }
         });
-
-        btnReload.setBackground(new java.awt.Color(93, 212, 253));
-        btnReload.setText("RELOAD");
-        btnReload.setColor(new java.awt.Color(93, 212, 253));
-        btnReload.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnReload.setMaximumSize(new java.awt.Dimension(91, 32));
-        btnReload.setMinimumSize(new java.awt.Dimension(91, 32));
-        btnReload.setPreferredSize(new java.awt.Dimension(91, 32));
-        btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReloadMouseClicked(evt);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -179,9 +218,7 @@ public class TeacherForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,8 +242,7 @@ public class TeacherForm extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -222,7 +258,7 @@ public class TeacherForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        TeacherAddForm addform = new TeacherAddForm();
+        TeacherAddForm addform = new TeacherAddForm(this, rootPaneCheckingEnabled);
         addform.setVisible(true);
     }//GEN-LAST:event_btnAddMouseClicked
 
@@ -234,7 +270,7 @@ public class TeacherForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please choose one row in table!", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
-                TeacherEditForm editform = new TeacherEditForm(personID);
+                TeacherEditForm editform = new TeacherEditForm(personID, this, rootPaneCheckingEnabled);
                 editform.setVisible(true);
             }
         } catch (SQLException ex) {
@@ -259,10 +295,10 @@ public class TeacherForm extends javax.swing.JFrame {
                         List list = tch.LoadTeachers();
                         model = convertTeacher(list);
                         tbDS.setModel(model);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "Error because the information is binding!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                     }
-                }else{
+                } else {
                     return;
                 }
             }
@@ -278,7 +314,7 @@ public class TeacherForm extends javax.swing.JFrame {
                 List list = tch.findTeacher(fullname);
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);
-            } else {                
+            } else {
                 List list = tch.LoadTeachers();
                 DefaultTableModel model = convertTeacher(list);
                 tbDS.setModel(model);
@@ -289,18 +325,19 @@ public class TeacherForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        this.setVisible(false);
+        home.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
-        try {
-            List list = tch.LoadTeachers();
-            DefaultTableModel model = convertTeacher(list);
-            tbDS.setModel(model);
-        } catch (SQLException ex) {
-            Logger.getLogger(TeacherForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnReloadMouseClicked
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        home.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -340,7 +377,6 @@ public class TeacherForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
-    private UI.UI_Item.button.MyButton btnReload;
     private UI.UI_Item.button.MyButton btnSearch;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTeacher;

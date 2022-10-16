@@ -3,6 +3,8 @@ package UI.Student;
 import BLL.StudentBLL;
 import DAL.Student.Student;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -14,7 +16,7 @@ import javax.swing.JOptionPane;
 public class StudentAddForm extends javax.swing.JFrame {
 
     StudentBLL stb;
-
+    StudentForm home;
     public StudentAddForm() {
         this.setTitle("Add Student");
         initComponents();
@@ -23,7 +25,30 @@ public class StudentAddForm extends javax.swing.JFrame {
         stb = new StudentBLL();
         date();
     }
+    public StudentAddForm(StudentForm parent, boolean modal) {
+        this.setTitle("Add Student");
+        initComponents();
+        getContentPane().setBackground(Color.WHITE);
+        closeChidrentForm(parent, modal);
+        stb = new StudentBLL();
+        date();
+    }
+    public void closeChidrentForm(StudentForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
     public void date() {
         DateTimeFormatter dates = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
@@ -166,6 +191,7 @@ public class StudentAddForm extends javax.swing.JFrame {
         try {
             if (stb.addStudent(s) > 0) {
                 JOptionPane.showMessageDialog(this, "You have completed to add student successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                home.initTable();
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentAddForm.class.getName()).log(Level.SEVERE, null, ex);

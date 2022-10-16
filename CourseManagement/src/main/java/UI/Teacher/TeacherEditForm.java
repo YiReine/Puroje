@@ -13,15 +13,17 @@ public class TeacherEditForm extends javax.swing.JFrame {
 
     TeacherBLL tch;
     Teacher t;
+    TeacherForm home;
 
-    public TeacherEditForm(int personID) throws SQLException {
+    public TeacherEditForm(int personID, TeacherForm parent, boolean modal) throws SQLException {
         this.setTitle("Edit Teacher");
         initComponents();
         getContentPane().setBackground(Color.WHITE);
-
+        this.setLocationRelativeTo(null);
         tch = new TeacherBLL();
         t = new Teacher();
         t = tch.getTeacher(personID);
+        home = parent;
         getInfor();
     }
 
@@ -46,6 +48,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 161, 255));
@@ -167,6 +170,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
             } else {
                 if (tch.editTeacher(t) > 0) {
                     JOptionPane.showMessageDialog(this, "You have completed to edit teacher successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                    home.initTable();
                 }
             }
         } catch (SQLException ex) {
@@ -175,7 +179,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveMouseClicked
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
-            this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
 
 //    public static void main(String args[]) {

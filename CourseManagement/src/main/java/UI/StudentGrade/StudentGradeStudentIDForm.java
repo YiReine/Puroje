@@ -25,6 +25,7 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
         this.stlistID = readStuID();
         this.stlistName = readStuName();
         initComponents();
+        this.setLocationRelativeTo(null);
         model = new DefaultTableModel(Table_search(),0);
         tb2.setModel(model);
         tb2.fixTable(jScrollPane1);
@@ -60,6 +61,7 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
         btndetail2 = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(510, 414));
@@ -98,6 +100,11 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));
         btnback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btndetail1.setBackground(new java.awt.Color(93, 212, 253));
         btndetail1.setForeground(new java.awt.Color(0, 0, 0));
@@ -239,6 +246,10 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
     private void cbdetail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbdetail2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbdetail2ActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnbackActionPerformed
     
      public Vector Table_search(){
         Vector head=new Vector();

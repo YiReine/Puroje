@@ -8,6 +8,8 @@ import BLL.Course.CourseBLL;
 import BLL.StudentBLL;
 import BLL.StudentGradeBLL;
 import DAL.StudentGrade.StudentGrade;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentGradeAddForm extends javax.swing.JFrame {
     private Object[] stlistStu,stlistCour;
+    StudentGradeForm home;
     /**
      * Creates new form AddForm
      */
@@ -25,6 +28,27 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
         this.stlistStu = readStu();
         this.stlistCour= readCou();
         initComponents();
+    }
+      public StudentGradeAddForm(StudentGradeForm parent, boolean modal) {
+        this.stlistStu = readStu();
+        this.stlistCour= readCou();
+        initComponents();
+    }
+      public void closeChidrentForm(StudentGradeForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
     }
      public Object[] readStu(){
         StudentBLL stbll = new StudentBLL();
@@ -109,6 +133,11 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));
         btnback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -220,6 +249,10 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
          }
 
     }//GEN-LAST:event_btnadd1ActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments

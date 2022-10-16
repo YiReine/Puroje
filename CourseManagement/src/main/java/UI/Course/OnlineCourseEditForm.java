@@ -9,6 +9,8 @@ import BLL.Course.OnlineCourseBLL;
 import DAL.Course.Department;
 import DAL.Course.OnlineCourse;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,8 +29,9 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
     OnlineCourseBLL osbll;
     DepartmentBLL dbll = new DepartmentBLL();
     OnlineCourse currentCourse;
+    OnlineCourseForm home;
     int CourseID;
-
+    
     public OnlineCourseEditForm(int CourseID) throws SQLException {
         this.setTitle("Edit OnlineCourse");
         initComponents();
@@ -40,7 +43,46 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
 
         updateCourseDisplay();
     }
+    public OnlineCourseEditForm(int CourseID, OnlineCourseForm parent, boolean modal) throws SQLException {
+        this.setTitle("Edit OnlineCourse");
+        initComponents();
+        loadComboboxDepartment();
+        getContentPane().setBackground(Color.WHITE);
+        osbll = new OnlineCourseBLL();
+        currentCourse = osbll.getOs(CourseID); // lay du lieu khoa hoc theo id
+        this.CourseID = CourseID;
+        home = parent;
+        closeChidrentForm(parent, modal);
+        updateCourseDisplay();
+    }
+    public OnlineCourseEditForm(OnlineCourseForm parent, boolean modal) {
+        initComponents();
+        closeChidrentForm(parent, modal);
+        osbll = new OnlineCourseBLL();
+        try {
+            loadComboboxDepartment();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+    }
+
+    public void closeChidrentForm(OnlineCourseForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
     public void updateCourseDisplay() {
         textField1.setText("" + currentCourse.getCredits());
         textField2.setText(currentCourse.getTitle());
@@ -87,6 +129,7 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
         textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,13 +292,13 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         try {
             if (osbll.editOnlineCourse(os) > 0) {
                 JOptionPane.showMessageDialog(this, "Complete edit OnlineCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+                home.initTable();
             } else {
                 JOptionPane.showMessageDialog(this, "Error edit OnlineCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(OnlineCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEdit2MouseClicked
 

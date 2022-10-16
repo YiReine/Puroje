@@ -2,7 +2,10 @@ package UI.Student;
 
 import BLL.StudentBLL;
 import DAL.Student.Student;
+import UI.MenuForm;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,6 +17,7 @@ import javax.swing.table.TableModel;
 public class StudentForm extends javax.swing.JFrame {
 
     StudentBLL stb = new StudentBLL();
+    MenuForm home;
 
     public StudentForm() {
         this.setTitle("Student");
@@ -27,6 +31,42 @@ public class StudentForm extends javax.swing.JFrame {
         }
     }
 
+    public StudentForm(MenuForm parent, boolean modal) {
+        this.setTitle("Student");
+        initComponents();
+        tbDS.fixTable(jScrollPane1);
+        closeChidrentForm(parent, modal);
+        getContentPane().setBackground(Color.WHITE);
+        try {
+            listStudent();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void closeChidrentForm(MenuForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
+    public void initTable() {
+        try {
+            listStudent();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     //for 3layer`
     private void listStudent() throws SQLException {
         List list = stb.LoadStudents();
@@ -61,7 +101,6 @@ public class StudentForm extends javax.swing.JFrame {
         btnEdit = new UI.UI_Item.button.MyButton();
         btnDelete = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
-        btnReload = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +149,11 @@ public class StudentForm extends javax.swing.JFrame {
                 btnAddMouseClicked(evt);
             }
         });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
         btnEdit.setText("Edit");
@@ -152,19 +196,6 @@ public class StudentForm extends javax.swing.JFrame {
             }
         });
 
-        btnReload.setBackground(new java.awt.Color(93, 212, 253));
-        btnReload.setText("RELOAD");
-        btnReload.setColor(new java.awt.Color(93, 212, 253));
-        btnReload.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnReload.setMaximumSize(new java.awt.Dimension(91, 32));
-        btnReload.setMinimumSize(new java.awt.Dimension(91, 32));
-        btnReload.setPreferredSize(new java.awt.Dimension(91, 32));
-        btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReloadMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,9 +217,7 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(246, 246, 246)
@@ -203,8 +232,7 @@ public class StudentForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -220,7 +248,7 @@ public class StudentForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        StudentAddForm addform = new StudentAddForm();
+        StudentAddForm addform = new StudentAddForm(this, rootPaneCheckingEnabled);
         addform.setVisible(true);
     }//GEN-LAST:event_btnAddMouseClicked
 
@@ -233,7 +261,7 @@ public class StudentForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please choose one row in table !", "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else {
                 int personID = Integer.parseInt(model.getValueAt(row, 0).toString());
-                StudentEditForm f = new StudentEditForm(personID);
+                StudentEditForm f = new StudentEditForm(personID, this, rootPaneCheckingEnabled);
                 f.setVisible(true);
             }
         } catch (SQLException ex) {
@@ -253,13 +281,13 @@ public class StudentForm extends javax.swing.JFrame {
                 int input = JOptionPane.showConfirmDialog(null,
                         "Do you want to delete this Student?", "WARNING!", JOptionPane.YES_NO_OPTION);
                 if (input == JOptionPane.YES_OPTION) {
-                    
+
                     if (stb.deleteStudent(personID) > 0) {
                         JOptionPane.showMessageDialog(this, "You have completed to delete student successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
                         List list = stb.LoadStudents();
                         model = convertStudent(list);
                         tbDS.setModel(model);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "Error because the information is binding!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                     }
                 }
@@ -287,18 +315,13 @@ public class StudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        this.setVisible(false);
+           home.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
-        try {
-            List list = stb.LoadStudents();
-            DefaultTableModel model = convertStudent(list);
-            tbDS.setModel(model);
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnReloadMouseClicked
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -337,7 +360,6 @@ public class StudentForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
-    private UI.UI_Item.button.MyButton btnReload;
     private UI.UI_Item.button.MyButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

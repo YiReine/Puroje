@@ -30,6 +30,7 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
     OnsiteCourse currentCourse;
     DepartmentBLL dbll = new DepartmentBLL();
     int CourseID;
+    OnsiteCourseForm home;
 
     public OnsiteCourseEditForm(int CourseID) throws SQLException {
         this.setTitle("Edit OnsiteCourse");
@@ -37,6 +38,22 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
         getContentPane().setBackground(Color.WHITE);
         osbll = new OnsiteCourseBLL();
         currentCourse = osbll.getOs(CourseID);
+        try {
+            loadComboboxDepartment();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnsiteCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.CourseID = CourseID;
+        updateCourseDisplay();
+    }
+
+    public OnsiteCourseEditForm(int CourseID, OnsiteCourseForm parent, boolean modal) throws SQLException {
+        this.setTitle("Edit OnsiteCourse");
+        initComponents();
+        getContentPane().setBackground(Color.WHITE);
+        osbll = new OnsiteCourseBLL();
+        currentCourse = osbll.getOs(CourseID);
+        home = parent;
         try {
             loadComboboxDepartment();
         } catch (SQLException ex) {
@@ -94,6 +111,7 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
         textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,13 +304,14 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
         try {
             if (osbll.editOnsiteCourse(os) > 0) {
                 JOptionPane.showMessageDialog(this, "Complete edit OnsiteCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+                home.initTable();
             } else {
                 JOptionPane.showMessageDialog(this, "Error edit OnsiteCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(OnsiteCourseEditForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(true);
+//        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEdit2MouseClicked
 

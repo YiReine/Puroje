@@ -5,7 +5,11 @@
  */
 package UI;
 
+import UI.Course.CourseForm;
 import UI.CourseInstructor.CourseInstructorForm;
+import UI.Student.StudentForm;
+import UI.StudentGrade.StudentGradeForm;
+import UI.Teacher.TeacherForm;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -76,6 +80,11 @@ public class MenuForm extends javax.swing.JFrame {
         panel1.setRoundBottomRight(30);
         panel1.setRoundTopLeft(30);
         panel1.setRoundTopRight(30);
+        panel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel1MouseClicked(evt);
+            }
+        });
 
         panel_teacher.setBackground(new java.awt.Color(255, 255, 255));
         panel_teacher.setRoundBottomLeft(25);
@@ -110,6 +119,8 @@ public class MenuForm extends javax.swing.JFrame {
             .addComponent(label_teacher, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Teachers-icon.png"))); // NOI18N
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -124,7 +135,7 @@ public class MenuForm extends javax.swing.JFrame {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panel_teacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -180,6 +191,11 @@ public class MenuForm extends javax.swing.JFrame {
         panel3.setRoundBottomRight(30);
         panel3.setRoundTopLeft(30);
         panel3.setRoundTopRight(30);
+        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel3MouseClicked(evt);
+            }
+        });
 
         panel_student.setBackground(new java.awt.Color(255, 255, 255));
         panel_student.setRoundBottomLeft(25);
@@ -209,6 +225,8 @@ public class MenuForm extends javax.swing.JFrame {
             .addComponent(label_student, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Student-3-icon.png"))); // NOI18N
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
@@ -233,6 +251,11 @@ public class MenuForm extends javax.swing.JFrame {
         panel5.setRoundBottomRight(30);
         panel5.setRoundTopLeft(30);
         panel5.setRoundTopRight(30);
+        panel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel5MouseClicked(evt);
+            }
+        });
 
         panel_Course.setBackground(new java.awt.Color(255, 255, 255));
         panel_Course.setRoundBottomLeft(25);
@@ -262,6 +285,8 @@ public class MenuForm extends javax.swing.JFrame {
             .addComponent(label_Course, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Courses-icon.png"))); // NOI18N
+
         javax.swing.GroupLayout panel5Layout = new javax.swing.GroupLayout(panel5);
         panel5.setLayout(panel5Layout);
         panel5Layout.setHorizontalGroup(
@@ -286,6 +311,11 @@ public class MenuForm extends javax.swing.JFrame {
         panel7.setRoundBottomRight(30);
         panel7.setRoundTopLeft(30);
         panel7.setRoundTopRight(30);
+        panel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel7MouseClicked(evt);
+            }
+        });
 
         panel_StudentGrade.setBackground(new java.awt.Color(255, 255, 255));
         panel_StudentGrade.setRoundBottomLeft(25);
@@ -317,6 +347,8 @@ public class MenuForm extends javax.swing.JFrame {
             .addComponent(label_StudentGrade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/school-icon.png"))); // NOI18N
+
         javax.swing.GroupLayout panel7Layout = new javax.swing.GroupLayout(panel7);
         panel7.setLayout(panel7Layout);
         panel7Layout.setHorizontalGroup(
@@ -333,7 +365,7 @@ public class MenuForm extends javax.swing.JFrame {
             panel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel7Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panel_StudentGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -377,6 +409,8 @@ public class MenuForm extends javax.swing.JFrame {
             .addComponent(label_CourseIns, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Actions-view-calendar-week-icon.png"))); // NOI18N
+
         javax.swing.GroupLayout panel9Layout = new javax.swing.GroupLayout(panel9);
         panel9.setLayout(panel9Layout);
         panel9Layout.setHorizontalGroup(
@@ -385,13 +419,13 @@ public class MenuForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addGap(84, 84, 84))
+                .addGap(82, 82, 82))
         );
         panel9Layout.setVerticalGroup(
             panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel9Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panel_CourseIns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -520,6 +554,30 @@ public class MenuForm extends javax.swing.JFrame {
         CIUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_panel9MouseClicked
+
+    private void panel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel7MouseClicked
+        StudentGradeForm STGUI = new StudentGradeForm(this, rootPaneCheckingEnabled);
+        STGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_panel7MouseClicked
+
+    private void panel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel1MouseClicked
+        TeacherForm TUI = new TeacherForm(this, rootPaneCheckingEnabled);
+        TUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_panel1MouseClicked
+
+    private void panel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel3MouseClicked
+      StudentForm STUI = new StudentForm(this, rootPaneCheckingEnabled);
+      STUI.setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_panel3MouseClicked
+
+    private void panel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel5MouseClicked
+      CourseForm CUI = new CourseForm(this, rootPaneCheckingEnabled);
+      CUI.setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_panel5MouseClicked
     public void SetColor(JPanel p1) {
         p1.setBackground(new Color(179, 250, 160));
     }

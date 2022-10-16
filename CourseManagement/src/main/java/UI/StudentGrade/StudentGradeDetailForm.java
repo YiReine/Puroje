@@ -4,17 +4,42 @@
  */
 package UI.StudentGrade;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Tran Ngan
  */
 public class StudentGradeDetailForm extends javax.swing.JFrame {
-
+    StudentGradeForm home;
     /**
      * Creates new form DetailForm
      */
     public StudentGradeDetailForm() {
         initComponents();
+    }
+
+    public StudentGradeDetailForm(StudentGradeForm parent, boolean modal) {
+        initComponents();
+        closeChidrentForm(parent, modal);
+    }
+
+    public void closeChidrentForm(StudentGradeForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
     }
 
     /**

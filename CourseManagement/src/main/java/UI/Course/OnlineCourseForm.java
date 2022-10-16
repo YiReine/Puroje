@@ -3,7 +3,10 @@ package UI.Course;
 import BLL.Course.DepartmentBLL;
 import BLL.Course.OnlineCourseBLL;
 import DAL.Course.OnlineCourse;
+import UI.MenuForm;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,6 +19,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
 
     OnlineCourseBLL osbll;
     DepartmentBLL dpbll = new DepartmentBLL();
+    CourseForm home;
 
     public OnlineCourseForm() {
         this.setTitle("OnlineCourse");
@@ -23,6 +27,45 @@ public class OnlineCourseForm extends javax.swing.JFrame {
         initComponents();
         tbDS.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.WHITE);
+        try {
+            listOl();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnlineCourseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public OnlineCourseForm(CourseForm parent, boolean modal) {
+        this.setTitle("OnlineCourse");
+        osbll = new OnlineCourseBLL();
+        initComponents();
+        closeChidrentForm(parent, modal);
+        tbDS.fixTable(jScrollPane1);
+        getContentPane().setBackground(Color.WHITE);
+        try {
+            listOl();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnlineCourseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void closeChidrentForm(CourseForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
+
+    public void initTable() {
         try {
             listOl();
         } catch (SQLException ex) {
@@ -68,7 +111,6 @@ public class OnlineCourseForm extends javax.swing.JFrame {
         btnEdit = new UI.UI_Item.button.MyButton();
         btnDelete = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
-        btnReload = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,19 +189,6 @@ public class OnlineCourseForm extends javax.swing.JFrame {
             }
         });
 
-        btnReload.setBackground(new java.awt.Color(93, 212, 253));
-        btnReload.setText("Reload");
-        btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReloadMouseClicked(evt);
-            }
-        });
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,9 +213,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -198,8 +225,7 @@ public class OnlineCourseForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -215,8 +241,9 @@ public class OnlineCourseForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        OnlineCourseAddForm add = new OnlineCourseAddForm();
+        OnlineCourseAddForm add = new OnlineCourseAddForm(this, rootPaneCheckingEnabled);
         add.setVisible(true);
+        add.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
@@ -228,8 +255,9 @@ public class OnlineCourseForm extends javax.swing.JFrame {
             int CourseID = Integer.parseInt(model.getValueAt(row, 1).toString());
             OnlineCourseEditForm f;
             try {
-                f = new OnlineCourseEditForm(CourseID);
+                f = new OnlineCourseEditForm(CourseID, this, rootPaneCheckingEnabled);
                 f.setVisible(true);
+                f.setLocationRelativeTo(null);
             } catch (SQLException ex) {
                 Logger.getLogger(OnlineCourseForm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -290,20 +318,9 @@ public class OnlineCourseForm extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
-        // TODO add your handling code here:
-        OnlineCourseForm main = new OnlineCourseForm();
-        main.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnReloadMouseClicked
-
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReloadActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -357,7 +374,6 @@ public class OnlineCourseForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
-    private UI.UI_Item.button.MyButton btnReload;
     private UI.UI_Item.button.MyButton btnSaerch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

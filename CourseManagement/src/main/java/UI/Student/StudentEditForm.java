@@ -13,8 +13,8 @@ public class StudentEditForm extends javax.swing.JFrame {
 
     StudentBLL std;
     Student s;
-
-    public StudentEditForm(int personID) throws SQLException {
+    StudentForm home;
+    public StudentEditForm(int personID, StudentForm parent, boolean modal) throws SQLException {
         this.setTitle("Edit Student");
         initComponents();
         getContentPane().setBackground(Color.WHITE);
@@ -22,6 +22,8 @@ public class StudentEditForm extends javax.swing.JFrame {
         std = new StudentBLL();
         s = new Student();
         s = std.getStudent(personID);
+        home = parent;
+        this.setLocationRelativeTo(null);
         getInfor();
     }
 
@@ -49,6 +51,7 @@ public class StudentEditForm extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 161, 255));
@@ -174,6 +177,7 @@ public class StudentEditForm extends javax.swing.JFrame {
             } else {
                 if (std.updateStudent(s) > 0) {
                     JOptionPane.showMessageDialog(this, "You have completed to edit student successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                    home.initTable();
                 }
             }
         } catch (SQLException ex) {

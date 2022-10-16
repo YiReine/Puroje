@@ -18,28 +18,32 @@ import javax.swing.JOptionPane;
  * @author Tran Ngan
  */
 public class StudentGradeEditForm extends javax.swing.JFrame {
-    private Object[] stlistStu,stlistCour;
+
+    private Object[] stlistStu, stlistCour;
     private int EnrollmentID;
+
     /**
      * Creates new form EditForm
      */
     public StudentGradeEditForm(Vector data) {
         this.stlistStu = readStu();
-        this.stlistCour= readCou();
+        this.stlistCour = readCou();
         initComponents();
-        this.EnrollmentID = (int)data.get(0);
-        cbstudent.getModel().setSelectedItem((int)data.get(2));
+        this.setLocationRelativeTo(null);
+
+        this.EnrollmentID = (int) data.get(0);
+        cbstudent.getModel().setSelectedItem((int) data.get(2));
         cbcourse.getModel().setSelectedItem((int) data.get(1));
         txtgrade.setText(data.get(3).toString());
     }
-    
-     public Object[] readStu(){
+
+    public Object[] readStu() {
         StudentBLL stbll = new StudentBLL();
         ArrayList<String> list = stbll.readDSID();
         return list.toArray();
     }
-    
-    public Object[] readCou(){
+
+    public Object[] readCou() {
         CourseBLL stbll = new CourseBLL();
         ArrayList<String> list = stbll.readDSID();
         return list.toArray();
@@ -66,6 +70,7 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
         cbstudent = new UI.UI_Item.combobox.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(510, 414));
@@ -79,6 +84,11 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));
         btnback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 161, 255));
@@ -190,26 +200,28 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
         String courseid = cbcourse.getSelectedItem().toString();
         String stdentid = cbstudent.getSelectedItem().toString();
         String grade = txtgrade.getText();
-        if(grade.equals("")){
+        if (grade.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "The data must be filled in completely");
-        }
-        else{
+        } else {
             StudentGradeBLL bll = new StudentGradeBLL();
             List list = bll.EditStudentGrade(EnrollmentID, courseid, stdentid, grade);
 
-            if(list.size() > 0){
+            if (list.size() > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Edit success");
                 StudentGrade s = (StudentGrade) list.get(0);
                 String name = (String) list.get(1);
                 String title = (String) list.get(2);
-                StudentGradeForm.EditGradeForm(s,name,title);
+                StudentGradeForm.EditGradeForm(s, name, title);
                 txtgrade.setText("");
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Edit fail");
             }
         }
     }//GEN-LAST:event_btnedit1ActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@ import BLL.Course.DepartmentBLL;
 import BLL.Course.OnsiteCourseBLL;
 import DAL.Course.OnsiteCourse;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,7 +18,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
 
     OnsiteCourseBLL osbll;
     DepartmentBLL dpbll = new DepartmentBLL();
-
+    CourseForm home;
     public OnsiteCourseForm() {
         this.setTitle("OnsiteCourse");
         osbll = new OnsiteCourseBLL();
@@ -29,7 +31,35 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
             Logger.getLogger(OnsiteCourseForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public OnsiteCourseForm(CourseForm parent, boolean modal) {
+        this.setTitle("OnsiteCourse");
+        osbll = new OnsiteCourseBLL();
+        initComponents();
+        closeChidrentForm(parent, modal);
+        tbDS.fixTable(jScrollPane1);
+        getContentPane().setBackground(Color.WHITE);
+        try {
+            listOs();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnsiteCourseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void closeChidrentForm(CourseForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
     //for 3layer`
     private DefaultTableModel convertOs(List list) throws SQLException {
         String[] columnNames = {"STT", "CourseID", "Title", "Credits", "DepartmentID", "Location", "Days", "Time"};
@@ -47,6 +77,14 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         return model;
+    }
+    
+    public void initTable() {
+        try {
+            listOs();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnsiteCourseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void listOs() throws SQLException {
@@ -70,7 +108,6 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
         btnEdit = new UI.UI_Item.button.MyButton();
         btnDelete = new UI.UI_Item.button.MyButton();
         btnBack = new UI.UI_Item.button.MyButton();
-        btnReload = new UI.UI_Item.button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,19 +181,6 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
             }
         });
 
-        btnReload.setBackground(new java.awt.Color(93, 212, 253));
-        btnReload.setText("Reload");
-        btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReloadMouseClicked(evt);
-            }
-        });
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,9 +205,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -195,8 +217,7 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSaerch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -212,8 +233,9 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        OnsiteCourseAddForm add = new OnsiteCourseAddForm();
+        OnsiteCourseAddForm add = new OnsiteCourseAddForm(this, rootPaneCheckingEnabled);
         add.setVisible(true);
+        add.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
@@ -225,8 +247,9 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
             int CourseID = Integer.parseInt(model.getValueAt(row, 1).toString());
             OnsiteCourseEditForm f;
             try {
-                f = new OnsiteCourseEditForm(CourseID);
+                f = new OnsiteCourseEditForm(CourseID, this, rootPaneCheckingEnabled);
                 f.setVisible(true);
+                f.setLocationRelativeTo(null);
             } catch (SQLException ex) {
                 Logger.getLogger(OnsiteCourseForm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -286,20 +309,9 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
-        // TODO add your handling code here:
-        OnsiteCourseForm main = new OnsiteCourseForm();
-        main.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnReloadMouseClicked
-
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReloadActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -345,7 +357,6 @@ public class OnsiteCourseForm extends javax.swing.JFrame {
     private UI.UI_Item.button.MyButton btnBack;
     private UI.UI_Item.button.MyButton btnDelete;
     private UI.UI_Item.button.MyButton btnEdit;
-    private UI.UI_Item.button.MyButton btnReload;
     private UI.UI_Item.button.MyButton btnSaerch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

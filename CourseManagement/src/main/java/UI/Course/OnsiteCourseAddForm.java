@@ -8,6 +8,8 @@ import BLL.Course.DepartmentBLL;
 import BLL.Course.OnsiteCourseBLL;
 import DAL.Course.Department;
 import DAL.Course.OnsiteCourse;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +31,9 @@ public class OnsiteCourseAddForm extends javax.swing.JFrame {
 //    private DefaultTableModel tableModel;
     DepartmentBLL dbll = new DepartmentBLL();
     OnsiteCourseBLL osbll;
+    OnsiteCourseForm home;
+    private int[] DepartmentIdArr;
+
 
     public OnsiteCourseAddForm() {
         initComponents();
@@ -40,13 +45,47 @@ public class OnsiteCourseAddForm extends javax.swing.JFrame {
         }
     }
 
+    public OnsiteCourseAddForm(OnsiteCourseForm parent, boolean modal) {
+        initComponents();
+        osbll = new OnsiteCourseBLL();
+        home = parent;
+        closeChidrentForm(parent, modal);
+        try {
+            loadComboboxDepartment();
+        } catch (SQLException ex) {
+            Logger.getLogger(OnlineCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void closeChidrentForm(OnsiteCourseForm parent, boolean modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
+
+
     private void loadComboboxDepartment() throws SQLException {
         List<Department> listDP = (List<Department>) dbll.LoadDepartment(1);
         System.out.println(listDP.size());
+        DepartmentIdArr = new int[listDP.size()];
         for (int i = 0; i < listDP.size(); i++) {
+            DepartmentIdArr[i] = listDP.get(i).getDepartmentID();
             DpComboBox.addItem(listDP.get(i).getName());
         }
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -269,14 +308,14 @@ public class OnsiteCourseAddForm extends javax.swing.JFrame {
         try {
             if (osbll.addOnsiteCourse(os) > 0) {
                 JOptionPane.showMessageDialog(this, "Complete add OnsiteCourse", "Message", JOptionPane.INFORMATION_MESSAGE);
+                home.initTable();
             } else {
                 JOptionPane.showMessageDialog(this, "Error add OnsiteCourse", "Message", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(OnsiteCourseAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        OnsiteCourseAddForm main = new OnsiteCourseAddForm();
-        main.setVisible(true);
+        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAddMouseClicked
 

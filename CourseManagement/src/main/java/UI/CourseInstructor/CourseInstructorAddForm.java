@@ -462,7 +462,7 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSuggestion2ActionPerformed
 //
-    public static void main(String args[]) {
+//    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -488,15 +488,15 @@ public class CourseInstructorAddForm extends javax.swing.JFrame {
 //        //</editor-fold>
 //
 //        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 CourseInstructorAddForm ADD_Course;
                 ADD_Course = new CourseInstructorAddForm(new CourseInstructorForm(), true);
                 ADD_Course.setVisible(true);
             }
-        });
+//        });
 //
-    }
+//    }
 
     //close
 

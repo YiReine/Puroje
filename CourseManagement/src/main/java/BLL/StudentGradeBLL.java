@@ -26,7 +26,7 @@ public class StudentGradeBLL {
     public List docDSHD(){
 
         List list = new ArrayList();
-        if(DSSDG==null){
+//        if(DSSDG==null){
             StudentGradeDAL get=new StudentGradeDAL();
             DSSDG = new ArrayList<>();
             list = get.readStudent();
@@ -34,7 +34,7 @@ public class StudentGradeBLL {
                 List l2 = (List)list.get(i);
                 DSSDG.add((StudentGrade)l2.get(0));
             }
-        }
+//        }
         return list;
     }
     public boolean deleteStudentGradeBLL(int EnrollMentID){

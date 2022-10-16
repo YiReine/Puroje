@@ -3,6 +3,8 @@ package UI.Teacher;
 import BLL.TeacherBLL;
 import DAL.Teacher.Teacher;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -14,7 +16,7 @@ import javax.swing.JOptionPane;
 public class TeacherAddForm extends javax.swing.JFrame {
 
     TeacherBLL tch;
-
+    TeacherForm home;
     public TeacherAddForm() {
         this.setTitle("Add Teacher");
         initComponents();
@@ -22,7 +24,30 @@ public class TeacherAddForm extends javax.swing.JFrame {
         tch = new TeacherBLL();
         date();
     }
+    public TeacherAddForm(TeacherForm parent ,boolean  modal) {
+        this.setTitle("Add Teacher");
+        initComponents();
+        closeChidrentForm(parent, modal);
+        getContentPane().setBackground(Color.WHITE);
+        tch = new TeacherBLL();
+        date();
+    }
+    public void closeChidrentForm(TeacherForm parent, boolean  modal) {
+        this.setLocationRelativeTo(null);
+        this.home = parent;
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
 
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(parent.DISPOSE_ON_CLOSE);
+                parent.setVisible(true);
+            }
+        });
+    }
     public void date() {
         DateTimeFormatter dates = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
@@ -60,6 +85,11 @@ public class TeacherAddForm extends javax.swing.JFrame {
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
+            }
+        });
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -163,6 +193,7 @@ public class TeacherAddForm extends javax.swing.JFrame {
  
         try {
             if (tch.addTeacher(t) > 0) {
+                home.initTable();
                 JOptionPane.showMessageDialog(this, "You have completed to add teacher successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
             }
         } catch (SQLException ex) {
@@ -173,6 +204,10 @@ public class TeacherAddForm extends javax.swing.JFrame {
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

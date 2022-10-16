@@ -16,8 +16,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Tran Ngan
  */
 public class StudentGradeCourseIDForm extends javax.swing.JFrame {
+
     public DefaultTableModel model;
-    private Object[] stlistID , stlistTitle;
+    private Object[] stlistID, stlistTitle;
+
     /**
      * Creates new form CourseID
      */
@@ -25,23 +27,26 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
         this.stlistID = readCouID();
         this.stlistTitle = readCouTitle();
         initComponents();
-        model = new DefaultTableModel(Table_search(),0);
+        this.setLocationRelativeTo(null);
+
+        model = new DefaultTableModel(Table_search(), 0);
         tb3.setModel(model);
         tb3.fixTable(jScrollPane1);
         getContentPane().setBackground(Color.WHITE);
     }
-    
-    public Object[] readCouID(){
+
+    public Object[] readCouID() {
         CourseBLL stbll = new CourseBLL();
         ArrayList<String> list = stbll.readDSID();
         return list.toArray();
     }
-    
-    public Object[] readCouTitle(){
+
+    public Object[] readCouTitle() {
         CourseBLL stbll = new CourseBLL();
         ArrayList<String> list = stbll.readCourseTitleBLL();
         return list.toArray();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +67,7 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(510, 414));
@@ -93,6 +99,11 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));
         btnback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btndetail3.setBackground(new java.awt.Color(93, 212, 253));
         btndetail3.setForeground(new java.awt.Color(0, 0, 0));
@@ -202,11 +213,11 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
         String courseid = cbdetailID.getSelectedItem().toString();
         ArrayList<String[]> ds = bll.readStudentByCourseIdBll(courseid);
         model.setRowCount(0);
-        int count = 0 ;
+        int count = 0;
         System.out.println(ds.size());
-        if(ds.size() > 0){
-            for(String[] s : ds){
-                Vector row=new Vector();
+        if (ds.size() > 0) {
+            for (String[] s : ds) {
+                Vector row = new Vector();
                 row.add(count);
                 row.add(s[0]);
                 row.add(s[1]);
@@ -214,7 +225,7 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
                 model.addRow(row);
                 count++;
             }
-        }   
+        }
         tb3.setModel(model);
     }//GEN-LAST:event_btndetail3ActionPerformed
 
@@ -223,11 +234,11 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
         String courseid = cbdetailName.getSelectedItem().toString();
         ArrayList<String[]> ds = bll.readStudentByCourseTitleBll(courseid);
         model.setRowCount(0);
-        int count = 0 ;
+        int count = 0;
         System.out.println(ds.size());
-        if(ds.size() > 0){
-            for(String[] s : ds){
-                Vector row=new Vector();
+        if (ds.size() > 0) {
+            for (String[] s : ds) {
+                Vector row = new Vector();
                 row.add(count);
                 row.add(s[0]);
                 row.add(s[1]);
@@ -235,18 +246,24 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
                 model.addRow(row);
                 count++;
             }
-        }   
+        }
         tb3.setModel(model);
     }//GEN-LAST:event_btndetail4ActionPerformed
-    
-    public Vector Table_search(){
-        Vector head=new Vector();
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        this.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    public Vector Table_search() {
+        Vector head = new Vector();
         head.add("STT");
         head.add("StudentID");
         head.add("Name");
         head.add("Grade");
         return head;
     }
+
     /**
      * @param args the command line arguments
      */
