@@ -125,12 +125,13 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         btnEdit.setBackground(new java.awt.Color(93, 212, 253));
         btnEdit.setForeground(new java.awt.Color(0, 0, 0));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnEdit.setText("EDIT");
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +142,7 @@ public class CourseInstructorEditForm extends javax.swing.JFrame {
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setForeground(new java.awt.Color(0, 0, 0));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnBack.setText("BACK");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

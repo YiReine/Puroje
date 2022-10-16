@@ -112,6 +112,7 @@ public class TeacherForm extends javax.swing.JFrame {
         txtSearch.setText("Enter Name");
         txtSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btnSearch.setText("SEARCH");
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSearch.setMaximumSize(new java.awt.Dimension(91, 32));
@@ -143,6 +144,7 @@ public class TeacherForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbDS);
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/round-add-button (2).png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setColor(new java.awt.Color(93, 212, 253));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -161,6 +163,7 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/pencil.png"))); // NOI18N
         btnEdit.setText("Edit");
         btnEdit.setColor(new java.awt.Color(0, 161, 255));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -174,6 +177,7 @@ public class TeacherForm extends javax.swing.JFrame {
         });
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete (2).png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setColor(new java.awt.Color(12, 105, 172));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -188,6 +192,7 @@ public class TeacherForm extends javax.swing.JFrame {
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
@@ -218,14 +223,14 @@ public class TeacherForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(51, 51, 51)
                                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(48, 48, 48)
-                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))

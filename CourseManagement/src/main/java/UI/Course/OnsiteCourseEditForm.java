@@ -166,6 +166,7 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
@@ -176,6 +177,7 @@ public class OnsiteCourseEditForm extends javax.swing.JFrame {
         });
 
         btnEdit2.setBackground(new java.awt.Color(0, 161, 255));
+        btnEdit2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnEdit2.setText("Edit");
         btnEdit2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

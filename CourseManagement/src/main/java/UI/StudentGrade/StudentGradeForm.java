@@ -122,6 +122,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tb1);
 
         btnadd.setBackground(new java.awt.Color(93, 212, 253));
+        btnadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/round-add-button (2).png"))); // NOI18N
         btnadd.setText("ADD");
         btnadd.setColor(new java.awt.Color(93, 212, 253));
         btnadd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -132,6 +133,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
         });
 
         btnedit.setBackground(new java.awt.Color(0, 161, 255));
+        btnedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnedit.setText("EDIT");
         btnedit.setColor(new java.awt.Color(0, 161, 255));
         btnedit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -142,6 +144,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
         });
 
         btndelete.setBackground(new java.awt.Color(12, 105, 172));
+        btndelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete (2).png"))); // NOI18N
         btndelete.setText("DELETE");
         btndelete.setColor(new java.awt.Color(12, 105, 172));
         btndelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -151,6 +154,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
             }
         });
 
+        btnfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btnfind.setText("SEARCH");
         btnfind.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnfind.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +165,7 @@ public class StudentGradeForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(12, 105, 172));
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnback.setText("BACK");
         btnback.setBorderColor(new java.awt.Color(12, 105, 172));
         btnback.setColor(new java.awt.Color(255, 255, 255));

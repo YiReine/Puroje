@@ -61,6 +61,7 @@ public class StudentEditForm extends javax.swing.JFrame {
 
         btnSave.setBackground(new java.awt.Color(93, 212, 253));
         btnSave.setForeground(new java.awt.Color(0, 0, 0));
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnSave.setText("Save");
         btnSave.setColor(new java.awt.Color(93, 212, 253));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -75,7 +76,8 @@ public class StudentEditForm extends javax.swing.JFrame {
 
         btnClose.setBackground(new java.awt.Color(255, 255, 255));
         btnClose.setForeground(new java.awt.Color(0, 0, 0));
-        btnClose.setText("Close");
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
+        btnClose.setText("Back");
         btnClose.setBorderColor(new java.awt.Color(0, 161, 255));
         btnClose.setColor(new java.awt.Color(255, 255, 255));
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -85,6 +87,11 @@ public class StudentEditForm extends javax.swing.JFrame {
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCloseMouseClicked(evt);
+            }
+        });
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
             }
         });
 
@@ -188,6 +195,10 @@ public class StudentEditForm extends javax.swing.JFrame {
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCloseActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

@@ -107,6 +107,7 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
 
         btnadd1.setBackground(new java.awt.Color(93, 212, 253));
         btnadd1.setForeground(new java.awt.Color(0, 0, 0));
+        btnadd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnadd1.setText("SAVE");
         btnadd1.setColor(new java.awt.Color(93, 212, 253));
         btnadd1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -129,6 +130,7 @@ public class StudentGradeAddForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(0, 0, 0));
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnback.setText("BACK");
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));

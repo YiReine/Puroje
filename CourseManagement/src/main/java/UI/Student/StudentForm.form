@@ -33,7 +33,7 @@
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="btnEdit" min="-2" pref="85" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btnDelete" min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="btnDelete" min="-2" pref="104" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnBack" min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
@@ -49,10 +49,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -102,6 +102,9 @@
     </Component>
     <Component class="UI.UI_Item.button.MyButton" name="btnSearch">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/UI/icon/search (1).png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="SEARCH"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -179,6 +182,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fd" green="d4" red="5d" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/UI/icon/round-add-button (2).png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fd" green="d4" red="5d" type="rgb"/>
@@ -206,6 +212,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a1" red="0" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/UI/icon/diskette.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Edit"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a1" red="0" type="rgb"/>
@@ -231,6 +240,9 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ac" green="69" red="c" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/UI/icon/delete (2).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
         <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -260,6 +272,9 @@
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ac" green="69" red="c" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/UI/icon/previous.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
         <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

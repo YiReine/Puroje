@@ -142,6 +142,8 @@ public class MenuForm extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(86, 182, 236));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/Admin-icon.png"))); // NOI18N
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("WELLCOME");

@@ -80,6 +80,7 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(0, 0, 0));
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnback.setText("BACK");
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));
@@ -110,6 +111,7 @@ public class StudentGradeEditForm extends javax.swing.JFrame {
 
         btnedit1.setBackground(new java.awt.Color(93, 212, 253));
         btnedit1.setForeground(new java.awt.Color(0, 0, 0));
+        btnedit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnedit1.setText("SAVE");
         btnedit1.setColor(new java.awt.Color(93, 212, 253));
         btnedit1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

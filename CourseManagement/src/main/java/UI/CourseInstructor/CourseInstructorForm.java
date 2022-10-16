@@ -159,7 +159,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
+                .addGap(0, 3, Short.MAX_VALUE)
                 .addComponent(jLabel2))
         );
 
@@ -190,7 +190,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
-        btnAdd.setIcon(new javax.swing.ImageIcon("E:\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\round-add-button (3).png")); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/round-add-button (2).png"))); // NOI18N
         btnAdd.setText("ADD");
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +205,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         jPanel8.add(btnAdd, gridBagConstraints);
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
-        btnEdit.setIcon(new javax.swing.ImageIcon("E:\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\pencil.png")); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/pencil.png"))); // NOI18N
         btnEdit.setText("EDIT");
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +220,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         jPanel8.add(btnEdit, gridBagConstraints);
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
-        btnDelete.setIcon(new javax.swing.ImageIcon("E:\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\delete (1).png")); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete (2).png"))); // NOI18N
         btnDelete.setText("DELETE");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +247,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setForeground(new java.awt.Color(12, 105, 172));
-        btnBack.setIcon(new javax.swing.ImageIcon("E:\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\previous.png")); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnBack.setText("BACK");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -317,7 +317,7 @@ public class CourseInstructorForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 141, 0, 0);
         jPanel6.add(searchField1, gridBagConstraints);
 
-        btnSearch.setIcon(new javax.swing.ImageIcon("E:\\Puroje\\CourseManagement\\src\\main\\java\\UI\\icon\\search (1).png")); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btnSearch.setText("SEARCH");
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSearch.addActionListener(new java.awt.event.ActionListener() {

@@ -111,6 +111,7 @@ public class StudentForm extends javax.swing.JFrame {
         txtSearch.setText("Enter Name");
         txtSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btnSearch.setText("SEARCH");
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSearch.setMaximumSize(new java.awt.Dimension(91, 32));
@@ -138,6 +139,7 @@ public class StudentForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbDS);
 
         btnAdd.setBackground(new java.awt.Color(93, 212, 253));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/round-add-button (2).png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setColor(new java.awt.Color(93, 212, 253));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -156,6 +158,7 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnEdit.setBackground(new java.awt.Color(0, 161, 255));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/diskette.png"))); // NOI18N
         btnEdit.setText("Edit");
         btnEdit.setColor(new java.awt.Color(0, 161, 255));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -169,6 +172,7 @@ public class StudentForm extends javax.swing.JFrame {
         });
 
         btnDelete.setBackground(new java.awt.Color(12, 105, 172));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/delete (2).png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setColor(new java.awt.Color(12, 105, 172));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -183,6 +187,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setForeground(new java.awt.Color(12, 105, 172));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.setBorderColor(new java.awt.Color(12, 105, 172));
         btnBack.setColor(new java.awt.Color(255, 255, 255));
@@ -210,7 +215,7 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,8 +226,8 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(246, 246, 246)
-                        .addComponent(jLabel1)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -95,6 +95,7 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(0, 0, 0));
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnback.setText("BACK");
         btnback.setToolTipText("");
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
@@ -108,6 +109,7 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
 
         btndetail1.setBackground(new java.awt.Color(93, 212, 253));
         btndetail1.setForeground(new java.awt.Color(0, 0, 0));
+        btndetail1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btndetail1.setText("DETAIL(ID)");
         btndetail1.setColor(new java.awt.Color(93, 212, 253));
         btndetail1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -132,6 +134,7 @@ public class StudentGradeStudentIDForm extends javax.swing.JFrame {
 
         btndetail2.setBackground(new java.awt.Color(93, 212, 253));
         btndetail2.setForeground(new java.awt.Color(0, 0, 0));
+        btndetail2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btndetail2.setText("DETAIL(NAME)");
         btndetail2.setColor(new java.awt.Color(93, 212, 253));
         btndetail2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

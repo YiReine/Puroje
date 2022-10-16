@@ -95,6 +95,7 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
 
         btnback.setBackground(new java.awt.Color(255, 255, 255));
         btnback.setForeground(new java.awt.Color(0, 0, 0));
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/previous.png"))); // NOI18N
         btnback.setText("BACK");
         btnback.setBorderColor(new java.awt.Color(0, 161, 255));
         btnback.setColor(new java.awt.Color(255, 255, 255));
@@ -107,6 +108,7 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
 
         btndetail3.setBackground(new java.awt.Color(93, 212, 253));
         btndetail3.setForeground(new java.awt.Color(0, 0, 0));
+        btndetail3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btndetail3.setText("DETAIL (ID)");
         btndetail3.setColor(new java.awt.Color(93, 212, 253));
         btndetail3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -127,6 +129,7 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
 
         btndetail4.setBackground(new java.awt.Color(93, 212, 253));
         btndetail4.setForeground(new java.awt.Color(0, 0, 0));
+        btndetail4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/icon/search (1).png"))); // NOI18N
         btndetail4.setText("DETAIL(TITLE)");
         btndetail4.setColor(new java.awt.Color(93, 212, 253));
         btndetail4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -158,12 +161,12 @@ public class StudentGradeCourseIDForm extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cbdetailName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(30, 30, 30)
-                                        .addComponent(btndetail4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btndetail4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cbdetailID, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(30, 30, 30)
-                                        .addComponent(btndetail3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
+                                        .addComponent(btndetail3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(118, 118, 118)
