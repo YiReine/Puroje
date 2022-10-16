@@ -178,4 +178,20 @@ public class StudentDAL extends MyDatabaseManager {
         }
         return name;
     }
+        public ArrayList<String> readStudentsName(){
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            String query = "SELECT Lastname , Firstname FROM person WHERE EnrollmentDate>0";
+            ResultSet rs = this.doReadQuery(query);
+            if(rs !=null){
+                while(rs.next()){
+                    String fullname = rs.getString("Lastname")+ " " + rs.getString("Firstname");
+                    list.add(fullname);
+                }
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return list;
+    }
 }
