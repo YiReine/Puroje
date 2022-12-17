@@ -26,9 +26,6 @@ public class VegetableController {
     public @ResponseBody Iterable<Vegetable> index(Model m)
     {
         return  vegtableRepository.findAll();
-        //m.addAttribute("data", list);
-        //return "home";
-        
     }
     @GetMapping("/all")
     public String getAll(Model m)
