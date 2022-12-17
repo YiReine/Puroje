@@ -4,26 +4,22 @@
  */
 package Puroje.controller;
 
+import Puroje.entity.Customer;
+import Puroje.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- *
- * @author ASUS
- */
 @Controller
-public class HomeController {
-    @GetMapping("/")
-    public String a(Model m)
-    {
-        return  "index";   
-    }
+public class CustomerController {
+    @Autowired
+    private CustomerRepository customerRepository;
     
-    @GetMapping("/register")
-    public String register(Model m)
+    @GetMapping("/customer")
+    public @ResponseBody Iterable<Customer> index(Model m)
     {
-        return  "register";   
+        return  customerRepository.findAll();
     }
 }

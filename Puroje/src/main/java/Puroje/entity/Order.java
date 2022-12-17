@@ -12,7 +12,7 @@ import java.util.Date;
  * @author nguye
  */
 @Entity
-@Table(name = "order")
+@Table(name = "orderr")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
