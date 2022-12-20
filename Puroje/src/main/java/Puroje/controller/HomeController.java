@@ -16,8 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String getAll(Model m)
+    public String a(Model m)
     {
         return  "index";   
+    }
+    
+    @GetMapping("/home")
+    public String home(Model m)
+    {
+        return  "home";   
     }
 }

@@ -5,7 +5,7 @@
 package Puroje.controller;
 
 import Puroje.entity.Vegetable;
-import Puroje.repository.VegetableRepository;
+import Puroje.service.VegetableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class VegetableController {
 
     @Autowired
-    private VegetableRepository vegtableRepository;
+    private VegetableService vegtableService;
     
     @GetMapping("/index")
     public @ResponseBody Iterable<Vegetable> index(Model m)
     {
-        return  vegtableRepository.findAll();
+        return  vegtableService.findAll();
     }
     @GetMapping("/all")
     public String getAll(Model m)
     {
-        Iterable<Vegetable> list = vegtableRepository.findAll();
+        Iterable<Vegetable> list = vegtableService.findAll();
         m.addAttribute("data", list);
-        return "home";   
+        return "product";   
     }    
 }
