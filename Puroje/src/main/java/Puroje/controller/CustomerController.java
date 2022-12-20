@@ -30,11 +30,15 @@ public class CustomerController {
     }
     
     @GetMapping("/login")
-    public String login(Model m)
+    public String login(HttpSession session, Model m)
     {
-        
+        if (session.getAttribute("user") != null){
+            return "redirect:/";
+        }
+                
         Customer cus = new Customer();
         m.addAttribute("customer", cus);
+        
         return "login";
         
     }
@@ -43,22 +47,25 @@ public class CustomerController {
     public String logout(HttpSession session, Model m)
     {
         session.setAttribute("user", null);
-        return "home";
+        return "redirect:/";
         
     }
     
-    @RequestMapping("/login")
-    public String doLogin(ModelMap mm, HttpSession session, @ModelAttribute("customer") Customer customer) {
-          
-          Customer cus = customerService.login(customer.getFullname(), customer.getPassword());
-          if (cus == null) {
-              System.out.println(customer.getFullname() + " - " + customer.getPassword());
-               mm.put("customer", new Customer());
-               mm.put("msg", "The username or password is incorrect!");
-               return "login";
-          }
-          session.setAttribute("user", cus);
-          return "redirect:/home";
+    @PostMapping("/login")
+    public String doLogin(ModelMap mm, HttpSession session, @ModelAttribute("customer") Customer customer, Model m) {
+        if (session.getAttribute("user") != null){
+            return "redirect:/";
+        }  
+        
+        Customer cus = customerService.login(customer.getFullname(), customer.getPassword());
+        if (cus == null) {
+            System.out.println(customer.getFullname() + " - " + customer.getPassword());
+            mm.put("customer", new Customer());
+            mm.put("msg", "The username or password is incorrect!");
+            return "login";
+        }
+        session.setAttribute("user", cus);
+        return "redirect:/";
     }
     
     @GetMapping("/register")
@@ -70,10 +77,12 @@ public class CustomerController {
         
     }
     @PostMapping("/customer/save")
-    public String save(Model model, @ModelAttribute("customer") Customer customer)
+    public String save(Model model, HttpSession session, @ModelAttribute("customer") Customer customer)
     {
-        
+       
         customerService.save(customer);
+        
+        session.setAttribute("user", customer);
         
         return "redirect:../";
         

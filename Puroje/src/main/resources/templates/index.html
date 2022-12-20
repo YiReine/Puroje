@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
+
 <html>
     <head>
         <title>Puroje</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="/img?name=icon.png">
         <!-- Font Awesome -->
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -50,22 +48,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
               <!-- Navbar brand -->
               <a class="navbar-brand mt-2 mt-lg-0" href="#">
                 <img
-                  src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                  height="15"
-                  alt="MDB Logo"
+                  src="/img?name=vegetable.png"
+                  height="60"
+                  alt="Puroje Logo"
                   loading="lazy"
                 />
               </a>
               <!-- Left links -->
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Dashboard</a>
+                  <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Team</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Projects</a>
+                  <a class="nav-link" href="/all">Shop</a>
                 </li>
               </ul>
               <!-- Left links -->
@@ -75,12 +70,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <!-- Right elements -->
             <div class="d-flex align-items-center">
               <!-- Icon -->
-              <a class="text-reset me-3" href="#">
+              <a class="text-reset me-3" href="/cart">
                 <i class="fas fa-shopping-cart"></i>
               </a>
 
+              <!-- Login/Signin -->
+              <div class="dropdown" th:if="${sessionUser == null}">
+                <a
+                  class="text-reset me-3 dropdown-toggle hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuAvatar"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-user"></i>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                  <li>
+                    <a class="dropdown-item" href="/login">Login</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/register">Sign in</a>
+                  </li>
+                </ul>
+              </div>
               <!-- Notifications -->
-              <div class="dropdown">
+              <div class="dropdown" th:if="${sessionUser != null}">
                 <a
                   class="text-reset me-3 dropdown-toggle hidden-arrow"
                   href="#"
@@ -108,7 +127,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
               </div>
               <!-- Avatar -->
-              <div class="dropdown">
+              <div class="dropdown" th:if="${sessionUser != null}">
                 <a
                   class="dropdown-toggle d-flex align-items-center hidden-arrow"
                   href="#"
@@ -130,13 +149,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                   aria-labelledby="navbarDropdownMenuAvatar"
                 >
                   <li>
-                    <a class="dropdown-item" href="#">My profile</a>
+                    <a class="dropdown-item" href="#">[[${sessionUser.getFullname()}]]</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="#">Settings</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -146,44 +165,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
           <!-- Container wrapper -->
         </nav>
         <!-- Navbar -->
-        <section class="vh-100 gradient-custom">
-            <div class="container py-5 h-100">
-              <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
-
-                      <div class="mb-md-5 mt-md-4 pb-5">
-
-                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                        <p class="text-white-50 mb-5">Please enter your login and password!</p>
-
-                        <div class="form-outline form-white mb-4">
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"/>
-                          <label class="form-label" for="typeEmailX">Username</label>
-                        </div>
-
-                        <div class="form-outline form-white mb-4">
-                          <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                          <label class="form-label" for="typePasswordX">Password</label>
-                        </div>
-
-                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
-
-                      </div>
-
-                      <div>
-                        <p class="mb-0">Don't have an account? <a href="/register" class="text-white-50 fw-bold">Sign Up</a>
-                        </p>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        
     </body>
 </html>
