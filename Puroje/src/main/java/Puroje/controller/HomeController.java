@@ -21,9 +21,9 @@ public class HomeController {
         return  "index";   
     }
     
-    @GetMapping("/register")
-    public String register(Model m)
+    @GetMapping("/home")
+    public String home(Model m)
     {
-        return  "register";   
+        return  "home";   
     }
 }

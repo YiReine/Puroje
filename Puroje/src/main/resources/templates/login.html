@@ -157,21 +157,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                         <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                         <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                        
+                        <form th:action="@{/login}" th:object="${customer}" method="POST">
+                            
+                            <div class="form-outline form-white mb-4">
+                              <input type="text" id="typeEmailX" 
+                                     class="form-control form-control-lg"  th:field="*{Fullname}"/>
+                              <label class="form-label" for="typeEmailX">Username</label>
+                            </div>
 
-                        <div class="form-outline form-white mb-4">
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"/>
-                          <label class="form-label" for="typeEmailX">Username</label>
-                        </div>
+                            <div class="form-outline form-white mb-4">
+                              <input type="password" id="typePasswordX" 
+                                     class="form-control form-control-lg" th:field="*{Password}"/>
+                              <label class="form-label" for="typePasswordX">Password</label>
+                            </div>
 
-                        <div class="form-outline form-white mb-4">
-                          <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                          <label class="form-label" for="typePasswordX">Password</label>
-                        </div>
+                            <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
 
-                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
-
+                            <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
+                        </form>
+                        
                       </div>
 
                       <div>
