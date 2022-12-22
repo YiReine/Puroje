@@ -5,8 +5,10 @@ import Puroje.entity.Orderdetail;
 import Puroje.entity.Vegetable;
 import Puroje.repository.OrderRepository;
 import Puroje.repository.OrderdetailRepository;
+import Puroje.repository.VegetableRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class OrderServiceImpl implements OrderService{
     private OrderRepository orderRepository;
     @Autowired
     private OrderdetailRepository orderdetailRepository;
+    @Autowired
+    private VegetableRepository vegetableRepository;
     
     @Override
     public Iterable<Order> findAll() {
@@ -40,6 +44,12 @@ public class OrderServiceImpl implements OrderService{
     public Orderdetail saveDetail(Orderdetail orderdetail){
         
         return orderdetailRepository.save(orderdetail);
+    }
+    
+    @Override
+    public Vegetable findVegeById(int id) {
+        
+        return vegetableRepository.findById(id).get();     
     }
     
     @Override

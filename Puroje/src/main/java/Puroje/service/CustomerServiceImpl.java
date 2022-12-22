@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService{
         while(list.hasNext()){
         
             cus = list.next();    
-        System.out.println(cus.getFullname() + " - " + cus.getPassword());
+            
             if(cus.getFullname().equals(name) && cus.getPassword().equals(pass))
                 return cus;
         }

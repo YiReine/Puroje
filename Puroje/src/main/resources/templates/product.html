@@ -270,7 +270,8 @@
                         <p>[[${product.Unit}]]</p>
                       </a>
                       <h6 class="mb-3">[[${product.Price}]]</h6>
-                        <button class="btn btn-success btn-lg btn-block" type="submit">Buy</button>
+                        <button class="btn btn-success btn-lg btn-block" 
+                                th:onclick="@{'buy('+${product.VegetableID}+')'}">Buy</button>
                     </div>
                   </div>
                 </div>
@@ -324,6 +325,10 @@
         var x = document.getElementById("sort").value;
         var y = window.location.pathname.split('/');
         window.location.replace(y[0] + '/' +x);
+    }
+    function buy(id){
+        var y = window.location.pathname.split('/');
+        window.location.replace(y[0] + '/add-cart?vegeId=' +id);
     }
     </script>   
     </body>

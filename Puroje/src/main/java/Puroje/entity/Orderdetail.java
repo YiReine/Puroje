@@ -14,7 +14,6 @@ import jakarta.persistence.*;
 @Table(name = "orderdetail")
 public class Orderdetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int OrderID;
     private int VegetableID;
     private int Quantity;
