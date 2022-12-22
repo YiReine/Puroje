@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Puroje.service;
 
 import Puroje.entity.Order;
@@ -16,4 +12,5 @@ public interface OrderService {
     Order save(Order order);
     Iterable<Orderdetail> findAllDetail();
     Orderdetail saveDetail(Orderdetail orderdetail);
+    Iterable<Orderdetail> findOrderdetailOnMonth();
 }

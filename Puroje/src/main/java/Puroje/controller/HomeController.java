@@ -42,7 +42,7 @@ public class HomeController {
     @RequestMapping("/img")
     public ResponseEntity<InputStreamResource> getImage(@ModelAttribute("name") String name) throws IOException {
 
-        var imgFile = new ClassPathResource("images/"+name);
+        var imgFile = new ClassPathResource(name);
 
         return ResponseEntity
                 .ok()

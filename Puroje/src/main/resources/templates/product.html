@@ -5,6 +5,7 @@
         <title>Puroje</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="/img?name=images/icon.png">
         <!-- Font Awesome -->
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -34,222 +35,227 @@
         </style>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <!-- Container wrapper -->
+          <div class="container-fluid">
+            <!-- Toggle button -->
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <!-- Navbar brand -->
+              <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img
+                  src="/img?name=images/vegetable.png"
+                  height="60"
+                  alt="Puroje Logo"
+                  loading="lazy"
+                />
+              </a>
+              <!-- Left links -->
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/all">Shop</a>
+                </li>
+              </ul>
+              <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+              <!-- Icon -->
+              <a class="text-reset me-3" href="/cart">
+                <i class="fas fa-shopping-cart"></i>
+              </a>
+
+              <!-- Login/Signin -->
+              <div class="dropdown" th:if="${sessionUser == null}">
+                <a
+                  class="text-reset me-3 dropdown-toggle hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuAvatar"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-user"></i>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                  <li>
+                    <a class="dropdown-item" href="/login">Login</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/register">Sign in</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Notifications -->
+              <div class="dropdown" th:if="${sessionUser != null}">
+                <a
+                  class="text-reset me-3 dropdown-toggle hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-bell"></i>
+                  <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <a class="dropdown-item" href="#">Some news</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Another news</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Avatar -->
+              <div class="dropdown" th:if="${sessionUser != null}">
+                <a
+                  class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuAvatar"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                    class="rounded-circle"
+                    height="25"
+                    alt="Black and White Portrait of a Man"
+                    loading="lazy"
+                  />
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                  <li>
+                    <a class="dropdown-item" href="#">[[${sessionUser.getFullname()}]]</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Settings</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Right elements -->
+          </div>
+          <!-- Container wrapper -->
+        </nav>
         
-        <div>List vegetable</div>
-        <table border="1">
-            <tr>
-               <th>ID</th>
-               <th>Name</th>
-               <th>Unit</th>
-               <th>Amount</th>
-               <th>Price</th>
-               <th>Edit</th>
-            </tr>
-            <tr th:each ="row, state: ${data}">
-               <td th:utext="${state.count}">...</td>
-               <td th:utext="${row.VegetableName}">...</td>
-               <td th:utext="${row.Unit}">...</td>
-               <td th:utext="${row.Amount}">...</td>
-               <td th:utext="${row.Price}">...</td>
-               <td><a th:href="'/vegetable/edit/'+ ${state.count}">Edit</a></th>
-            </tr>
-         </table>
-        <p><a href="/vegetable/add">Add vegetable</a></p>
-        	<div class="row">
+        <div class='container py-5'>
+            <div class="row">
         	<aside class="col-md-3">
 		
             <div class="card">
         	<article class="filter-group">
-		<header class="card-header">
-				<h6 class="title">Product type</h6>
-		</header>
-		<div class="filter-content collapse show" id="collapse_1" style="">
-			<div class="card-body">
-				<form class="pb-3">
-				<div class="input-group">
-				  <input type="text" class="form-control" placeholder="Search">
-				  <div class="input-group-append">
-				    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
-				  </div>
-				</div>
-				</form>
-				
-				<ul class="list-menu">
-				<li><a href="#">People  </a></li>
-				<li><a href="#">Watches </a></li>
-				<li><a href="#">Cinema  </a></li>
-				<li><a href="#">Clothes  </a></li>
-				<li><a href="#">Home items </a></li>
-				<li><a href="#">Animals</a></li>
-				<li><a href="#">People </a></li>
-				</ul>
-
-			</div> <!-- card-body.// -->
-		</div>
-                </article> <!-- filter-group  .// -->
-                <article class="filter-group">
-                        <header class="card-header">
-                                <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
-                                        <i class="icon-control fa fa-chevron-down"></i>
-                                        <h6 class="title">Brands </h6>
-                                </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_2" style="">
-                                <div class="card-body">
-                                        <label class="custom-control custom-checkbox">
-                                          <input type="checkbox" checked="" class="custom-control-input">
-                                          <div class="custom-control-label">Mercedes  
-                                                <b class="badge badge-pill badge-light float-right">120</b>  </div>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                          <input type="checkbox" checked="" class="custom-control-input">
-                                          <div class="custom-control-label">Toyota 
-                                                <b class="badge badge-pill badge-light float-right">15</b>  </div>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                          <input type="checkbox" checked="" class="custom-control-input">
-                                          <div class="custom-control-label">Mitsubishi 
-                                                <b class="badge badge-pill badge-light float-right">35</b> </div>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                          <input type="checkbox" checked="" class="custom-control-input">
-                                          <div class="custom-control-label">Nissan 
-                                                <b class="badge badge-pill badge-light float-right">89</b> </div>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                          <input type="checkbox" class="custom-control-input">
-                                          <div class="custom-control-label">Honda 
-                                                <b class="badge badge-pill badge-light float-right">30</b>  </div>
-                                        </label>
-                </div> <!-- card-body.// -->
-                        </div>
-                </article> <!-- filter-group .// -->
-                <article class="filter-group">
-                        <header class="card-header">
-                                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
-                                        <i class="icon-control fa fa-chevron-down"></i>
-                                        <h6 class="title">Price range </h6>
-                                </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_3" style="">
-                                <div class="card-body">
-                                        <input type="range" class="custom-range" min="0" max="100" name="">
-                                        <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                          <label>Min</label>
-                                          <input class="form-control" placeholder="$0" type="number">
-                                        </div>
-                                        <div class="form-group text-right col-md-6">
-                                          <label>Max</label>
-                                          <input class="form-control" placeholder="$1,0000" type="number">
-                                        </div>
-                                        </div> <!-- form-row.// -->
-                                        <button class="btn btn-block btn-primary">Apply</button>
-                                </div><!-- card-body.// -->
-                        </div>
-                </article> <!-- filter-group .// -->
-                <article class="filter-group">
-                        <header class="card-header">
-                                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                                        <i class="icon-control fa fa-chevron-down"></i>
-                                        <h6 class="title">Sizes </h6>
-                                </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_4" style="">
-                                <div class="card-body">
-                                  <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> XS </span>
-                                  </label>
-
-                                  <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> SM </span>
-                                  </label>
-
-                                  <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> LG </span>
-                                  </label>
-
-                                  <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> XXL </span>
-                                  </label>
-                        </div><!-- card-body.// -->
-                        </div>
-                </article> <!-- filter-group .// -->
-               
-        </div> <!-- card.// -->
-
-                </aside>
-                <main class="col-md-9">
-
-        <header class="border-bottom mb-4 pb-3">
-                        <div class="form-inline">
-                                <span class="mr-md-auto">32 Items found </span>
-                                <select class="mr-2 form-control">
-                                        <option>Latest items</option>
-                                        <option>Trending</option>
-                                        <option>Most Popular</option>
-                                        <option>Cheapest</option>
-                                </select>
-                                <div class="btn-group">
-                                        <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="" data-original-title="List view"> 
-                                                <i class="fa fa-bars"></i></a>
-                                        <a href="#" class="btn  btn-outline-secondary active" data-toggle="tooltip" title="" data-original-title="Grid view"> 
-                                                <i class="fa fa-th"></i></a>
+                    <header class="card-header">
+                        <h6 class="title">Product type</h6>
+                    </header>
+                    <div class="filter-content collapse show" id="collapse_1" style="">
+                        <div class="card-body">
+                            <form class="pb-3">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Search">
+                                  <div class="input-group-append">
+                                    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
+                                  </div>
                                 </div>
-                        </div>
+                            </form>
+
+                            <ul class="list-menu">
+                                <th:block th:each="cate : ${cates}">
+                            <li><a th:href="@{'category?id='+${cate.CatagoryID}}">[[${cate.Name}]]</a></li>   
+                                </th:block>        
+                            </ul>
+
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- filter-group  .// -->
+                
+                <article class="filter-group">
+                    <header class="card-header">
+                        <h6 class="title">Price</h6>
+                    </header>
+                    <div class="filter-content collapse show" id="collapse_2" style="">
+                        <div class="card-body">
+				<form class="form-row">
+				<div class="form-group col-md-6">
+				  <label>Min</label>
+				  <input class="form-control" placeholder="$0" type="number">
+				</div>
+				<div class="form-group text-right col-md-6">
+				  <label>Max</label>
+				  <input class="form-control" placeholder="$1,0000" type="number">
+				</div>
+				<button class="btn btn-block btn-primary">Apply</button>
+				</form> <!-- form-row.// -->
+			</div><!-- card-body.// -->
+                    </div>
+                </article> <!-- filter-group .// -->
+                               
+                
+            </div> <!-- card.// -->
+                </aside>
+                
+                
+        <main class="col-md-9">
+                
+                
+        <header class="border-bottom mb-4 pb-3">
+            <div class="form-inline">
+                <select class="mr-2 form-control" onchange="sort()" id="sort">
+                    <option value="trend">Trending</option>
+                    <option value="cheap">Cheapest</option>
+                </select>
+            </div>
         </header><!-- sect-heading -->
         
         
-        <section style="background-color: #eee;">
+        <section>
             <div class="text-center container py-5">
-              <h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
+              <h4 class="mt-4 mb-5"><strong>Fresh Vegetable</strong></h4>
 
               <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp"
-                        class="w-100" />
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5><span class="badge bg-primary ms-2">New</span></h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="" class="text-reset">
-                        <h5 class="card-title mb-3">Product name</h5>
-                      </a>
-                      <a href="" class="text-reset">
-                        <p>Category</p>
-                      </a>
-                      <h6 class="mb-3">$61.99</h6>
-                    </div>
-                  </div>
-                </div>
+                <th:block th:each="product : ${products}">
 
                 <div class="col-lg-4 col-md-6 mb-4">
                   <div class="card">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                      <img th:src="@{'/img?name='+${product.Image}}"
                         class="w-100" />
                       <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5><span class="badge bg-success ms-2">Eco</span></h5>
-                          </div>
-                        </div>
                         <div class="hover-overlay">
                           <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </div>
@@ -257,107 +263,19 @@
                     </div>
                     <div class="card-body">
                       <a href="" class="text-reset">
-                        <h5 class="card-title mb-3">Product name</h5>
+                        <h5 class="card-title mb-3">[[${product.VegetableName}]]</h5>
                       </a>
                       <a href="" class="text-reset">
-                        <p>Category</p>
+                        <p>[[${product.Unit}]]</p>
                       </a>
-                      <h6 class="mb-3">$61.99</h6>
+                      <h6 class="mb-3">[[${product.Price}]]</h6>
+                        <button class="btn btn-success btn-lg btn-block" type="submit">Buy</button>
                     </div>
                   </div>
                 </div>
+                    
+                </th:block>
 
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/shoes%20(3).webp"
-                        class="w-100" />
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5><span class="badge bg-danger ms-2">-10%</span></h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="" class="text-reset">
-                        <h5 class="card-title mb-3">Product name</h5>
-                      </a>
-                      <a href="" class="text-reset">
-                        <p>Category</p>
-                      </a>
-                      <h6 class="mb-3">
-                        <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(23).webp"
-                        class="w-100" />
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-success ms-2">Eco</span><span
-                                class="badge bg-danger ms-2">-10%</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="" class="text-reset">
-                        <h5 class="card-title mb-3">Product name</h5>
-                      </a>
-                      <a href="" class="text-reset">
-                        <p>Category</p>
-                      </a>
-                      <h6 class="mb-3">
-                        <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(17).webp"
-                        class="w-100" />
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100"></div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="" class="text-reset">
-                        <h5 class="card-title mb-3">Product name</h5>
-                      </a>
-                      <a href="" class="text-reset">
-                        <p>Category</p>
-                      </a>
-                      <h6 class="mb-3">$61.99</h6>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="col-lg-4 col-md-6 mb-4">
                   <div class="card">
@@ -388,14 +306,24 @@
                       <h6 class="mb-3">
                         <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
                       </h6>
+                        <button class="btn btn-success btn-lg btn-block" type="submit">Buy</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
+        </section>
         
 	</main>
+            </div>
         </div>
+   
+    <script>
+    function sort() {
+        var x = document.getElementById("sort").value;
+        var y = window.location.pathname.split('/');
+        window.location.replace(y[0] + '/' +x);
+    }
+    </script>   
     </body>
 </html>
