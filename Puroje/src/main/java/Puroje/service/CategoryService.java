@@ -11,5 +11,4 @@ public interface CategoryService {
     @Autowired
     Iterable<Category> findAll();
     Optional<Category> findById(int id);
-    Iterable<Vegetable> findByCate(int cate);
 }

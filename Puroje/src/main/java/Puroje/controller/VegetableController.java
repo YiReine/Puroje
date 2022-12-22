@@ -3,7 +3,6 @@ package Puroje.controller;
 import Puroje.entity.Category;
 import Puroje.entity.Vegetable;
 import Puroje.service.VegetableService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +23,7 @@ public class VegetableController {
     {
         return  vegetableService.findAll();
     }
-    @GetMapping("/ca")
-    public @ResponseBody Iterable<Category> cate(Model m)
-    {
-        return  vegetableService.findCate();
-    }
+    
     @GetMapping("/all")
     public String getAll(Model m)
     {
@@ -92,4 +87,17 @@ public class VegetableController {
         
         return "product";
     } 
+    
+    @GetMapping("/category")
+    public String getByCate(Model m, @ModelAttribute("id") int id)
+    {
+        Iterable<Vegetable> list = vegetableService.findByCate(id);
+        Iterable<Category> catelist = vegetableService.findCate();
+        
+                
+        m.addAttribute("products", list);
+        m.addAttribute("cates", catelist);
+        
+        return "product";   
+    }
 }

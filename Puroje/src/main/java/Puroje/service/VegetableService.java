@@ -13,6 +13,7 @@ public interface VegetableService {
     Iterable<Vegetable> findAll();
     Iterable<Vegetable> findByPrice(int min, int max);
     Iterable<Vegetable> findByName(String name);
+    Iterable<Vegetable> findByCate(int cate);
     List<Vegetable> search(String term);
     Optional<Category> findCateById(int id);
     Iterable<Category> findCate();

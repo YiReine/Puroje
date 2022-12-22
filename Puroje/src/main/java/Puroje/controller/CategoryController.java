@@ -21,16 +21,4 @@ public class CategoryController {
     {
         return  categoryService.findAll();
     }
-    @GetMapping("/category")
-    public String getByCate(Model m, @ModelAttribute("id") int id)
-    {
-        Iterable<Vegetable> list = categoryService.findByCate(id);
-        Iterable<Category> catelist = categoryService.findAll();
-        
-                
-        m.addAttribute("products", list);
-        m.addAttribute("cates", catelist);
-        
-        return "product";   
-    }
 }
