@@ -184,11 +184,11 @@
                     </header>
                     <div class="filter-content collapse show" id="collapse_1" style="">
                         <div class="card-body">
-                            <form class="pb-3">
+                            <form class="pb-3" action="/search">
                                 <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Search">
+                                  <input type="text" class="form-control" placeholder="Search" name="name">
                                   <div class="input-group-append">
-                                    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
                                   </div>
                                 </div>
                             </form>
@@ -209,16 +209,17 @@
                     </header>
                     <div class="filter-content collapse show" id="collapse_2" style="">
                         <div class="card-body">
-				<form class="form-row">
+				<form class="form-row" action="/price" method="GET">
 				<div class="form-group col-md-6">
 				  <label>Min</label>
-				  <input class="form-control" placeholder="$0" type="number">
+				  <input class="form-control" placeholder="0" type="number" name="min">
 				</div>
 				<div class="form-group text-right col-md-6">
 				  <label>Max</label>
-				  <input class="form-control" placeholder="$1,0000" type="number">
+				  <input class="form-control" placeholder="1,0000" type="number" name="max">
 				</div>
-				<button class="btn btn-block btn-primary">Apply</button>
+                                    <button class="btn btn-block btn-primary" 
+                                            type="submit">Apply</button>
 				</form> <!-- form-row.// -->
 			</div><!-- card-body.// -->
                     </div>
@@ -277,7 +278,7 @@
                 </th:block>
 
 
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!--div class="col-lg-4 col-md-6 mb-4">
                   <div class="card">
                     <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
                       <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(30).webp"
@@ -309,7 +310,7 @@
                         <button class="btn btn-success btn-lg btn-block" type="submit">Buy</button>
                     </div>
                   </div>
-                </div>
+                </div-->
               </div>
             </div>
         </section>

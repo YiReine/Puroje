@@ -47,8 +47,10 @@ public class VegetableController {
     {
         
         Iterable<Vegetable> list = vegetableService.sort("trend");
+        Iterable<Category> catelist = vegetableService.findCate();
         
         m.addAttribute("products", list);
+        m.addAttribute("cates", catelist);
         
         return "product";
     }
@@ -57,9 +59,37 @@ public class VegetableController {
     {
         
         Iterable<Vegetable> list = vegetableService.sort("cheap");
+        Iterable<Category> catelist = vegetableService.findCate();
         
         m.addAttribute("products", list);
+        m.addAttribute("cates", catelist);
         
         return "product";
     }  
+    
+    @GetMapping("/price")
+    public String getPrice(Model m, @ModelAttribute("min") int min, @ModelAttribute("max") int max)
+    {
+        
+        Iterable<Vegetable> list = vegetableService.findByPrice(min,max);
+        Iterable<Category> catelist = vegetableService.findCate();
+        
+        m.addAttribute("products", list);
+        m.addAttribute("cates", catelist);
+        
+        return "product";
+    } 
+    
+    @GetMapping("/search")
+    public String getSearch(Model m, @ModelAttribute("name") String name)
+    {
+        
+        Iterable<Vegetable> list = vegetableService.findByName(name);
+        Iterable<Category> catelist = vegetableService.findCate();
+        
+        m.addAttribute("products", list);
+        m.addAttribute("cates", catelist);
+        
+        return "product";
+    } 
 }

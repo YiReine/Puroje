@@ -47,36 +47,39 @@ public class VegetableServiceImpl implements VegetableService {
     }
     
     @Override
-    public Iterable<Vegetable> findByPrice(String price) {
+    public Iterable<Vegetable> findByPrice(int min, int max) {
         
         Iterable<Vegetable> list = vegetableRepository.findAll();
-        Iterator<Vegetable> list2 = list.iterator();
-        char[] p = price.toCharArray();
-
-        for(int i=0; i<p.length; i++){
-            while(list2.hasNext()){
-            Vegetable vege = list2.next();
-            if(vege.getPrice()<=20000 && p[i]=='0'){
-                break;
+        List<Vegetable> list2 = new ArrayList<Vegetable>(Streamable.of(list).toList());
+        
+        for(int i=0; i<list2.size(); i++){
+            Vegetable vege = list2.get(i);
+            if(vege.getPrice()<min || vege.getPrice()>max){
+                list2.remove(i);
+                i--;
             }
-            if(vege.getPrice()>20000 && vege.getPrice()<=60000 && p[i]=='1'){
-                break;
-            }
-            if(vege.getPrice()>60000 && vege.getPrice()<=100000 && p[i]=='2'){
-                break;
-            }
-            if(vege.getPrice()>100000 && p[i]=='3'){
-                break;
-            }
-            list2.remove();
         }
-            list = (Iterable<Vegetable>) list2;
-            list2 = list.iterator();
-        }
-        return list;
-            
+        
+        return list2;     
     }
     
+    @Override
+    public Iterable<Vegetable> findByName(String name) {
+        
+        Iterable<Vegetable> list = vegetableRepository.findAll();
+        List<Vegetable> list2 = new ArrayList<Vegetable>(Streamable.of(list).toList());
+        
+        for(int i=0; i<list2.size(); i++){
+            Vegetable vege = list2.get(i);
+            if(vege.getVegetableName().toUpperCase().indexOf(name.toUpperCase())<0){
+                list2.remove(i);
+                i--;
+            }
+        }
+        
+        return list2;     
+    }
+        
     @Override
     public Iterable<Vegetable> sort(String s) {
         

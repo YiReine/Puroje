@@ -8,10 +8,7 @@ import Puroje.entity.Orderdetail;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author ASUS
- */
+
 @Repository
 public interface OrderdetailRepository extends CrudRepository<Orderdetail, Integer>{
     

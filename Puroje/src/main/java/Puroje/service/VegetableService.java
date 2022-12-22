@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 public interface VegetableService {
     @Autowired
     Iterable<Vegetable> findAll();
-    Iterable<Vegetable> findByPrice(String price);
+    Iterable<Vegetable> findByPrice(int min, int max);
+    Iterable<Vegetable> findByName(String name);
     List<Vegetable> search(String term);
     Optional<Category> findCateById(int id);
     Iterable<Category> findCate();
