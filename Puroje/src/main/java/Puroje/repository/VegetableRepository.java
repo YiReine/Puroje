@@ -8,10 +8,7 @@ import Puroje.entity.Vegetable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author ASUS
- */
+
 @Repository
 public interface VegetableRepository extends CrudRepository<Vegetable, Integer>{
   

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Puroje.controller;
 
 import Puroje.entity.Customer;
@@ -42,7 +38,7 @@ public class HomeController {
     @RequestMapping("/img")
     public ResponseEntity<InputStreamResource> getImage(@ModelAttribute("name") String name) throws IOException {
 
-        var imgFile = new ClassPathResource("images/"+name);
+        var imgFile = new ClassPathResource(name);
 
         return ResponseEntity
                 .ok()
